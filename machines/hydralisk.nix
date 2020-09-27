@@ -7,7 +7,7 @@
 {
   imports =
     [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
+      ./hardware-configuration/hydralisk.nix
       ./gpu-passthrough.nix
       ./sync-client.nix
       ./sway.nix
