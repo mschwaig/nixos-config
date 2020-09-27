@@ -10,17 +10,8 @@
       ./hardware-configuration/mutalisk.nix
       # Include device-specific config from nixos-hardware channel
       <nixos-hardware/lenovo/thinkpad/t480s>
-      ../addins/client/sway.nix
-      ../addins/client/sync.nix
+      ../addins/client
     ];
-
-  nixpkgs.config.allowUnfree = true;
-  boot.kernelPackages = pkgs.linuxPackages_latest;
-
-  # Use the systemd-boot EFI boot loader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-
   boot.supportedFilesystems = ["zfs"];
   boot.zfs.requestEncryptionCredentials = true;
   services.zfs.autoScrub.enable = true;
@@ -28,8 +19,6 @@
 
   networking.hostName = "mutalisk";
   networking.hostId = "d555666d";
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-  networking.networkmanager.enable = true;
 
   # The global useDHCP flag is deprecated, therefore explicitly set to false here.
   # Per-interface useDHCP will be mandatory in the future, so this generated config

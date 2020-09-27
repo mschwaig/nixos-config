@@ -8,31 +8,18 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration/hydralisk.nix
+      ../addins/client
       ../addins/client/desktop/gpu-passthrough.nix
-      ../addins/client/sync.nix
-      ../addins/client/sway.nix
     ];
 
-  nixpkgs.config.allowUnfree = true;
-
-  boot.kernelPackages = pkgs.linuxPackages_latest;
-
   boot.supportedFilesystems = [ "ntfs" ];
-
-  # Use the systemd-boot EFI boot loader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
 
   # nvidia proprietary drivers
   # services.xserver.videoDrivers = [ "modprobe" "nvidia" ];
   # hardware.nvidia.modesetting.enable = true;
 
-  # allow things like intel wifi firmware
-  hardware.enableRedistributableFirmware = true;
-
-  # networking.hostName = "cisclet"; # Define your hostname.
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-  networking.networkmanager.enable = true; 
+  networking.hostName = "hydralisk"; # Define your hostname.
+  # TODO: add hostId when switching to ZFS root
 
   # The global useDHCP flag is deprecated, therefore explicitly set to false here.
   # Per-interface useDHCP will be mandatory in the future, so this generated config
