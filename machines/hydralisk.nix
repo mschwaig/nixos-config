@@ -8,9 +8,9 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration/hydralisk.nix
-      ./gpu-passthrough.nix
-      ./sync-client.nix
-      ./sway.nix
+      ../addins/client/desktop/gpu-passthrough.nix
+      ../addins/client/sync.nix
+      ../addins/client/sway.nix
     ];
 
   nixpkgs.config.allowUnfree = true;
