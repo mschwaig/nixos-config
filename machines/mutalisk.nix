@@ -11,40 +11,21 @@
       # Include device-specific config from nixos-hardware channel
       <nixos-hardware/lenovo/thinkpad/t480s>
       ../addins/client
+      ../addins/encrypted-zfs-root
     ];
-  boot.supportedFilesystems = ["zfs"];
-  boot.zfs.requestEncryptionCredentials = true;
-  services.zfs.autoScrub.enable = true;
-  services.zfs.trim.enable = true;
 
   networking.hostName = "mutalisk";
   networking.hostId = "d555666d";
 
-  # The global useDHCP flag is deprecated, therefore explicitly set to false here.
-  # Per-interface useDHCP will be mandatory in the future, so this generated config
-  # replicates the default behaviour.
+  # dhcp set per interface because global flag is deprecated
   networking.useDHCP = false;
   networking.interfaces.enp0s31f6.useDHCP = true;
   networking.interfaces.wlp61s0.useDHCP = true;
 
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
-
-  # Select internationalisation properties.
-  # i18n.defaultLocale = "en_US.UTF-8";
-  # console = {
-  #   font = "Lat2-Terminus16";
-  #   keyMap = "us";
-  # };
-
-  # Set your time zone.
-  # time.timeZone = "Europe/Amsterdam";
-
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-     wget vim archivemount vifm kitty firefox-beta-bin git tree
+     wget
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -58,12 +39,6 @@
 
   # List services that you want to enable:
 
-  # Enable the OpenSSH daemon.
-  services.openssh = {
-    enable = true;
-    passwordAuthentication = false;
-  };
-
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];
@@ -72,10 +47,6 @@
 
   # Enable CUPS to print documents.
   # services.printing.enable = true;
-
-  # Enable sound.
-  # sound.enable = true;
-  # hardware.pulseaudio.enable = true;
 
   # Enable the X11 windowing system.
   # services.xserver.enable = true;
@@ -91,16 +62,8 @@
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.mschwaig = {
-    isNormalUser = true;
-    extraGroups = [ "wheel" "libvirtd" ]; # Enable ‘sudo’ for the user.
-    description = "Martin Schwaighofer";
-    shell = pkgs.fish;
     openssh.authorizedKeys.keys = [ "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILnU1xQN50B54S98io0kH1xElc9yNqmZMPF0s8QASLaB" ];
   };
-
-  programs.fish.enable = true;
-
-  programs.vim.defaultEditor = true;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
