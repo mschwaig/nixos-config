@@ -12,8 +12,6 @@
       ../addins/client/desktop/gpu-passthrough.nix
     ];
 
-  boot.supportedFilesystems = [ "ntfs" ];
-
   # nvidia proprietary drivers
   # services.xserver.videoDrivers = [ "modprobe" "nvidia" ];
   # hardware.nvidia.modesetting.enable = true;

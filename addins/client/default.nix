@@ -5,6 +5,8 @@
     [
       ./sync.nix
       ./sway.nix
+      ./scarlett-audio.nix
+      ./thunderbolt.nix
     ];
 
   nixpkgs.config.allowUnfree = true;
@@ -19,6 +21,8 @@
   boot.loader.efi.canTouchEfiVariables = true;
 
   networking.networkmanager.enable = true;
+
+  boot.supportedFilesystems = ["ntfs"];
 
   # Configure network proxy if necessary
   # networking.proxy.default = "sword@proxy:port/";
@@ -36,7 +40,7 @@
 
   environment.systemPackages = with pkgs; [
     # gui apps
-    firefox-beta-bin vlc gimp zathura
+    firefox-beta-bin thunderbird vlc gimp zathura
 
     # development tools
     zig valgrind gdb gnumake gcc
@@ -61,6 +65,9 @@
 
     # remote managment
     ethtool
+
+    # gaming
+    steam
   ];
 
   # enable openssh deamon

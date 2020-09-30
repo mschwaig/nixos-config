@@ -12,10 +12,11 @@
       <nixos-hardware/lenovo/thinkpad/t480s>
       ../addins/client
       ../addins/encrypted-zfs-root
+      #../addins/portable/wireguard.nix
     ];
 
   networking.hostName = "mutalisk";
-  networking.hostId = "d555666d";
+  networking.hostId = "ed7fb7da";
 
   # dhcp set per interface because global flag is deprecated
   networking.useDHCP = false;
