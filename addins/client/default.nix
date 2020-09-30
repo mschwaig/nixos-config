@@ -7,6 +7,7 @@
       ./sway.nix
       ./scarlett-audio.nix
       ./thunderbolt.nix
+      ./steam.nix
     ];
 
   nixpkgs.config.allowUnfree = true;
@@ -65,9 +66,6 @@
 
     # remote managment
     ethtool
-
-    # gaming
-    steam
   ];
 
   # enable openssh deamon

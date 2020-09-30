@@ -24,16 +24,10 @@
   networking.interfaces.enp39s0.useDHCP = true;
   networking.interfaces.enp45s0.useDHCP = true;
 
-  # steam prequesites
-
-  hardware.opengl.driSupport32Bit = true;
-  hardware.opengl.extraPackages32 = with pkgs.pkgsi686Linux; [ libva ];
-  hardware.pulseaudio.support32Bit = true;
-
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    pciutils reaper steam
+    pciutils reaper
 
     #disabled
     # sonic-pi factorio
