@@ -62,7 +62,7 @@
 
 
     # monitoring
-    lm_sensors
+    lm_sensors acpi
 
     # remote managment
     ethtool
