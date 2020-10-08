@@ -41,7 +41,10 @@
 
   environment.systemPackages = with pkgs; [
     # gui apps
-    firefox-beta-bin thunderbird vlc gimp transmission-gtk zathura libreoffice-fresh
+    firefox-beta-bin thunderbird vlc gimp transmission-gtk libreoffice-fresh
+
+    # tiling-friendly apps
+    sxiv zathura
 
     # video editing TODO: ensure that mlt version matches the one used by kdenlive
     kdeApplications.kdenlive mlt
@@ -53,7 +56,9 @@
     kitty
 
     # terminal apps
-    file ffmpeg python38 htop git lolcat vifm-full tree archivemount pwgen jq nix-index tmux reptyr astyle protonvpn-cli (neovim.override {
+    file ffmpeg htop git lolcat vifm-full tree archivemount pwgen jq nix-index tmux reptyr astyle protonvpn-cli
+
+    (neovim.override {
       vimAlias = true;
       configure = {
         packages.myPlugins = with pkgs.vimPlugins; {
@@ -63,6 +68,7 @@
       };
     })
 
+    (python38.withPackages(ps: with ps; [ qrcode ]))
 
     # monitoring
     lm_sensors acpi
