@@ -5,6 +5,15 @@
     enable = true;
     wayland = true;
   };
+  #services.xserver.displayManager.defaultSession = "sway-session";
+
+  systemd.user.targets.sway-session = {
+    description = "Sway compositor session";
+    documentation = [ "man:systemd.special(7)" ];
+    bindsTo = [ "graphical-session.target" ];
+    wants = [ "graphical-session-pre.target" ];
+    after = [ "graphical-session-pre.target" ];
+  };
 
   # see https://github.com/NixOS/nixpkgs/issues/57602#issuecomment-657762138
   # extracted from nixos/modules/services/x11/xserver.nix
@@ -54,7 +63,7 @@
       swaylock
       swayidle
       xwayland
-      waybar
+      # waybar
       mako
       kanshi
       grim slurp wl-clipboard wf-recorder
@@ -68,12 +77,13 @@
     '';
   };
 
-  programs.waybar.enable = true;
+  #programs.waybar.enable = true;
 
   systemd.user.services.kanshi = {
     description = "Kanshi output autoconfig ";
     wantedBy = [ "graphical-session.target" ];
     partOf = [ "graphical-session.target" ];
+    environment = { XDG_CONFIG_HOME="/home/mschwaig/.config"; };
     serviceConfig = {
       # kanshi doesn't have an option to specifiy config file yet, so it looks
       # at .config/kanshi/config
