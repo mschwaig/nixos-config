@@ -28,6 +28,10 @@
     after = [ "graphical-session-pre.target" ];
   };
 
+  environment.systemPackages = with pkgs; [
+    i3pystatus (python38.withPackages(ps: with ps; [ i3pystatus keyring ]))
+  ];
+
   programs.sway = {
     enable = true;
     extraPackages = with pkgs; [
@@ -41,6 +45,7 @@
       slurp
       wl-clipboard
       wf-recorder
+      (python38.withPackages(ps: with ps; [ i3pystatus keyring ]))
     ];
     extraSessionCommands = ''
       export SDL_VIDEODRIVER=wayland
