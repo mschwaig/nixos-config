@@ -4,6 +4,6 @@
   imports =
     [
       ./printers.nix
-      #./wireguard3.nix
+      #./wireguard.nix
     ];
 }
