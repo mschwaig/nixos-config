@@ -12,9 +12,16 @@
 
   nixpkgs.config.allowUnfree = true;
 
+  nix = {
+    package = pkgs.nixUnstable;
+    extraOptions = ''
+      experimental-features = nix-command flakes
+    '';
+   };
+
   # allow things like intel wifi firmware
   hardware.enableRedistributableFirmware = true;
-  
+
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
   # Use the systemd-boot EFI boot loader.
