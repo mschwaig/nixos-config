@@ -3,10 +3,9 @@
 {
   networking.wg-quick.interfaces = {
     wg0 = {
-      address = [ "192.168.9.2/32" "fdf1:e8a1:8d3f:9::2/128" ];
+      address = [ "fdf1:e8a1:8d3f:9::2/64" "192.168.9.2/24" ];
       privateKeyFile = "/home/mschwaig/.wg/privatekey";
-
-      dns = [ "192.168.1.1" ];
+      dns = [ "fdaf:e4ed:daaa::1" "192.168.1.1" ];
 
       peers = [
         {
@@ -18,9 +17,10 @@
 
           # subnets to forward
           allowedIPs = [
-            "192.168.9.1/24"
-            "192.168.1.1/24"
-            "fdaf:e4ed:daaa::1/60"
+            "192.168.9.1"
+            "192.168.1.0/24"
+            "fdf1:e8a1:8d3f:9::1"
+            "fdaf:e4ed:daaa::/64"
           ];
 
           # server ip and port
@@ -32,4 +32,7 @@
       ];
     };
   };
+
+  # tell networkmanager to not manage the wg0 interface
+  networking.networkmanager.unmanaged = ["wg0"];
 }
