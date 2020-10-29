@@ -13,6 +13,7 @@
       ../addins/client
       ../addins/encrypted-zfs-root
       #../addins/portable/wireguard.nix
+      ../addins/jku-ins-samba-client.nix
     ];
 
   networking.hostName = "mutalisk";
