@@ -1,11 +1,10 @@
 { config, pkgs, ... }:
 
 {
-  networking.wg-quick.interfaces = {
+  networking.wireguard.interfaces = {
     wg0 = {
-      address = [ "fdf1:e8a1:8d3f:9::2/64" "192.168.9.2/24" ];
+      ips = [ "fdf1:e8a1:8d3f:9::2/64" "192.168.9.2/24" ];
       privateKeyFile = "/home/mschwaig/.wg/privatekey";
-      dns = [ "fdaf:e4ed:daaa::1" "192.168.1.1" ];
 
       peers = [
         {
@@ -19,8 +18,8 @@
           allowedIPs = [
             "192.168.9.1"
             "192.168.1.0/24"
+            "fdaf:e4ed:daaa::/48"
             "fdf1:e8a1:8d3f:9::1"
-            "fdaf:e4ed:daaa::/64"
           ];
 
           # server ip and port
@@ -33,6 +32,12 @@
     };
   };
 
-  # tell networkmanager to not manage the wg0 interface
-  networking.networkmanager.unmanaged = ["wg0"];
+  #networking.nameservers = ["fdf1:e8a1:8d3f:9::1"];
+
+  #services.dnsmasq = {
+  #  enable = true;
+  #  extraConfig = ''
+  #    interface=wg0
+  #    '';
+  #};
 }
