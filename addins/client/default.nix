@@ -21,7 +21,9 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  networking.networkmanager.enable = true;
+  networking.useNetworkd = true;
+  networking.wireless.iwd.enable = true;
+  networking.nameservers = [ "fd71:b189:717d::1" "192.168.97.1"];
 
   boot.supportedFilesystems = ["ntfs"];
 

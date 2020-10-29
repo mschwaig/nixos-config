@@ -7,7 +7,7 @@
   # See: https://blog.luukhendriks.eu/2019/01/25/sshfs-too-many-levels-of-symbolic-links.html
   systemd.mounts = [
     {
-      what = "mschwaig@srv:/mnt/data";
+      what = "mschwaig@srv.lan:/mnt/data";
       where = "/mnt/data";
       type = "fuse.sshfs";
       options = "identityfile=/home/mschwaig/.ssh/id_ed25519,allow_other,uid=1000,gid=100";

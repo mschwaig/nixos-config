@@ -22,7 +22,7 @@
   # dhcp set per interface because global flag is deprecated
   networking.useDHCP = false;
   networking.interfaces.enp0s31f6.useDHCP = true;
-  networking.interfaces.wlp61s0.useDHCP = true;
+  networking.interfaces.wlan0.useDHCP = true;
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
