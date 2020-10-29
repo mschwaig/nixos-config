@@ -11,8 +11,8 @@
       # Include device-specific config from nixos-hardware channel
       <nixos-hardware/lenovo/thinkpad/t480s>
       ../addins/client
+      ../addins/portable
       ../addins/encrypted-zfs-root
-      #../addins/portable/wireguard.nix
       ../addins/jku-ins-samba-client.nix
     ];
 
