@@ -25,7 +25,7 @@
   networking.wireless.iwd.enable = true;
   networking.nameservers = [ "fd71:b189:717d::1" "192.168.97.1"];
 
-  boot.supportedFilesystems = ["ntfs"];
+  boot.supportedFilesystems = [ "ntfs" "fuse-7z-ng" ];
 
   # Configure network proxy if necessary
   # networking.proxy.default = "sword@proxy:port/";
@@ -58,7 +58,7 @@
     kitty
 
     # terminal apps
-    file ffmpeg htop git lolcat vifm-full tree archivemount pwgen jq nix-index tmux reptyr astyle protonvpn-cli
+    file ffmpeg htop bandwhich git lolcat vifm-full tree archivemount pwgen jq nix-index tmux reptyr astyle protonvpn-cli zip zstd
 
     (neovim.override {
       vimAlias = true;
@@ -73,10 +73,12 @@
     (python38.withPackages(ps: with ps; [ qrcode ]))
 
     # monitoring
-    lm_sensors acpi
+    lm_sensors acpi pulsemixer
 
     # remote managment
     ethtool
+
+    fuse-7z-ng
   ];
 
   # enable openssh deamon

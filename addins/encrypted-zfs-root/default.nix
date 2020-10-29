@@ -2,6 +2,7 @@
 let
   unstable = import <nixos> {};
   # next line is required on servers because they are not running the unstable release
+  # and only the unstable relase can send (raw) encrypted ZFS snapshots
   # unstable = import <nixos-unstable> {};
 in {
   boot.supportedFilesystems = ["zfs"];
