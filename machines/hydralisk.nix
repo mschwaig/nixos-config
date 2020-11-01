@@ -23,6 +23,7 @@
   networking.useDHCP = false;
   networking.interfaces.enp39s0.useDHCP = true;
   networking.interfaces.enp45s0.useDHCP = true;
+  networking.interfaces.wlan0.useDHCP = true;
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget

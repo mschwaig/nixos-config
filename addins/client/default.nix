@@ -30,7 +30,7 @@
 
   networking.useNetworkd = true;
   networking.wireless.iwd.enable = true;
-  networking.nameservers = [ "fd71:b189:717d::1" "192.168.97.1"];
+  networking.nameservers = [ "fde4:c86b:cbd3:97::1" "192.168.97.1"];
 
   boot.supportedFilesystems = [ "ntfs" "fuse-7z-ng" ];
 
@@ -56,7 +56,10 @@
     sxiv zathura
 
     # video editing TODO: ensure that mlt version matches the one used by kdenlive
-    kdeApplications.kdenlive mlt
+    # todo: re-add kdenlive when it builds again
+    # kdeApplications.kdenlive
+
+    mlt
 
     # development tools
     zig valgrind gdb gnumake gcc
@@ -80,7 +83,7 @@
     (python38.withPackages(ps: with ps; [ qrcode ]))
 
     # monitoring
-    lm_sensors acpi pulsemixer
+    lm_sensors acpi pulsemixer wireshark
 
     # remote managment
     ethtool
@@ -101,13 +104,14 @@
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.mschwaig = {
     isNormalUser = true;
-    extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
+    extraGroups = [ "wheel" "wireshark" ];
     description = "Martin Schwaighofer";
     shell = pkgs.fish;
   };
 
   programs.fish.enable = true;
   programs.vim.defaultEditor = true;
+  programs.wireshark.enable = true;
 
   fonts.fonts = with pkgs; [
     cascadia-code
