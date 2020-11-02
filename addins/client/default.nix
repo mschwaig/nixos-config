@@ -29,6 +29,7 @@
   boot.loader.efi.canTouchEfiVariables = true;
 
   networking.useNetworkd = true;
+  systemd.services.systemd-networkd-wait-online.enable = false;
   networking.wireless.iwd.enable = true;
   networking.nameservers = [ "fde4:c86b:cbd3:97::1" "192.168.97.1"];
 
