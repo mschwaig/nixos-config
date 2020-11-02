@@ -10,7 +10,8 @@
       what = "mschwaig@srv.lan:/mnt/data";
       where = "/mnt/data";
       type = "fuse.sshfs";
-      options = "identityfile=/home/mschwaig/.ssh/id_ed25519,allow_other,uid=1000,gid=100";
+      # see https://askubuntu.com/a/1274431/569366 for the rationale behind the reconnect/timeout options
+      options = "identityfile=/home/mschwaig/.ssh/id_ed25519,allow_other,uid=1000,gid=100,reconnect,ConnectTimeout=3,ConnectionAttempts=1,ServerAliveInterval=5,ServerAliveCountMax=3";
       wantedBy = [ "default.target" ];
     }
   ];
