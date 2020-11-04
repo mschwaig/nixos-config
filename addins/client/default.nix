@@ -57,8 +57,7 @@
     sxiv zathura
 
     # video editing TODO: ensure that mlt version matches the one used by kdenlive
-    # todo: re-add kdenlive when it builds again
-    # kdeApplications.kdenlive
+    kdeApplications.kdenlive
 
     mlt
 
