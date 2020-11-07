@@ -5,7 +5,7 @@
   # which integrates sway with systemd in the style described here
   # https://github.com/swaywm/sway/wiki/Systemd-integration
   # and the replies in https://github.com/NixOS/nixpkgs/issues/57602
-  # with some individual packages added/removed and using gdm as the display manager.
+  # with some individual packages added/removed and using sddm as the display manager.
   #
   # Take care to start the correct target as described by the sway proejct wiki.
   # I do this by adding the following line to the bottom of my sway config file:
@@ -13,11 +13,23 @@
   #
   # Remaining issues:
   #
-  # The kanshi service configured here is quite broken for me.
-  # When I add/remove outputs at runtime (via thunderbolt docks) kanshi often fails to
-  # * correctly re-enable screens when docking/undocking even though it logs that it did it OR
-  # * react to react to changes to the monitor configuration at all.
-  # Oher than that everything seems to work fine AFAICT.
+  # * When I connect to/disconnect from Thunderbolt docks I need to
+  #     1. reload the sway config and then
+  #     2. restart the kanshi user service
+  #   In order to actually enable the correct outputs that are configured in kanshi.
+  #
+  #   To make that easy I have configured the following keybinding in sway to restart kanshi:
+  #   bindsym $mod+Shift+z exec systemctl restart --user kanshi.service
+  #
+  #
+  # * It is a bit annoying to need an X Server just for running a display manager, but with GDM
+  #   I couldn't recover from the above problem at all really. One thing that's still annoying
+  #   is that if some service delays boot significantly an the X server was already started you
+  #   are stuck at a blank black screen for some time instead of looking at systemd's output.
+  #
+  # I think maybe not having a display manager at all would be a better alternative.
+  # I am also intested in running something like tuigreet via greetd.
+
 
   # configuring sway itself (assmung a display manager starts it)
   systemd.user.targets.sway-session = {
@@ -73,50 +85,9 @@
     };
   };
 
-  # configuring gdm
-  # copied from https://github.com/NixOS/nixpkgs/issues/57602#issuecomment-657762138
-  services.xserver.displayManager.gdm = {
-    enable = true;
-    wayland = true;
-  };
-
-  # extracted from nixos/modules/services/x11/xserver.nix
-  systemd.defaultUnit = "graphical.target";
-  systemd.services.display-manager =
-    let
-      cfg = config.services.xserver.displayManager;
-    in
-    {
-      description = "Display Manager";
-
-      after = [ "acpid.service" "systemd-logind.service" ];
-
-      restartIfChanged = false;
-
-      environment =
-        lib.optionalAttrs
-          config.hardware.opengl.setLdLibraryPath {
-          LD_LIBRARY_PATH = pkgs.addOpenGLRunpath.driverLink;
-        } // cfg.job.environment;
-
-      preStart =
-        ''
-          ${cfg.job.preStart}
-
-          rm -f /tmp/.X0-lock
-        '';
-
-      script = "${cfg.job.execCmd}";
-
-      serviceConfig = {
-        Restart = "always";
-        RestartSec = "200ms";
-        SyslogIdentifier = "display-manager";
-        # Stop restarting if the display manager stops (crashes) 2 times
-        # in one minute. Starting X typically takes 3-4s.
-        StartLimitInterval = "30s";
-        StartLimitBurst = "3";
-      };
-    };
+  services.xserver.enable = true;
+  services.xserver.displayManager.defaultSession = "sway";
+  services.xserver.displayManager.sddm.enable = true;
+  services.xserver.libinput.enable = true;
 }
 
