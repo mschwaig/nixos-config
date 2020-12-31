@@ -15,10 +15,15 @@
   boot.loader.efi.canTouchEfiVariables = true;
 
   boot.supportedFilesystems = [ "zfs" ];
+  boot.zfs.forceImportRoot = false;
+  boot.zfs.forceImportAll = false;
+  boot.zfs.requestEncryptionCredentials = true;
+  #services.zfs-import-rpool.serviceConfig.RequiresMountsFor=/mnt/keydrive;
   services.zfs.autoScrub.enable = true;
+  services.zfs.trim.enable = true;
 
-  networking.hostName = "bkpsrv"; # Define your hostname.
-  networking.hostId = "64f1489f";
+  networking.hostName = "hatchery"; # Define your hostname.
+  networking.hostId = "78f04373";
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # The global useDHCP flag is deprecated, therefore explicitly set to false here.
@@ -53,7 +58,7 @@
       configure = {
         packages.myPlugins = with pkgs.vimPlugins; {
           start = [ vim-lastplace vim-nix ];
-          opt = []; 
+          opt = [];
         };
       };
     })
@@ -104,10 +109,9 @@
     description = "Martin Schwaighofer";
     shell = pkgs.fish;
     openssh.authorizedKeys.keys = [
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBljMNa6LXrsw3oGQ610tnhYRgoRslROr8oE64xJRy+J" # fedora laptop
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILnU1xQN50B54S98io0kH1xElc9yNqmZMPF0s8QASLaB" # ryzen desktop
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHNdCt+2TSagVo60uRwVcmqpnw4dmObs1v8texBvAoCR" # mutalisk
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILnU1xQN50B54S98io0kH1xElc9yNqmZMPF0s8QASLaB" # hydralisk
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIG+rH8kZEx4X1oTny9jSVI8RZenGKwA7iHURsrkuWCYZ" # srv (for backups)
-
     ];
   };
 
@@ -115,11 +119,13 @@
 
   programs.vim.defaultEditor = true;
 
-  # This value determines the NixOS release with which your system is to be
-  # compatible, in order to avoid breaking some software such as database
-  # servers. You should change this only after NixOS release notes say you
-  # should.
-  system.stateVersion = "19.09"; # Did you read the comment?
+  # This value determines the NixOS release from which the default
+  # settings for stateful data, like file locations and database versions
+  # on your system were taken. It‘s perfectly fine and recommended to leave
+  # this value at the release version of the first install of this system.
+  # Before changing this value read the documentation for this option
+  # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
+  system.stateVersion = "20.03"; # Did you read the comment?
 
 }
 

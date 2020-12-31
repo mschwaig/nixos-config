@@ -9,6 +9,7 @@ in {
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration/lair.nix
+      ../addins/server/weechat.nix
     ];
 
   # Use the systemd-boot EFI boot loader.
@@ -117,7 +118,7 @@ in {
     shell = pkgs.fish;
     openssh.authorizedKeys.keys = [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHNdCt+2TSagVo60uRwVcmqpnw4dmObs1v8texBvAoCR" # mutalisk
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILnU1xQN50B54S98io0kH1xElc9yNqmZMPF0s8QASLaB" # ultralisk
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILnU1xQN50B54S98io0kH1xElc9yNqmZMPF0s8QASLaB" # hydralisk
     ];
   };
 

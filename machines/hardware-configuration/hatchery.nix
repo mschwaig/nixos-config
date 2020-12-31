@@ -8,27 +8,42 @@
     [ <nixpkgs/nixos/modules/installer/scan/not-detected.nix>
     ];
 
-  boot.initrd.availableKernelModules = [ "xhci_pci" "ehci_pci" "ahci" "ums_realtek" "sd_mod" "sr_mod" ];
+  boot.initrd.availableKernelModules = [ "xhci_pci" "ehci_pci" "ahci" "usbhid" "ums_realtek" "usb_storage" "sd_mod" "sr_mod" ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
 
   fileSystems."/" =
-    { device = "rpool/root";
-      fsType = "zfs";
-    };
-
-  fileSystems."/home" =
-    { device = "rpool/home";
+    { device = "rpool/enc/root";
       fsType = "zfs";
     };
 
   fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/3DCB-3391";
+    { device = "/dev/disk/by-uuid/5089-842D";
       fsType = "vfat";
     };
 
-  boot.zfs.extraPools = ["bkptank"];
+  fileSystems."/tmp" =
+    { device = "rpool/enc/tmp";
+      fsType = "zfs";
+    };
+
+  fileSystems."/home" =
+    { device = "rpool/enc/home";
+      fsType = "zfs";
+    };
+
+  fileSystems."/nix" =
+    { device = "rpool/enc/nix";
+      fsType = "zfs";
+    };
+
+  fileSystems."/mnt/keydrive" =
+    { device = "/dev/disk/by-uuid/37e12bcb-e9fb-4e78-8ba3-b1f83e528c0d";
+      fsType = "ext4";
+    };
+
+  boot.zfs.extraPools = [ "bkptank" ];
 
   swapDevices = [ ];
 
