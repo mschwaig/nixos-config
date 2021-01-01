@@ -12,6 +12,9 @@
       ../addins/client/desktop/gpu-passthrough.nix
     ];
 
+    boot.loader.grub.configurationLimit = 10;
+    boot.loader.systemd-boot.configurationLimit = 10;
+
   # nvidia proprietary drivers
   # services.xserver.videoDrivers = [ "modprobe" "nvidia" ];
   # hardware.nvidia.modesetting.enable = true;

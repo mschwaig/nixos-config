@@ -1,6 +1,9 @@
 { config, pkgs, ... }:
 
 {
+  # See instructions here for samba troubleshooting:
+  # https://wiki.samba.org/index.php/LinuxCIFS_troubleshooting
+
   fileSystems."/mnt/jku-ins" = {
     device = "//ads2-fim.fim.uni-linz.ac.at/all_root";
     fsType = "cifs";
@@ -27,6 +30,8 @@
       cifs-utils
       # This *does* need to be installed in the system profile, as we link to
       # it in the symlink-requestkey activation script
+      # the assumption is that keyutils is required because of what is described here:
+      # https://bugs.launchpad.net/ubuntu/+source/samba/+bug/493565
       keyutils
     ];
 

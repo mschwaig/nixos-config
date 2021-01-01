@@ -51,7 +51,9 @@
 
   environment.systemPackages = with pkgs; [
     # gui apps
-    firefox-beta-bin thunderbird vlc gimp transmission-gtk libreoffice-fresh
+    firefox-beta-bin thunderbird vlc gimp transmission-gtk libreoffice-fresh chromium inkscape audacity
+
+    discord
 
     # tiling-friendly apps
     sxiv zathura
@@ -68,7 +70,7 @@
     kitty
 
     # terminal apps
-    file ffmpeg htop bandwhich git lolcat vifm-full tree archivemount pwgen jq nix-index tmux reptyr astyle protonvpn-cli zip zstd
+    file ffmpeg htop bandwhich git lolcat vifm-full tree archivemount pwgen jq nix-index tmux reptyr astyle protonvpn-cli zip zstd tmate unzip tealdeer diffoscope xdelta wally-cli
 
     (neovim.override {
       vimAlias = true;
@@ -97,6 +99,17 @@
     passwordAuthentication = false;
   };
 
+  programs.adb.enable = true;
+
+  services.udev = {
+    extraRules = ''
+      # STM32 rules for the Moonlander and Planck EZ
+      SUBSYSTEMS=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="df11", \
+      MODE:="0666", GROUP="plugdev", \
+      SYMLINK+="stm32_dfu"
+    '';
+  };
+
   # enable sound
   sound.enable = true;
   hardware.pulseaudio.enable = true;
@@ -104,7 +117,7 @@
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.mschwaig = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "wireshark" ];
+    extraGroups = [ "wheel" "wireshark" "plugdev" "adbusers" ];
     description = "Martin Schwaighofer";
     shell = pkgs.fish;
   };
