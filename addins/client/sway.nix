@@ -57,6 +57,7 @@
       slurp
       wl-clipboard
       wf-recorder
+      brightnessctl
       (python38.withPackages(ps: with ps; [ i3pystatus keyring ]))
     ];
     extraSessionCommands = ''
@@ -85,9 +86,6 @@
     };
   };
 
-  services.xserver.enable = true;
-  services.xserver.displayManager.defaultSession = "sway";
-  services.xserver.displayManager.sddm.enable = true;
-  services.xserver.libinput.enable = true;
+  users.users.mschwaig.extraGroups = [ "video" ];
 }
 
