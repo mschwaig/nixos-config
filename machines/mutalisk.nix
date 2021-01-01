@@ -14,6 +14,7 @@
       ../addins/portable
       ../addins/encrypted-zfs-root
       ../addins/jku-ins-samba-client.nix
+      ../addins/jku-ins-vpn.nix
     ];
 
   networking.hostName = "mutalisk";
