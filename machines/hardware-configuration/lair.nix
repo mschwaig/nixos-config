@@ -16,12 +16,22 @@
   boot.zfs.extraPools = ["tank"];
 
   fileSystems."/" =
-    { device = "rpool/root";
+    { device = "rpool/enc/root";
+      fsType = "zfs";
+    };
+
+  fileSystems."/nix" =
+    { device = "rpool/enc/nix";
       fsType = "zfs";
     };
 
   fileSystems."/home" =
-    { device = "rpool/home";
+    { device = "rpool/enc/home";
+      fsType = "zfs";
+    };
+
+  fileSystems."/tmp" =
+    { device = "rpool/enc/tmp";
       fsType = "zfs";
     };
 

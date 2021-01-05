@@ -3,21 +3,45 @@
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
 { config, pkgs, ... }:
-let
-  unstable = import <nixos-unstable> {};
-in {
+{
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration/lair.nix
       ../addins/server/weechat.nix
+      ../addins/encrypted-zfs-root
     ];
+
+  boot.kernelPackages = pkgs.linuxPackages_latest;
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  boot.supportedFilesystems = [ "zfs" ];
-  services.zfs.autoScrub.enable = true;
+  # ssh instance for entering disk passphrase on boot
+  boot = {
+    initrd = {
+      kernelModules = [ "r8169" ];
+      network = {
+        enable = true;
+        ssh = {
+          enable = true;
+          # different port because a different key is used
+          port = 2222;
+          hostKeys = [ "/etc/secrets/initrd/ssh_host_ed25519_key" ];
+          authorizedKeys = [
+            "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHNdCt+2TSagVo60uRwVcmqpnw4dmObs1v8texBvAoCR" # mutalisk
+            "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILnU1xQN50B54S98io0kH1xElc9yNqmZMPF0s8QASLaB" # hydralisk
+          ];
+        };
+        # this will automatically load the zfs password prompt on login
+        # and kill the other prompt so boot can continue
+        postCommands = ''
+          zpool import tank
+          echo "zfs load-key -a; killall zfs" >> /root/.profile
+        '';
+      };
+    };
+  };
 
   networking.hostName = "srv"; # Define your hostname.
   networking.hostId = "03b30d7b";
@@ -46,7 +70,7 @@ in {
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    htop screen unstable.pyznap unison smartmontools tmux
+    htop screen unison smartmontools tmux git
 
     ethtool
 
@@ -72,17 +96,6 @@ in {
   services.openssh = {
     enable = true;
     passwordAuthentication = false;
-  };
-
-  # crate ZFS snapshots
-  systemd.services.pyznap-snap = rec {
-    description = "Run pyznap snap every 10 minutes to create regular ZFS snapshots";
-    startAt = "*:00/10:00";
-    path = [ unstable.pyznap pkgs.which pkgs.zfs ]; # should pyznap depend on which and zfs directly? idk
-    serviceConfig = {
-      User = "mschwaig";
-      ExecStart = "${unstable.pyznap}/bin/pyznap -v --config /home/mschwaig/.pyznap/pyznap.conf snap";
-    };
   };
 
   # Open ports in the firewall.
