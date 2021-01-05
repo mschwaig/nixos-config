@@ -12,7 +12,6 @@
       # <nixos-hardware/lenovo/thinkpad/t480s>
       ../addins/client
       ../addins/portable
-      ../addins/encrypted-zfs-root
       ../addins/jku-ins-samba-client.nix
       ../addins/jku-ins-vpn.nix
     ];

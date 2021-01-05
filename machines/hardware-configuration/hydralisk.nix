@@ -14,17 +14,30 @@
   boot.extraModulePackages = [ ];
 
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/d8ef2e0b-1ee5-4704-ad2e-782a0e808ebc";
-      fsType = "ext4";
+    { device = "rpool/enc/root";
+      fsType = "zfs";
+    };
+
+  fileSystems."/nix" =
+    { device = "rpool/enc/nix";
+      fsType = "zfs";
+    };
+
+  fileSystems."/home" =
+    { device = "rpool/enc/home";
+      fsType = "zfs";
+    };
+
+  fileSystems."/tmp" =
+    { device = "rpool/enc/tmp";
+      fsType = "zfs";
     };
 
   fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/9E74-13B5";
+    { device = "/dev/disk/by-uuid/C602-9FEC";
       fsType = "vfat";
     };
 
-  swapDevices =
-    [ { device = "/dev/disk/by-uuid/ce2d9413-39ac-44a5-9283-c424c655ce8a"; }
-    ];
+  swapDevices = [ ];
 
 }
