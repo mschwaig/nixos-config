@@ -40,6 +40,11 @@
       fsType = "vfat";
     };
 
+  fileSystems."/mnt/data" =
+    { device = "tank/data";
+      fsType = "zfs";
+    };
+
   swapDevices = [ ];
 
   nix.maxJobs = lib.mkDefault 4;
