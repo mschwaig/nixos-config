@@ -15,13 +15,15 @@
         };
         extraConfig = ''
           [WireGuard]
-          PrivateKey=${builtins.readFile /home/mschwaig/.wg/privatekey}
+          PrivateKeyFile=/etc/systemd/network/wg0/privatekey
           [WireGuardPeer]
           PublicKey=rJxpeBSDQQLtNTIrrxgxbf4yqWKi6acd3N2PEYxWlWE=
-          PresharedKey=${builtins.readFile /home/mschwaig/.wg/presharedkey}
+          PresharedKeyFile=/etc/systemd/network/wg0/presharedkey
           PersistentKeepalive=25
           AllowedIPs=192.168.98.1, 192.168.97.0/24
-          Endpoint=***REMOVED IP***:51820
+          Endpoint=${lib.removeSuffix "\n"
+              (builtins.readFile /home/mschwaig/.wg/endpointip)
+            }:51820
         '';
       };
     };
@@ -31,11 +33,10 @@
         Name=wg0
 
         [Network]
-        DHCP=none
+        DHCP=no
         DNS=192.168.97.1
         DNSDefaultRoute=true
         Domains=~.
-
 
         # IP addresses the client interface will have
         [Address]
