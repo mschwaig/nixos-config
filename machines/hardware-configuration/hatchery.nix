@@ -38,11 +38,6 @@
       fsType = "zfs";
     };
 
-  fileSystems."/mnt/keydrive" =
-    { device = "/dev/disk/by-uuid/37e12bcb-e9fb-4e78-8ba3-b1f83e528c0d";
-      fsType = "ext4";
-    };
-
   boot.zfs.extraPools = [ "bkptank" ];
 
   swapDevices = [ ];
