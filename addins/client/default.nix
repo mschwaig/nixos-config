@@ -33,6 +33,11 @@
   networking.useNetworkd = true;
   systemd.services.systemd-networkd-wait-online.enable = false;
   networking.wireless.iwd.enable = true;
+  #systemd.services.iwd = {
+  #  serviceConfig = {
+  #    Environment="\"IWD_TLS_DEBUG=TRUE\"";
+  #  };
+  #};
   networking.nameservers = [ "fde4:c86b:cbd3:97::1" "192.168.97.1"];
 
   boot.supportedFilesystems = [ "ntfs" "fuse-7z-ng" ];

@@ -20,5 +20,4 @@
       ExecStart = "${pkgs.pyznap}/bin/pyznap -v --config /home/mschwaig/.config/pyznap/pyznap.conf snap";
     };
   };
-
 }
