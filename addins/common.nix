@@ -8,7 +8,7 @@
     extraOptions = ''
       experimental-features = nix-command flakes
     '';
-   };
+  };
 
   # allow things like intel wifi firmware
   hardware.enableRedistributableFirmware = true;

@@ -9,6 +9,14 @@
       modules =
         [
           ./machines/lair.nix
+
+          # let 'nixos-version --json' know about the flake's git revision
+          # not sure how to move this to a module because of ref to self
+          # nixpkgs.lib -> lib
+          # self -> ?
+          ({ ... }: {
+            system.configurationRevision = nixpkgs.lib.mkIf (self ? rev) self.rev;
+          })
         ];
     };
 
@@ -18,7 +26,12 @@
       modules =
         [
           ./machines/hatchery.nix
+
+          ({ ... }: {
+            system.configurationRevision = nixpkgs.lib.mkIf (self ? rev) self.rev;
+          })
         ];
+
     };
 
     # desktop pc
@@ -27,6 +40,10 @@
       modules =
         [
           ./machines/hydralisk.nix
+
+          ({ ... }: {
+            system.configurationRevision = nixpkgs.lib.mkIf (self ? rev) self.rev;
+          })
         ];
     };
 
@@ -36,6 +53,10 @@
       modules =
         [
           ./machines/mutalisk.nix
+
+          ({ ... }: {
+            system.configurationRevision = nixpkgs.lib.mkIf (self ? rev) self.rev;
+          })
         ];
     };
 
