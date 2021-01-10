@@ -37,7 +37,7 @@
     };
   };
 
-  networking.hostName = "srv";
+  networking.hostName = "lair";
   networking.hostId = "03b30d7b";
 
   networking.interfaces.enp3s0.useDHCP = true;
