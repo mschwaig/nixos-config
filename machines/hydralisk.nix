@@ -15,24 +15,18 @@
   networking.hostName = "hydralisk";
   networking.hostId = "46b5a21f";
 
-  # dhcp set per interface because global flag is deprecated
-  networking.useDHCP = false;
   networking.interfaces.enp39s0.useDHCP = true;
   networking.interfaces.enp45s0.useDHCP = true;
   networking.interfaces.wlan0.useDHCP = true;
 
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
   environment.systemPackages = with pkgs; [
     pciutils reaper
 
     virtmanager looking-glass-client
-
   ];
 
-  # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.mschwaig = {
-    extraGroups = [ "libvirtd" ]; # Enable ‘sudo’ for the user.
+    extraGroups = [ "libvirtd" ];
     openssh.authorizedKeys.keys = [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBljMNa6LXrsw3oGQ610tnhYRgoRslROr8oE64xJRy+J" # mutalisk
     ];
@@ -53,6 +47,5 @@
   # servers. You should change this only after NixOS release notes say you
   # should.
   system.stateVersion = "21.03"; # Did you read the comment?
-
 }
 

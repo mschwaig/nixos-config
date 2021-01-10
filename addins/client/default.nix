@@ -9,52 +9,16 @@
       ./scarlett-audio.nix
       ./thunderbolt.nix
       ../encrypted-zfs-root
+      ../common.nix
     ];
 
-  nixpkgs.config.allowUnfree = true;
-
-  nix = {
-    package = pkgs.nixUnstable;
-    extraOptions = ''
-      experimental-features = nix-command flakes
-    '';
-   };
-
-  # allow things like intel wifi firmware
-  hardware.enableRedistributableFirmware = true;
-
-  boot.kernelPackages = pkgs.linuxPackages_latest;
-
-  # Use the systemd-boot EFI boot loader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.systemd-boot.configurationLimit = 10;
-  boot.loader.efi.canTouchEfiVariables = true;
-
+  # move this to common.nix?
   networking.useNetworkd = true;
   systemd.services.systemd-networkd-wait-online.enable = false;
+
   networking.wireless.iwd.enable = true;
-  #systemd.services.iwd = {
-  #  serviceConfig = {
-  #    Environment="\"IWD_TLS_DEBUG=TRUE\"";
-  #  };
-  #};
-  networking.nameservers = [ "fde4:c86b:cbd3:97::1" "192.168.97.1"];
 
   boot.supportedFilesystems = [ "ntfs" "fuse-7z-ng" ];
-
-  # Configure network proxy if necessary
-  # networking.proxy.default = "sword@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
-
-  # Select internationalisation properties.
-  # i18n = {
-  #   consoleFont = "Lat2-Terminus16";
-  #   consoleKeyMap = "us";
-  #   defaultLocale = "en_US.UTF-8";
-  # };
-
-  # Set your time zone.
-  time.timeZone = "Europe/Vienna";
 
   environment.systemPackages = with pkgs; [
     # gui apps
@@ -77,34 +41,15 @@
     kitty
 
     # terminal apps
-    file ffmpeg htop bandwhich git lolcat vifm-full tree archivemount pwgen jq nix-index tmux reptyr astyle protonvpn-cli zip zstd tmate unzip tealdeer diffoscope xdelta wally-cli
-
-    (neovim.override {
-      vimAlias = true;
-      configure = {
-        packages.myPlugins = with pkgs.vimPlugins; {
-          start = [ vim-lastplace vim-nix ale ctrlp vim-better-whitespace ];
-          opt = [];
-        };
-      };
-    })
+    file ffmpeg htop bandwhich git lolcat vifm-full tree archivemount pwgen jq nix-index tmux reptyr astyle protonvpn-cli zip zstd tmate unzip tealdeer diffoscope xdelta wally-cli wget
 
     (python38.withPackages(ps: with ps; [ qrcode ]))
 
     # monitoring
-    lm_sensors acpi pulsemixer wireshark
-
-    # remote managment
-    ethtool
+    pulsemixer wireshark
 
     fuse-7z-ng
   ];
-
-  # enable openssh deamon
-  services.openssh = {
-    enable = true;
-    passwordAuthentication = false;
-  };
 
   programs.adb.enable = true;
 
@@ -123,14 +68,9 @@
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.mschwaig = {
-    isNormalUser = true;
-    extraGroups = [ "wheel" "wireshark" "plugdev" "adbusers" ];
-    description = "Martin Schwaighofer";
-    shell = pkgs.fish;
+    extraGroups = [ "wireshark" "plugdev" "adbusers" ];
   };
 
-  programs.fish.enable = true;
-  programs.vim.defaultEditor = true;
   programs.wireshark.enable = true;
 
   fonts.fonts = with pkgs; [
