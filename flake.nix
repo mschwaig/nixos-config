@@ -1,7 +1,18 @@
 {
-  inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+  inputs = {
+    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    nixos-attest = {
+      type = "git";
+      url = "https://git.ins.jku.at/schwaighofer/nixos-attest.git";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+  };
 
-  outputs = { self, nixpkgs }: {
+  outputs = { self, nixpkgs, nixos-attest }:
+
+  with nixpkgs.lib;
+
+  {
 
     # home server
     nixosConfigurations.lair = nixpkgs.lib.nixosSystem {
@@ -15,47 +26,50 @@
           # nixpkgs.lib -> lib
           # self -> ?
           ({ ... }: {
-            system.configurationRevision = nixpkgs.lib.mkIf (self ? rev) self.rev;
+            system.configurationRevision = mkIf (self ? rev) self.rev;
           })
         ];
     };
 
     # backup server
-    nixosConfigurations.hatchery = nixpkgs.lib.nixosSystem {
+    nixosConfigurations.hatchery = nixosSystem {
       system = "x86_64-linux";
       modules =
         [
           ./machines/hatchery.nix
 
           ({ ... }: {
-            system.configurationRevision = nixpkgs.lib.mkIf (self ? rev) self.rev;
+            system.configurationRevision = mkIf (self ? rev) self.rev;
           })
         ];
 
     };
 
     # desktop pc
-    nixosConfigurations.hydralisk = nixpkgs.lib.nixosSystem {
+    nixosConfigurations.hydralisk = nixosSystem {
       system = "x86_64-linux";
       modules =
         [
           ./machines/hydralisk.nix
 
-          ({ ... }: {
-            system.configurationRevision = nixpkgs.lib.mkIf (self ? rev) self.rev;
+          nixos-attest.nixosModules.attest
+
+          ({ lib, ... }: {
+            system.configurationRevision = mkIf (self ? rev) self.rev;
+            services.attest.enable = true;
           })
         ];
     };
 
     # thinkpad laptop
-    nixosConfigurations.mutalisk = nixpkgs.lib.nixosSystem {
+    nixosConfigurations.mutalisk = nixosSystem {
       system = "x86_64-linux";
       modules =
         [
           ./machines/mutalisk.nix
 
           ({ ... }: {
-            system.configurationRevision = nixpkgs.lib.mkIf (self ? rev) self.rev;
+            system.configurationRevision = mkIf (self ? rev) self.rev;
           })
         ];
     };

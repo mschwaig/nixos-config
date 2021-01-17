@@ -1,12 +1,32 @@
 {
   "nodes": {
+    "nixos-attest": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1610910623,
+        "narHash": "sha256-e+jI9Co7UKCwsuphe4Xy3drXRWbHlyQp4BdXwRT0zqY=",
+        "ref": "master",
+        "rev": "a9c35be5360d934eea2e99f176a650f67eda660c",
+        "revCount": 4,
+        "type": "git",
+        "url": "https://git.ins.jku.at/schwaighofer/nixos-attest.git"
+      },
+      "original": {
+        "type": "git",
+        "url": "https://git.ins.jku.at/schwaighofer/nixos-attest.git"
+      }
+    },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1610243697,
-        "narHash": "sha256-hI1F2H32uCbLlxZhTn62YzEq3dAUhYfgglBQZqgScS4=",
+        "lastModified": 1610880783,
+        "narHash": "sha256-bSpgv0Sv9YZv9ud47PS2mB7heMzqpg/gyzVYYVw27WQ=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "2032339e5bbce8a57655b8742190ecb32b7af863",
+        "rev": "4a2481f0c7085c5fc4eab5e0a6e09dad54d4caaa",
         "type": "github"
       },
       "original": {
@@ -18,6 +38,7 @@
     },
     "root": {
       "inputs": {
+        "nixos-attest": "nixos-attest",
         "nixpkgs": "nixpkgs"
       }
     }
