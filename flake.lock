@@ -7,11 +7,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1610910623,
-        "narHash": "sha256-e+jI9Co7UKCwsuphe4Xy3drXRWbHlyQp4BdXwRT0zqY=",
+        "lastModified": 1610911141,
+        "narHash": "sha256-9zvCDcXUFQCj7sObY0i9aqazBi8vM63WbqJWMFkL3Po=",
         "ref": "master",
-        "rev": "a9c35be5360d934eea2e99f176a650f67eda660c",
-        "revCount": 4,
+        "rev": "1e3a3f4f8480ddc0fba5835dcc9c368fff189696",
+        "revCount": 5,
         "type": "git",
         "url": "https://git.ins.jku.at/schwaighofer/nixos-attest.git"
       },
