@@ -7,26 +7,22 @@
         ]
       },
       "locked": {
-        "lastModified": 1610911141,
-        "narHash": "sha256-9zvCDcXUFQCj7sObY0i9aqazBi8vM63WbqJWMFkL3Po=",
-        "ref": "master",
-        "rev": "1e3a3f4f8480ddc0fba5835dcc9c368fff189696",
-        "revCount": 5,
-        "type": "git",
-        "url": "https://git.ins.jku.at/schwaighofer/nixos-attest.git"
+        "narHash": "sha256-59bGUoOQZdc1XEh7WwQGJPOJL5VUuQ/vahkDMFhFprI=",
+        "path": "/home/mschwaig/flakes/nixos-attest",
+        "type": "path"
       },
       "original": {
-        "type": "git",
-        "url": "https://git.ins.jku.at/schwaighofer/nixos-attest.git"
+        "path": "/home/mschwaig/flakes/nixos-attest",
+        "type": "path"
       }
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1610880783,
-        "narHash": "sha256-bSpgv0Sv9YZv9ud47PS2mB7heMzqpg/gyzVYYVw27WQ=",
+        "lastModified": 1610895936,
+        "narHash": "sha256-S7eS8C0yC0rbHujBiE66sZ9Tf5EYZJwF7PCi5PjnOk4=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "4a2481f0c7085c5fc4eab5e0a6e09dad54d4caaa",
+        "rev": "3876561795a7111dac8fd4b71e0279e46b08eed8",
         "type": "github"
       },
       "original": {

@@ -2,8 +2,7 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     nixos-attest = {
-      type = "git";
-      url = "https://git.ins.jku.at/schwaighofer/nixos-attest.git";
+      url = "/home/mschwaig/flakes/nixos-attest/";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
