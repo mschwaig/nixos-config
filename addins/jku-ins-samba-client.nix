@@ -8,20 +8,27 @@
     device = "//ads2-fim.fim.uni-linz.ac.at/all_root";
     fsType = "cifs";
     options =
-    # this line prevents hanging on network split
-      let automount_opts = "x-systemd.automount,noauto,x-systemd.idle-timeout=60,x-systemd.device-timeout=5s,x-systemd.mount-timeout=5s";
-    # TODO: get rid of hardcoded uid/gids here (relate all of that to user)
-      in ["${automount_opts},credentials=/home/mschwaig/.smb/secrets,uid=1000,gid=100,dir_mode=0775,file_mode=0644"];
+      let
+        # this line prevents hanging on network split
+        automount_opts = "x-systemd.automount,noauto,x-systemd.idle-timeout=60,x-systemd.device-timeout=5s,x-systemd.mount-timeout=5s";
+        require_vpn = "x-systemd.requires=openvpn-jku-ins-vpn.service";
+        credentials = "credentials=/home/mschwaig/.smb/secrets";
+        # TODO: get rid of hardcoded uid/gids here (relate all of that to user)
+        file_permissions = "uid=1000,gid=100,dir_mode=0775,file_mode=0644";
+      in ["${automount_opts},${require_vpn},${credentials},${file_permissions}"];
     };
 
     # Manually resolve these specific hosts that are actually publicly resolvable under ads2-fim.fim.uni-linz.ac.at
     # because the SMB server does not give fully qualified domain names for them.
     # I would rather hardcode those specific hosts than hardcode their fully qulified domain to everything.
-    # ads2-fim.fim.uni-linz.ac.at itself seems to publically resolve to those three host's same IPs as well.
+    # It looks like ads2-fim.fim.uni-linz.ac.at needs to resolve to those three host's same IPs as well and does not do that on public DNS, so I add that in the hosts file as well.
     networking.extraHosts = ''
       140.78.100.119 EDC1A
       140.78.100.126 EDC2A
       140.78.100.118 EDC3A
+      140.78.100.119 ads2-fim.fim.uni-linz.ac.at
+      140.78.100.126 ads2-fim.fim.uni-linz.ac.at
+      140.78.100.118 ads2-fim.fim.uni-linz.ac.at
     '';
 
     environment.systemPackages = with pkgs; [
