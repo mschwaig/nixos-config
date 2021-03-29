@@ -1,29 +1,29 @@
 { config, pkgs, ... }:
 
+let
+  user = config.users.users.mschwaig;
+in
 {
 
   # vpn
 
   services.openvpn.servers = {
     jku-ins-vpn  = {
-      # To automatically update resolv.conf for non systemd-networkd networking stack use
-      # updateResolvConf = true;
       autoStart = false;
-      # * the up-down hooks are used for pushing dns config to systemd-resolved
-      # * pull filter and dhcp-option are used to override the actually pushed DNS config
-      # with the correct one
-      # * the line 'auth-user-pass' inside the .ovpn file is replaced by
-      # 'auth-user-pass /root/.openvpn/credentials.txt' inside that file
-      # because systemd trying to prompt for that password was a pain
       config = ''
+        # replace the wrong domain pushed by server with the correct custom one
         pull-filter ignore "dhcp-option DOMAIN"
         dhcp-option DOMAIN ads2-fim.fim.uni-linz.ac.at
+        # hooks from pkgs.update-systemd-resolved to forwad pushed DNS config to systemd-resolved
         script-security 2
         up ${pkgs.update-systemd-resolved}/libexec/openvpn/update-systemd-resolved
         up-restart
         down ${pkgs.update-systemd-resolved}/libexec/openvpn/update-systemd-resolved
         down-pre
+        # load the original config
         config /root/.openvpn/schwaighofer@ads2-fim.fim.uni-linz.ac.at__ssl_vpn_config.ovpn
+        # re-state auth-user-pass with credentials file so systemd does not have to prompt for them
+        auth-user-pass /root/.openvpn/credentials.txt
         '';
     };
   };
@@ -42,8 +42,7 @@
         automount_opts = "x-systemd.automount,noauto,x-systemd.idle-timeout=60,x-systemd.device-timeout=5s,x-systemd.mount-timeout=5s";
         require_vpn = "x-systemd.requires=openvpn-jku-ins-vpn.service";
         credentials = "credentials=/home/mschwaig/.smb/secrets";
-        # TODO: get rid of hardcoded uid/gids here (relate all of that to user)
-        file_permissions = "uid=1000,gid=100,dir_mode=0775,file_mode=0644";
+        file_permissions = "uid=${user.name},gid=${user.group},dir_mode=0775,file_mode=0644";
       in ["${automount_opts},${require_vpn},${credentials},${file_permissions}"];
     };
 
