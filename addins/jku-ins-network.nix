@@ -2,21 +2,29 @@
 
 {
 
-  # DNS
-  networking.interfaces.tun0.useDHCP = true;
-
   # vpn
 
   services.openvpn.servers = {
     jku-ins-vpn  = {
+      # To automatically update resolv.conf for non systemd-networkd networking stack use
+      # updateResolvConf = true;
       autoStart = false;
-      # the line
-      # auth-user-pass
-      # is replaced by
-      # auth-user-pass /root/.openvpn/credentials.txt
-      # inside that file
+      # * the up-down hooks are used for pushing dns config to systemd-resolved
+      # * pull filter and dhcp-option are used to override the actually pushed DNS config
+      # with the correct one
+      # * the line 'auth-user-pass' inside the .ovpn file is replaced by
+      # 'auth-user-pass /root/.openvpn/credentials.txt' inside that file
       # because systemd trying to prompt for that password was a pain
-      config = '' config /root/.openvpn/schwaighofer@ads2-fim.fim.uni-linz.ac.at__ssl_vpn_config.ovpn '';
+      config = ''
+        pull-filter ignore "dhcp-option DOMAIN"
+        dhcp-option DOMAIN ads2-fim.fim.uni-linz.ac.at
+        script-security 2
+        up ${pkgs.update-systemd-resolved}/libexec/openvpn/update-systemd-resolved
+        up-restart
+        down ${pkgs.update-systemd-resolved}/libexec/openvpn/update-systemd-resolved
+        down-pre
+        config /root/.openvpn/schwaighofer@ads2-fim.fim.uni-linz.ac.at__ssl_vpn_config.ovpn
+        '';
     };
   };
 
@@ -39,20 +47,8 @@
       in ["${automount_opts},${require_vpn},${credentials},${file_permissions}"];
     };
 
-    # Manually resolve these specific hosts that are actually publicly resolvable under ads2-fim.fim.uni-linz.ac.at
-    # because the SMB server does not give fully qualified domain names for them.
-    # I would rather hardcode those specific hosts than hardcode their fully qulified domain to everything.
-    # It looks like ads2-fim.fim.uni-linz.ac.at needs to resolve to those three host's same IPs as well and does not do that on public DNS, so I add that in the hosts file as well.
-    networking.extraHosts = ''
-      140.78.100.119 EDC1A
-      140.78.100.126 EDC2A
-      140.78.100.118 EDC3A
-      140.78.100.119 ads2-fim.fim.uni-linz.ac.at
-      140.78.100.126 ads2-fim.fim.uni-linz.ac.at
-      140.78.100.118 ads2-fim.fim.uni-linz.ac.at
-    '';
-
     environment.systemPackages = with pkgs; [
+      # script for updating systemd-resolved with pushed DNS infos
       update-systemd-resolved
       # Doesn't *need* to be in the system profile for this to work, but we
       # want it installed so that e.g. the man pages are available
