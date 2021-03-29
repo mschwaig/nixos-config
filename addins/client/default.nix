@@ -12,6 +12,8 @@
       ../common.nix
     ];
 
+  boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
+
   # move this to common.nix?
   networking.useNetworkd = true;
   systemd.services.systemd-networkd-wait-online.enable = false;
@@ -22,17 +24,15 @@
 
   environment.systemPackages = with pkgs; [
     # gui apps
-    firefox-beta-bin thunderbird vlc gimp transmission-gtk libreoffice-fresh chromium inkscape audacity
+    firefox-bin thunderbird vlc gimp transmission-gtk libreoffice-fresh chromium inkscape audacity reaper
 
     discord
 
     # tiling-friendly apps
     sxiv zathura
 
-    # video editing TODO: ensure that mlt version matches the one used by kdenlive
-    kdeApplications.kdenlive
-
-    mlt
+    # video editing
+    kdenlive mlt
 
     # development tools
     zig valgrind gdb gnumake gcc
@@ -42,6 +42,9 @@
 
     # terminal apps
     file ffmpeg htop bandwhich git lolcat vifm-full tree archivemount pwgen jq nix-index tmux reptyr astyle protonvpn-cli zip zstd tmate unzip tealdeer diffoscope xdelta wally-cli wget
+
+    # text processing
+    pandoc recode
 
     (python38.withPackages(ps: with ps; [ qrcode ]))
 

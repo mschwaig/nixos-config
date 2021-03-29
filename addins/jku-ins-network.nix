@@ -2,6 +2,9 @@
 
 {
 
+  # DNS
+  networking.interfaces.tun0.useDHCP = true;
+
   # vpn
 
   services.openvpn.servers = {
@@ -13,7 +16,8 @@
       # auth-user-pass /root/.openvpn/credentials.txt
       # inside that file
       # because systemd trying to prompt for that password was a pain
-      config = '' config /root/.openvpn/schwaighofer@ads2-fim.fim.uni-linz.ac.at__ssl_vpn_config.ovpn '';    };
+      config = '' config /root/.openvpn/schwaighofer@ads2-fim.fim.uni-linz.ac.at__ssl_vpn_config.ovpn '';
+    };
   };
 
   # network share
@@ -49,6 +53,7 @@
     '';
 
     environment.systemPackages = with pkgs; [
+      update-systemd-resolved
       # Doesn't *need* to be in the system profile for this to work, but we
       # want it installed so that e.g. the man pages are available
       cifs-utils

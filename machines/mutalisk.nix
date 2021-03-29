@@ -12,8 +12,7 @@
       # <nixos-hardware/lenovo/thinkpad/t480s>
       ../addins/client
       ../addins/portable
-      ../addins/jku-ins-samba-client.nix
-      ../addins/jku-ins-vpn.nix
+      ../addins/jku-ins-network.nix
     ];
 
   networking.hostName = "mutalisk";

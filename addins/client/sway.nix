@@ -69,6 +69,8 @@
     '';
   };
 
+  services.pipewire.enable = true;
+
   # configuring kanshi
   systemd.user.services.kanshi = {
     description = "Kanshi output autoconfig ";
