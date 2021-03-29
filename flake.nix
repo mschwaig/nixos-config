@@ -2,7 +2,8 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     nixos-attest = {
-      url = "/home/mschwaig/flakes/nixos-attest/";
+      url = "https://git.ins.jku.at/proj/digidow/nixos-attest.git";
+      type = "git";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -20,10 +21,13 @@
         [
           ./machines/lair.nix
 
+          nixos-attest.nixosModules.attest
+
           # let 'nixos-version --json' know about the flake's git revision
           # not sure how to move this to a module because of ref to self
           # nixpkgs.lib -> lib
           # self -> ?
+
           ({ ... }: {
             system.configurationRevision = mkIf (self ? rev) self.rev;
           })
@@ -36,6 +40,8 @@
       modules =
         [
           ./machines/hatchery.nix
+
+          nixos-attest.nixosModules.attest
 
           ({ ... }: {
             system.configurationRevision = mkIf (self ? rev) self.rev;
@@ -55,7 +61,6 @@
 
           ({ lib, ... }: {
             system.configurationRevision = mkIf (self ? rev) self.rev;
-            services.attest.enable = true;
           })
         ];
     };
@@ -66,6 +71,8 @@
       modules =
         [
           ./machines/mutalisk.nix
+
+          nixos-attest.nixosModules.attest
 
           ({ ... }: {
             system.configurationRevision = mkIf (self ? rev) self.rev;

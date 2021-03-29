@@ -7,13 +7,17 @@
         ]
       },
       "locked": {
-        "narHash": "sha256-msdDCfHRXWHe1+PzM91OjUzJcb7FIgzqe8mefB6wyQ8=",
-        "path": "/home/mschwaig/flakes/nixos-attest",
-        "type": "path"
+        "lastModified": 1611088730,
+        "narHash": "sha256-t5bKQPJdmhAplxjVgA452mx1/SpKCBsfcqPE0u1Z5Mo=",
+        "ref": "master",
+        "rev": "0616e0944a93b3a801f2ac61cfa245803a6b623f",
+        "revCount": 10,
+        "type": "git",
+        "url": "https://git.ins.jku.at/proj/digidow/nixos-attest.git"
       },
       "original": {
-        "path": "/home/mschwaig/flakes/nixos-attest",
-        "type": "path"
+        "type": "git",
+        "url": "https://git.ins.jku.at/proj/digidow/nixos-attest.git"
       }
     },
     "nixpkgs": {
