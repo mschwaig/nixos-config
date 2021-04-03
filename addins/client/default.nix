@@ -8,6 +8,7 @@
       ./sync.nix
       ./scarlett-audio.nix
       ./thunderbolt.nix
+      ./bluetooth.nix
       ../encrypted-zfs-root
       ../common.nix
     ];
@@ -41,7 +42,7 @@
     kitty
 
     # terminal apps
-    file ffmpeg htop bandwhich git lolcat vifm-full tree archivemount pwgen jq nix-index tmux reptyr astyle protonvpn-cli zip zstd tmate unzip tealdeer diffoscope xdelta wally-cli wget
+    file ffmpeg htop bandwhich git lolcat vifm-full tree archivemount pwgen jq nix-index tmux reptyr astyle protonvpn-cli zip zstd tmate unzip tealdeer diffoscope xdelta wally-cli tmate wget
 
     # text processing
     pandoc recode
