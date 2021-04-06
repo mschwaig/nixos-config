@@ -66,9 +66,22 @@
       export QT_WAYLAND_DISABLE_WINDOWDECORATION="1"
       export _JAVA_AWT_WM_NONREPARENTING=1
       export MOZ_ENABLE_WAYLAND=1
+      export XDG_CURRENT_DESKTOP="sway"
     '';
   };
 
+  # for firefox screensharing
+  # See: https://nixos.wiki/wiki/Firefox
+  xdg = {
+    portal = {
+      enable = true;
+      extraPortals = with pkgs; [
+        xdg-desktop-portal-wlr
+        xdg-desktop-portal-gtk
+      ];
+      gtkUsePortal = true;
+    };
+  };
   services.pipewire.enable = true;
 
   # configuring kanshi
