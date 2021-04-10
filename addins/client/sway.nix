@@ -30,39 +30,6 @@
   # I think maybe not having a display manager at all would be a better alternative.
   # I am also intested in running something like tuigreet via greetd.
 
-  nixpkgs.overlays = [ (self: super: {
-    sway-unwrapped = super.sway-unwrapped.overrideAttrs ( old: rec {
-      name = "sway-unwrapped-${version}";
-      version = "1.6-rc3";
-      src = super.fetchFromGitHub {
-        owner = "swaywm";
-        repo = "sway";
-        rev = version;
-        sha256 = "c98iwocvAEhZH1pkLm68c0O8oYozJlV/RRq0hxtTTAU=";
-      };
-      buildInputs = old.buildInputs ++ [ pkgs.libdrm ];
-      patches =
-        (lib.remove (builtins.elemAt old.patches 1) old.patches)
-          ++ [ ./load-configuration-from-etc.patch ];
-      mesonFlags = old.mesonFlags ++ [ "-Dsd-bus-provider=libsystemd" ];
-    });
-
-    wlroots = super.wlroots.overrideAttrs ( old: rec {
-      name = "wlroots";
-      version = "0.12.0-7709a96";
-      src = super.fetchFromGitHub {
-        owner = "swaywm";
-        repo = "wlroots";
-        rev = "7709a965e596f66efabaf6c22967adbac0bbddb2";
-        sha256 = "HFkHRog70uwUDgtWtTUk10ec77fAQBEGNKoYXi6ApzQ=";
-      };
-      buildInputs = old.buildInputs
-        ++ ( with pkgs; [ libuuid xorg.xcbutilrenderutil libseat ] );
-      nativeBuildInputs = old.nativeBuildInputs ++ [ pkgs.xwayland ];
-    });
-
-  })];
-
   # configuring sway itself (assmung a display manager starts it)
   systemd.user.targets.sway-session = {
     description = "Sway compositor session";

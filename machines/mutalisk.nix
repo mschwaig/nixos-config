@@ -9,12 +9,16 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration/mutalisk.nix
       # Include device-specific config from nixos-hardware channel
-      # <nixos-hardware/lenovo/thinkpad/t480s>
+      <nixos-hardware/lenovo/thinkpad/t480s>
       ../addins/client
       ../addins/portable
       ../addins/jku-ins-network.nix
       # ../addins/client/timeular.nix
     ];
+
+  # disable throttled enabled by default via
+  # <nixos-hardware/lenovo/thinkpad/t480s>
+  services.throttled.enable = false;
 
   networking.hostName = "mutalisk";
   networking.hostId = "ed7fb7da";

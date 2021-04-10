@@ -3,6 +3,7 @@
 {
   imports =
     [
+      ./greetd.nix
       ./steam.nix
       ./sway.nix
       ./sync.nix
@@ -27,13 +28,17 @@
     # gui apps
     firefox-wayland thunderbird vlc gimp transmission-gtk libreoffice-fresh chromium inkscape audacity reaper
 
-    discord
+    # communictaion
+    discord skypeforlinux
 
     # tiling-friendly apps
     sxiv zathura
 
     # video editing
     kdenlive mlt
+
+    # webcam
+    guvcview
 
     # development tools
     zig valgrind gdb gnumake gcc
@@ -69,6 +74,7 @@
   # enable sound
   sound.enable = true;
   hardware.pulseaudio.enable = true;
+  hardware.pulseaudio.support32Bit = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.mschwaig = {

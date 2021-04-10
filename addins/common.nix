@@ -34,11 +34,14 @@
       vimAlias = true;
       configure = {
         packages.myPlugins = with pkgs.vimPlugins; {
-          start = [ vim-lastplace vim-nix ale ctrlp vim-better-whitespace ];
+          start = [ vim-lastplace vim-nix ale ctrlp vim-better-whitespace fzf-vim ];
           opt = [];
         };
       };
     })
+
+    # fuzzy search
+    ag
 
     # monitoring
     lm_sensors acpi
