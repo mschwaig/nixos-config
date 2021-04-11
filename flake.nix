@@ -11,8 +11,16 @@
   outputs = { self, nixpkgs, nixos-attest }:
 
   with nixpkgs.lib;
-
-  {
+  let
+    pkgs = import nixpkgs { system = "x86_64-linux"; };
+    mapAttrsToList = pkgs.lib.attrsets.mapAttrsToList;
+  in
+ {
+   defaultPackage."x86_64-linux" = pkgs.linkFarm "nixos-all" (
+     mapAttrsToList(n: v:
+       { name = n; path = v.config.system.build.toplevel;})
+       self.nixosConfigurations
+   );
 
     # home server
     nixosConfigurations.lair = nixpkgs.lib.nixosSystem {
