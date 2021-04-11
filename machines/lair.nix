@@ -9,6 +9,7 @@
       ./hardware-configuration/lair.nix
       ../addins/server
       ../addins/server/weechat.nix
+      ../addins/server/binary-cache.nix
     ];
 
   # ssh instance for entering disk passphrase on boot
