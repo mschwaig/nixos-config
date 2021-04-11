@@ -5,6 +5,8 @@
 
   nix = {
     package = pkgs.nixUnstable;
+    binaryCaches = [ "http://lair.lan/" ];
+    binaryCachePublicKeys = [ "lair.lan:6RWQD3CFGg9OY4bhqPzBumZ+o70lIEVH3R9bxTj+FXw=" ];
     extraOptions = ''
       experimental-features = nix-command flakes
     '';
