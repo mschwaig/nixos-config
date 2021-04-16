@@ -56,7 +56,20 @@
       "inputs": {
         "nixos-attest": "nixos-attest",
         "nixos-hardware": "nixos-hardware",
-        "nixpkgs": "nixpkgs"
+        "nixpkgs": "nixpkgs",
+        "semi-secrets": "semi-secrets"
+      }
+    },
+    "semi-secrets": {
+      "flake": false,
+      "locked": {
+        "narHash": "sha256-EoYHSskG3/E0sFil3HtRrvFkvqlk5dDQ7wCkiJueN/w=",
+        "path": "/home/mschwaig/.semi-secrets.nix",
+        "type": "path"
+      },
+      "original": {
+        "path": "/home/mschwaig/.semi-secrets.nix",
+        "type": "path"
       }
     }
   },

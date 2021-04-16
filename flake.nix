@@ -2,6 +2,16 @@
   inputs = {
     nixpkgs.url = github:NixOS/nixpkgs/nixpkgs-unstable;
     nixos-hardware.url = github:NixOS/nixos-hardware/master;
+    semi-secrets = {
+      # contains a salt and secrets that are fine inside /nix/store
+      # but that I would rather not share on the public internet
+      # {
+      #   salt = "[256 bits of private randomness]";
+      #   endpointip = "";
+      # }
+      url = "/home/mschwaig/.semi-secrets.nix";
+      flake = false;
+    };
     nixos-attest = {
       url = "https://git.ins.jku.at/proj/digidow/nixos-attest.git";
       type = "git";
@@ -9,7 +19,7 @@
     };
   };
 
-  outputs = { self, nixpkgs, nixos-hardware, nixos-attest }:
+  outputs = { self, nixpkgs, nixos-hardware, nixos-attest, semi-secrets }:
 
   with nixpkgs.lib;
   let
@@ -85,6 +95,7 @@
           nixos-hardware.nixosModules.lenovo-thinkpad-t480s
 
           ({ ... }: {
+            wireguard.endpointip = (import semi-secrets).endpointip;
             system.configurationRevision = mkIf (self ? rev) self.rev;
           })
         ];
