@@ -8,6 +8,8 @@
 {
   networking.firewall.allowedTCPPorts = [ 80 ];
 
+  nix.trustedUsers = [ "root" "mschwaig" ];
+
   services.nix-serve = {
     enable = true;
     secretKeyFile = "/var/cache-priv-key.pem";
