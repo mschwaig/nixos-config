@@ -8,8 +8,6 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration/mutalisk.nix
-      # Include device-specific config from nixos-hardware channel
-      <nixos-hardware/lenovo/thinkpad/t480s>
       ../addins/client
       ../addins/portable
       ../addins/jku-ins-network.nix

@@ -1,6 +1,7 @@
 {
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    nixpkgs.url = github:NixOS/nixpkgs/nixpkgs-unstable;
+    nixos-hardware.url = github:NixOS/nixos-hardware/master;
     nixos-attest = {
       url = "https://git.ins.jku.at/proj/digidow/nixos-attest.git";
       type = "git";
@@ -8,7 +9,7 @@
     };
   };
 
-  outputs = { self, nixpkgs, nixos-attest }:
+  outputs = { self, nixpkgs, nixos-hardware, nixos-attest }:
 
   with nixpkgs.lib;
   let
@@ -81,6 +82,7 @@
           ./machines/mutalisk.nix
 
           nixos-attest.nixosModules.attest
+          nixos-hardware.nixosModules.lenovo-thinkpad-t480s
 
           ({ ... }: {
             system.configurationRevision = mkIf (self ? rev) self.rev;

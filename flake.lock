@@ -20,6 +20,22 @@
         "url": "https://git.ins.jku.at/proj/digidow/nixos-attest.git"
       }
     },
+    "nixos-hardware": {
+      "locked": {
+        "lastModified": 1618410381,
+        "narHash": "sha256-/HMmKDAOTqQ0mlL2xk7wgTmaLqDkZsyXBn/JO2+SQc8=",
+        "owner": "NixOS",
+        "repo": "nixos-hardware",
+        "rev": "267d8b2d7f049d2cb9b7f4a7f981c123db19a868",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "master",
+        "repo": "nixos-hardware",
+        "type": "github"
+      }
+    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1617929752,
@@ -39,6 +55,7 @@
     "root": {
       "inputs": {
         "nixos-attest": "nixos-attest",
+        "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs"
       }
     }
