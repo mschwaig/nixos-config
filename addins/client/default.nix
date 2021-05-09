@@ -41,13 +41,13 @@
     guvcview
 
     # development tools
-    zig valgrind gdb gnumake gcc
+    zig valgrind gdb gnumake gcc gdbgui
 
     # terminl emulator (move to sway file?)
     kitty
 
     # terminal apps
-    file ffmpeg htop bandwhich git lolcat vifm-full tree archivemount pwgen jq nix-index tmux reptyr astyle protonvpn-cli zip zstd tmate unzip tealdeer diffoscope xdelta wally-cli tmate wget
+    file ffmpeg htop bandwhich git lolcat vifm-full tree archivemount pwgen jq nix-index tmux reptyr astyle protonvpn-cli zip zstd tmate unzip tealdeer diffoscope xdelta wally-cli tmate wget manpages
 
     # text processing
     pandoc recode
