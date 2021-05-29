@@ -31,13 +31,13 @@
   # I am also intested in running something like tuigreet via greetd.
 
   # configuring sway itself (assmung a display manager starts it)
-  systemd.user.targets.sway-session = {
-    description = "Sway compositor session";
-    documentation = [ "man:systemd.special(7)" ];
-    bindsTo = [ "graphical-session.target" ];
-    wants = [ "graphical-session-pre.target" ];
-    after = [ "graphical-session-pre.target" ];
-  };
+  #systemd.user.targets.sway-session = {
+  #  description = "Sway compositor session";
+  #  documentation = [ "man:systemd.special(7)" ];
+  #  bindsTo = [ "graphical-session.target" ];
+  #  wants = [ "graphical-session-pre.target" ];
+  #  after = [ "graphical-session-pre.target" ];
+  #};
 
   environment.systemPackages = with pkgs; [
     i3pystatus (python38.withPackages(ps: with ps; [ i3pystatus keyring ]))
@@ -45,20 +45,6 @@
 
   programs.sway = {
     enable = true;
-    extraPackages = with pkgs; [
-      dmenu
-      swaylock
-      swayidle
-      xwayland
-      mako
-      kanshi
-      grim
-      slurp
-      wl-clipboard
-      wf-recorder
-      brightnessctl
-      (python38.withPackages(ps: with ps; [ i3pystatus keyring ]))
-    ];
     extraSessionCommands = ''
       export SDL_VIDEODRIVER=wayland
       export QT_QPA_PLATFORM=wayland
@@ -66,40 +52,22 @@
       export _JAVA_AWT_WM_NONREPARENTING=1
       export MOZ_ENABLE_WAYLAND=1
       export XDG_CURRENT_DESKTOP="sway"
-    '';
+  '';
   };
 
   # for firefox screensharing
   # See: https://nixos.wiki/wiki/Firefox
-  xdg = {
-    portal = {
-      enable = true;
-      extraPortals = with pkgs; [
-        xdg-desktop-portal-wlr
-        xdg-desktop-portal-gtk
-      ];
-      gtkUsePortal = true;
-    };
-  };
-  services.pipewire.enable = true;
-
-  # configuring kanshi
-  systemd.user.services.kanshi = {
-    description = "Kanshi output autoconfig ";
-    wantedBy = [ "graphical-session.target" ];
-    partOf = [ "graphical-session.target" ];
-    environment = { XDG_CONFIG_HOME="/home/mschwaig/.config"; };
-    serviceConfig = {
-      # kanshi doesn't have an option to specifiy config file yet, so it looks
-      # at .config/kanshi/config
-      ExecStart = ''
-      ${pkgs.kanshi}/bin/kanshi
-      '';
-      RestartSec = 5;
-      Restart = "always";
-    };
-  };
-
+  #xdg = {
+  #  portal = {
+  #    enable = true;
+  #    extraPortals = with pkgs; [
+  #      xdg-desktop-portal-wlr
+  #      xdg-desktop-portal-gtk
+  #    ];
+  #    gtkUsePortal = true;
+  #  };
+  #};
+  #services.pipewire.enable = true;
   users.users.mschwaig.extraGroups = [ "video" ];
 }
 

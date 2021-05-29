@@ -1,7 +1,11 @@
 {
   inputs = {
-    nixpkgs.url = github:NixOS/nixpkgs/nixpkgs-unstable;
+    nixpkgs.url = github:NixOS/nixpkgs/113823669b9b71fff84bc592d1fd6022635c28eb;
     nixos-hardware.url = github:NixOS/nixos-hardware/master;
+    home-manager = {
+      url = github:nix-community/home-manager;
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     semi-secrets = {
       # contains a salt and secrets that are fine inside /nix/store
       # but that I would rather not share on the public internet
@@ -19,7 +23,7 @@
     };
   };
 
-  outputs = { self, nixpkgs, nixos-hardware, nixos-attest, semi-secrets }:
+  outputs = { self, nixpkgs, nixos-hardware, home-manager, semi-secrets, nixos-attest }:
 
   with nixpkgs.lib;
   let
@@ -81,6 +85,13 @@
           ({ lib, ... }: {
             system.configurationRevision = mkIf (self ? rev) self.rev;
           })
+
+          home-manager.nixosModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.users.mschwaig = import ./home.nix;
+          }
         ];
     };
 
@@ -98,6 +109,13 @@
             wireguard.endpointip = (import semi-secrets).endpointip;
             system.configurationRevision = mkIf (self ? rev) self.rev;
           })
+
+          home-manager.nixosModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.users.mschwaig = import ./home.nix;
+          }
         ];
     };
 
