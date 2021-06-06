@@ -95,6 +95,23 @@
           }
         ];
       };
+      mutalisk-home-dell-incomplete = {
+        outputs = [
+          {
+            criteria = "Dell Inc. DELL U2412M 0FFXD35335TS";
+            status = "disable";
+          }
+          {
+            # TODO: set subpixl hinting?
+            # exec sway output eDP-1 subpixel vrgb
+            criteria = "Unknown 0x058B 0x00000000";
+            status = "enable";
+            mode = "2560x1440";
+            position = "0,0";
+            scale = 2.0;
+          }
+        ];
+      };
       mutalisk-solo = {
         outputs = [
           {
