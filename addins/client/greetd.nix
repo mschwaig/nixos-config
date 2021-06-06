@@ -13,7 +13,7 @@ in
     enable = true;
       settings = {
         default_session = {
-          command = "${pkgs.greetd.greetd}/bin/tuigreet --time --cmd ${launch_sway}/bin/launch_sway.sh";
+          command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd ${launch_sway}/bin/launch_sway.sh";
           user = "greeter";
         };
         initial_session = {
