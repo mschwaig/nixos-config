@@ -28,7 +28,7 @@
   users.users.mschwaig = {
     extraGroups = [ "libvirtd" ];
     openssh.authorizedKeys.keys = [
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBljMNa6LXrsw3oGQ610tnhYRgoRslROr8oE64xJRy+J" # mutalisk
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHNdCt+2TSagVo60uRwVcmqpnw4dmObs1v8texBvAoCR" # mutalisk
     ];
   };
 
