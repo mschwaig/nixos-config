@@ -16,9 +16,7 @@
   # allow things like intel wifi firmware
   hardware.enableRedistributableFirmware = true;
 
-  # TODO: return to linuxPackages_latest when
-  # ZFS kernel module is not broken anymore
-  boot.kernelPackages = pkgs.linuxPackages_5_11;
+  boot.kernelPackages = pkgs.linuxPackages_latest;
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
