@@ -6,6 +6,7 @@
       url = github:nix-community/home-manager;
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    robotnix.url = github:danielfullmer/robotnix/7241f111ee98239cae438ca131413167479e4076;
     semi-secrets = {
       # contains a salt and secrets that are fine inside /nix/store
       # but that I would rather not share on the public internet
@@ -23,7 +24,7 @@
     };
   };
 
-  outputs = { self, nixpkgs, nixos-hardware, home-manager, semi-secrets, nixos-attest }:
+  outputs = { self, nixpkgs, nixos-hardware, home-manager, robotnix, semi-secrets, nixos-attest }:
 
   with nixpkgs.lib;
   let
@@ -117,7 +118,10 @@
             home-manager.users.mschwaig = import ./home.nix;
           }
         ];
-    };
+      };
+
+      robotnixConfigurations."spore" =
+        robotnix.lib.robotnixSystem ( { config, pkgs, ... }: import ./machines/spore.nix );
 
 };
 }
