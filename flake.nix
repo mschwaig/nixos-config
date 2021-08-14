@@ -6,7 +6,7 @@
       url = github:nix-community/home-manager;
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    robotnix.url = github:danielfullmer/robotnix/7241f111ee98239cae438ca131413167479e4076;
+    robotnix.url = github:danielfullmer/robotnix;
     semi-secrets = {
       # contains a salt and secrets that are fine inside /nix/store
       # but that I would rather not share on the public internet

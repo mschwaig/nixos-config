@@ -42,11 +42,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1628837533,
-        "narHash": "sha256-SQ+3ma51/vkJrk2ISiW1zVqcsQq+dqgUDkus6V5SxrU=",
+        "lastModified": 1628946811,
+        "narHash": "sha256-u/A1RzWyP88zbMwVFJ41BAkh9BTLbSLfCigrGAgyZKQ=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "a965b097b1e0c3bcf22f39413afd1ec6cc1f5335",
+        "rev": "72f3bc6fa461a2899a06c87c137c7135e410e387",
         "type": "github"
       },
       "original": {
@@ -145,17 +145,16 @@
         "nixpkgs": "nixpkgs_3"
       },
       "locked": {
-        "lastModified": 1626834853,
-        "narHash": "sha256-/hrAaUG2Uizo6tuvv1jbE3O+edK2g869+F+PSoNa5II=",
+        "lastModified": 1628915357,
+        "narHash": "sha256-jztmJFFvg8eG+S6ssQB6ASZBKt9jUtf+L+xcyb9u9EA=",
         "owner": "danielfullmer",
         "repo": "robotnix",
-        "rev": "7241f111ee98239cae438ca131413167479e4076",
+        "rev": "bcc3492c9096879628c69179003928c5d47ad67c",
         "type": "github"
       },
       "original": {
         "owner": "danielfullmer",
         "repo": "robotnix",
-        "rev": "7241f111ee98239cae438ca131413167479e4076",
         "type": "github"
       }
     },
