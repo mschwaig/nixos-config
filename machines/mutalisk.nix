@@ -22,7 +22,7 @@
   networking.hostId = "ed7fb7da";
 
   networking.interfaces.enp0s31f6.useDHCP = true;
-  networking.interfaces.wlan0.useDHCP = true;
+  networking.interfaces.wlp61s0.useDHCP = true;
 
   users.users.mschwaig = {
     openssh.authorizedKeys.keys = [ "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILnU1xQN50B54S98io0kH1xElc9yNqmZMPF0s8QASLaB" ];
