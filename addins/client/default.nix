@@ -20,8 +20,6 @@
   networking.useNetworkd = true;
   systemd.services.systemd-networkd-wait-online.enable = false;
 
-  networking.wireless.iwd.enable = true;
-
   boot.supportedFilesystems = [ "ntfs" "fuse-7z-ng" ];
 
   environment.systemPackages = with pkgs; [
@@ -41,7 +39,7 @@
     guvcview
 
     # development tools
-    zig valgrind gdb gnumake gcc gdbgui cntr
+    zig valgrind gdb gnumake gcc gdbgui cntr dhall
 
     # terminl emulator (move to sway file?)
     kitty

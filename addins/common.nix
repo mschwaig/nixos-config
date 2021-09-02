@@ -15,6 +15,8 @@
 
   # allow things like intel wifi firmware
   hardware.enableRedistributableFirmware = true;
+  # enable fwupd for manual firmware updates
+  services.fwupd.enable = true;
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
@@ -37,7 +39,7 @@
       vimAlias = true;
       configure = {
         packages.myPlugins = with pkgs.vimPlugins; {
-          start = [ vim-lastplace vim-nix ale ctrlp vim-better-whitespace fzf-vim ];
+          start = [ vim-lastplace vim-nix ale ctrlp vim-better-whitespace fzf-vim powerline ];
           opt = [];
         };
       };

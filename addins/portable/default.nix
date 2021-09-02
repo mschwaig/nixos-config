@@ -7,6 +7,8 @@
       ./wireguard.nix
     ];
 
+    networking.wireless.enable = true;
+
     services.upower = {
       enable = true;
       percentageLow = 25;
