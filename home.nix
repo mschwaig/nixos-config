@@ -13,6 +13,9 @@
           "ssh://git@git.ins.jku.at/" = {
             insteadof = "https://git.ins.jku.at/";
           };
+          "ssh://git@github.com/" = {
+            insteadof = "https://github.com/";
+          };
         };
       };
     };
