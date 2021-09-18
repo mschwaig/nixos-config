@@ -18,7 +18,8 @@
   # enable fwupd for manual firmware updates
   services.fwupd.enable = true;
 
-  boot.kernelPackages = pkgs.linuxPackages_latest;
+  # switch kernel package becuase of broken ZFS module
+  boot.kernelPackages = pkgs.linuxPackages_5_13;
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;

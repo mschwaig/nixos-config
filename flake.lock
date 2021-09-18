@@ -42,11 +42,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1630428740,
-        "narHash": "sha256-394yJxkFjvg47vB0jK5WHCitLDilyGjO3HpuZkAM2GA=",
+        "lastModified": 1631740142,
+        "narHash": "sha256-FnwtaJ+fZw2QzsCqGJW4kJd9hXiPxPgfi+9dwratk28=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "21a2ff449620a9cb91802f9d1a9157b2ae8c6b39",
+        "rev": "371576cdc2580ba93a38e28da8ece2129f558815",
         "type": "github"
       },
       "original": {
@@ -62,11 +62,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1611088730,
-        "narHash": "sha256-t5bKQPJdmhAplxjVgA452mx1/SpKCBsfcqPE0u1Z5Mo=",
+        "lastModified": 1631977982,
+        "narHash": "sha256-si1iZJI9iTZRk8vR7mB5UA+HqQ1mVe7r6s+fKkBWCa0=",
         "ref": "master",
-        "rev": "0616e0944a93b3a801f2ac61cfa245803a6b623f",
-        "revCount": 10,
+        "rev": "f30da946af7bc958d646a3742af8c011f74156c7",
+        "revCount": 12,
         "type": "git",
         "url": "https://git.ins.jku.at/proj/digidow/nixos-attest.git"
       },
@@ -77,11 +77,11 @@
     },
     "nixos-hardware": {
       "locked": {
-        "lastModified": 1629975021,
-        "narHash": "sha256-+z4pK5yvoIKAIPGnyxt7I7Y9yX72HFP2krppGENpn6I=",
+        "lastModified": 1631875434,
+        "narHash": "sha256-qmaLTz4ituJJ8DNoHwmrrCRmABMoNqNLJewxWpuZals=",
         "owner": "NixOS",
         "repo": "nixos-hardware",
-        "rev": "342048461da7fc743e588ee744080c045613a226",
+        "rev": "16fca9df230408608846940981b4037762420b1b",
         "type": "github"
       },
       "original": {
@@ -93,11 +93,11 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1630248577,
-        "narHash": "sha256-9d/yq96TTrnF7qjA6wPYk+rYjWAXwfUmwk3qewezSeg=",
+        "lastModified": 1631785487,
+        "narHash": "sha256-VSKEvOtaY/roDxEHFxXh6GguOqqWCJZ3E06fBdKu8+I=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "8d8a28b47b7c41aeb4ad01a2bd8b7d26986c3512",
+        "rev": "79c444b5bdeaba142d128afddee14c89ecf2a968",
         "type": "github"
       },
       "original": {
@@ -145,11 +145,11 @@
         "nixpkgs": "nixpkgs_3"
       },
       "locked": {
-        "lastModified": 1629916645,
-        "narHash": "sha256-KEI2rkdNIi/PJ2iF6zmM/iiBJQKjZw+c5nXiQ9Hbhnk=",
+        "lastModified": 1631922708,
+        "narHash": "sha256-ezNJbMoZs2Wc8WNLrpk6AOjF9KHyPkdA22mL6MHiE1A=",
         "owner": "danielfullmer",
         "repo": "robotnix",
-        "rev": "4431a8a3ee25c6f6ed3ef2f8895ae7910d547707",
+        "rev": "712b62cd8a059272d07d7fd646a702246d4ef7ad",
         "type": "github"
       },
       "original": {

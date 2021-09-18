@@ -9,6 +9,9 @@ let launch_sway = pkgs.writeScriptBin "launch_sway.sh" ''
   '';
 in
 {
+  users.users.greeter.group = "greeter";
+  users.groups.greeter = {};
+
   services.greetd = {
     enable = true;
       settings = {
