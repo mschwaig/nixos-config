@@ -1,5 +1,6 @@
 {
   inputs = {
+    deploy-rs.url = github:serokell/deploy-rs;
     nixpkgs.url = github:NixOS/nixpkgs/nixos-unstable;
     nixos-hardware.url = github:NixOS/nixos-hardware/master;
     home-manager = {
@@ -24,7 +25,7 @@
     };
   };
 
-  outputs = { self, nixpkgs, nixos-hardware, home-manager, robotnix, semi-secrets, nixos-attest }:
+  outputs = { self, deploy-rs, nixpkgs, nixos-hardware, home-manager, robotnix, semi-secrets, nixos-attest }:
 
   with nixpkgs.lib;
   let
@@ -32,6 +33,30 @@
     mapAttrsToList = pkgs.lib.attrsets.mapAttrsToList;
   in
  {
+  deploy = {
+    sshOpts = [ "-A" ];
+
+    nodes = {
+      lair = {
+        hostname = "lair.lan";
+        profiles.system = {
+          user = "root";
+          path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.lair;
+        };
+      };
+      hatchery = {
+        hostname = "hatchery.lan";
+        profiles.system = {
+          user = "root";
+          path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.hatchery;
+        };
+      };
+    };
+  };
+
+   # add deploy-rs deployment checks to prevent errors
+   checks = builtins.mapAttrs (system: deployLib: deployLib.deployChecks self.deploy) deploy-rs.lib;
+
    defaultPackage."x86_64-linux" = pkgs.linkFarm "nixos-all" (
      mapAttrsToList(n: v:
        { name = n; path = v.config.system.build.toplevel;})
