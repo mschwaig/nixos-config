@@ -116,7 +116,7 @@
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.users.mschwaig = import ./home.nix;
+            home-manager.users.mschwaig = (import ./home).graphical;
           }
         ];
     };
@@ -140,7 +140,7 @@
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.users.mschwaig = import ./home.nix;
+            home-manager.users.mschwaig = (import ./home).graphical;
           }
         ];
       };

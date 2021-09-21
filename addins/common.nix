@@ -19,7 +19,7 @@
   services.fwupd.enable = true;
 
   # switch kernel package becuase of broken ZFS module
-  boot.kernelPackages = pkgs.linuxPackages_5_13;
+  boot.kernelPackages = pkgs.linuxPackages_latest;
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
