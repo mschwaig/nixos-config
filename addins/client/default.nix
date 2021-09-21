@@ -47,8 +47,7 @@
     # terminal apps
     file ffmpeg htop bandwhich git lolcat vifm-full tree archivemount pwgen jq nix-index tmux reptyr astyle protonvpn-cli zip zstd tmate unzip tealdeer xdelta wally-cli tmate wget manpages
 
-    # diffosocpe is broken on master right now
-    # diffoscope
+    diffoscope
 
     # text processing
     pandoc recode
