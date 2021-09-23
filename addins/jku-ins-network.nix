@@ -11,8 +11,11 @@ in
     jku-ins-vpn  = {
       autoStart = false;
       config = ''
-        # replace the wrong domain pushed by server with the correct custom one
+        # normally we would get the ins.jku.at domain pushed
         pull-filter ignore "dhcp-option DOMAIN"
+        # instead we add it manually
+        dhcp-option DOMAIN ins.jku.at
+        # we have to add this legacy domain for the file share to work
         dhcp-option DOMAIN ads2-fim.fim.uni-linz.ac.at
         # hooks from pkgs.update-systemd-resolved to forwad pushed DNS config to systemd-resolved
         script-security 2
