@@ -58,6 +58,9 @@
     pulsemixer wireshark
 
     fuse-7z-ng
+
+    # for pdfinfo command
+    poppler_utils
   ];
 
   programs.adb.enable = true;
