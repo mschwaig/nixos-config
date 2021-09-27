@@ -24,7 +24,7 @@ in
         down ${pkgs.update-systemd-resolved}/libexec/openvpn/update-systemd-resolved
         down-pre
         # load the original config
-        config /root/.openvpn/schwaighofer@ads2-fim.fim.uni-linz.ac.at__ssl_vpn_config.ovpn
+        config /root/.openvpn/OpenVPN_193_171_8_84_schwaighofer.ovpn
         # re-state auth-user-pass with credentials file so systemd does not have to prompt for them
         auth-user-pass /root/.openvpn/credentials.txt
         '';
