@@ -131,6 +131,25 @@
             # I cannot turn this on one again)
         ];
       };
+      jku-s2-0xx-beamer = {
+        outputs = [
+          {
+            criteria = "HDMI-A-2";
+            status = "enable";
+            mode = "1920x1080";
+            position = "2560,0";
+          }
+          {
+            # TODO: set subpixl hinting?
+            # exec sway output eDP-1 subpixel vrgb
+            criteria = "Unknown 0x058B 0x00000000";
+            status = "enable";
+            mode = "2560x1440";
+            position = "0,0";
+            scale = 2.0;
+          }
+        ];
+      };
     };
   };
 
