@@ -16,6 +16,10 @@
 
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
 
+  # for sysprog VMs
+  virtualisation.virtualbox.host.enable = true;
+  users.extraGroups.vboxusers.members = [ "mschwaig" ];
+
   # move this to common.nix?
   networking.useNetworkd = true;
   systemd.services.systemd-networkd-wait-online.enable = false;
@@ -25,6 +29,9 @@
   environment.systemPackages = with pkgs; [
     # gui apps
     firefox-wayland thunderbird vlc gimp transmission-gtk libreoffice-fresh chromium inkscape audacity reaper
+
+    nix-diff
+    cue
 
     # communictaion
     discord skypeforlinux
@@ -61,6 +68,9 @@
 
     # for pdfinfo command
     poppler_utils
+
+    # for screen-morroing with sway
+    #vinagre wayvnc
   ];
 
   programs.adb.enable = true;

@@ -1,5 +1,5 @@
-{ config, pkgs, ... }:
-
+{ config, pkgs, lib, ... }:
+with lib;
 {
   imports =
     [
@@ -7,6 +7,17 @@
       ./wireguard.nix
     ];
 
+  options.wifi-networks = {
+    home-network-ssid = mkOption {
+      type = types.str;
+      description = "SSID of my home wifi network.";
+    };
+    mobile-network-ssid = mkOption {
+      type = types.str;
+      description = "SSID of my phone tethering wifi network.";
+    };
+  };
+  config = {
     networking.wireless = {
       enable = true;
       userControlled.enable = true;
@@ -26,6 +37,24 @@
         '';
       };
 
+      networks.${config.wifi-networks.home-network-ssid} = {
+        auth = ''
+          proto=WPA2
+          key_mgmt=WPA-PSK
+          pairwise=CCMP
+          group=CCMP
+        '';
+      };
+
+      networks.${config.wifi-networks.mobile-network-ssid} = {
+        auth = ''
+          proto=WPA2
+          key_mgmt=WPA-PSK
+          pairwise=CCMP
+          group=CCMP
+        '';
+      };
+
       #extraConfig = "ext_password_backend=file:/home/mschwaig/.cat_installer/passwords.conf";
     };
 
@@ -35,4 +64,5 @@
       percentageCritical = 15;
       percentageAction = 10;
     };
+  };
 }

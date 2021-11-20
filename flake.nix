@@ -8,24 +8,24 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     robotnix.url = github:danielfullmer/robotnix;
+    nixos-attest = {
+      url = "https://git.ins.jku.at/proj/digidow/nixos-attest.git";
+      type = "git";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     semi-secrets = {
       # contains a salt and secrets that are fine inside /nix/store
       # but that I would rather not share on the public internet
       # {
       #   salt = "[256 bits of private randomness]";
       #   endpointip = "";
+      #   ...
       # }
-      url = "/home/mschwaig/.semi-secrets.nix";
-      flake = false;
-    };
-    nixos-attest = {
-      url = "https://git.ins.jku.at/proj/digidow/nixos-attest.git";
-      type = "git";
-      inputs.nixpkgs.follows = "nixpkgs";
+      url = "git+ssh://git@github.com/mschwaig/semi-secrets.git?ref=main";
     };
   };
 
-  outputs = { self, deploy-rs, nixpkgs, nixos-hardware, home-manager, robotnix, semi-secrets, nixos-attest }:
+  outputs = { self, deploy-rs, nixpkgs, nixos-hardware, home-manager, robotnix, nixos-attest, semi-secrets }:
 
   with nixpkgs.lib;
   let
@@ -132,7 +132,9 @@
           nixos-hardware.nixosModules.lenovo-thinkpad-t480s
 
           ({ ... }: {
-            wireguard.endpointip = (import semi-secrets).endpointip;
+            wireguard.endpointip = semi-secrets.lib.endpointip;
+            wifi-networks.home-network-ssid = semi-secrets.lib.home-network-ssid;
+            wifi-networks.mobile-network-ssid = semi-secrets.lib.mobile-network-ssid;
             system.configurationRevision = mkIf (self ? rev) self.rev;
           })
 
@@ -147,6 +149,5 @@
 
       robotnixConfigurations."spore" =
         robotnix.lib.robotnixSystem ( { config, pkgs, ... }: import ./machines/spore.nix );
-
-};
+  };
 }

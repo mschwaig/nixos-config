@@ -5,8 +5,8 @@
 
   nix = {
     package = pkgs.nixFlakes;
-    binaryCaches = [ "http://lair.lan/" ];
-    binaryCachePublicKeys = [ "lair.lan:6RWQD3CFGg9OY4bhqPzBumZ+o70lIEVH3R9bxTj+FXw=" ];
+    binaryCaches = [ "http://lair.lan/" "http://cache.nix.ins.jku.at" ];
+    binaryCachePublicKeys = [ "lair.lan:6RWQD3CFGg9OY4bhqPzBumZ+o70lIEVH3R9bxTj+FXw=" "cache.nix.ins.jku.at:CPefhQ5WiLuI6Bc9T8sErWf0n5Jwu5Pl+i3B2tFg+/U=" ];
     # See: https://discourse.nixos.org/t/using-experimental-nix-features-in-nixos-and-when-they-will-land-in-stable/7401/4 which gives the reason for the optional thing
     extraOptions = lib.optionalString (config.nix.package == pkgs.nixFlakes) ''
       experimental-features = nix-command flakes
