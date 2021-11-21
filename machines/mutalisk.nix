@@ -24,6 +24,10 @@
   networking.interfaces.enp0s31f6.useDHCP = true;
   networking.interfaces.wlp61s0.useDHCP = true;
 
+  powerManagement.resumeCommands = ''
+    ${pkgs.writeShellScriptBin "set-wifi-password" ../addins/set-wifi-passwords.sh}/bin/set-wifi-password
+  '';
+
   users.users.mschwaig = {
     openssh.authorizedKeys.keys = [ "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILnU1xQN50B54S98io0kH1xElc9yNqmZMPF0s8QASLaB" ];
   };
