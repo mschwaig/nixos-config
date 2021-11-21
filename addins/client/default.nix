@@ -69,8 +69,8 @@
     # for pdfinfo command
     poppler_utils
 
-    # for screen-morroing with sway
-    #vinagre wayvnc
+    # for screen-mirroring with sway
+    gnome.vinagre wayvnc
   ];
 
   programs.adb.enable = true;
