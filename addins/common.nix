@@ -18,7 +18,8 @@
   # enable fwupd for manual firmware updates
   services.fwupd.enable = true;
 
-  boot.kernelPackages = pkgs.linuxPackages_latest;
+  # TODO: switch back to latest when there is ZFS support for it
+  boot.kernelPackages = pkgs.linuxPackages_5_14;
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
