@@ -51,9 +51,12 @@
       export XDG_SESSION_TYPE=wayland
       export QT_WAYLAND_DISABLE_WINDOWDECORATION="1"
       export _JAVA_AWT_WM_NONREPARENTING=1
-      export MOZ_ENABLE_WAYLAND=1
-      export XDG_CURRENT_DESKTOP=sway
     '';
+  };
+
+  home.sessionVariables = {
+    MOZ_ENABLE_WAYLAND = "1";
+    XDG_CURRENT_DESKTOP = "sway";
   };
 
   home.packages = with pkgs; [
