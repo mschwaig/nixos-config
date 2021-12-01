@@ -52,6 +52,9 @@
     # monitoring
     lm_sensors acpi
 
+    # display system properties
+    neofetch
+
     # remote managment
     ethtool
   ];
