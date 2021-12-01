@@ -31,7 +31,7 @@
       };
       bars = [{
         position = "top";
-        statusCommand = "${pkgs.i3pystatus}/bin/i3pystatus -c /home/mschwaig/.config/i3pystatus/config.py";
+        #statusCommand = "${pkgs.i3pystatus}/bin/i3pystatus -c /home/mschwaig/.config/i3pystatus/config.py";
         colors = {
           statusline = "#ffffff";
           background = "#323232";
