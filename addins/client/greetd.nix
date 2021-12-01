@@ -5,7 +5,7 @@
 let launch_sway = pkgs.writeScriptBin "launch_sway.sh" ''
     #!${pkgs.bash}/bin/bash
     export WLR_DRM_NO_MODIFIERS=1
-    ${pkgs.sway}/bin/sway
+    ${pkgs.sway}/bin/sway --my-next-gpu-wont-be-nvidia
   '';
 in
 {
