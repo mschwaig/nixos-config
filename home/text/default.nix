@@ -1,5 +1,6 @@
 { pkgs, ... }: {
 
+  imports = [ ./fish.nix ];
 
   programs = {
     git = {
