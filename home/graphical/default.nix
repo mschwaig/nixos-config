@@ -1,6 +1,9 @@
 { pkgs, ... }: {
 
-  imports = [ ./kanshi.nix ];
+  imports = [
+    ./kanshi.nix
+    ./kitty.nix
+  ];
 
   wayland.windowManager.sway = {
     enable = true;

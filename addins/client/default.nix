@@ -52,7 +52,7 @@
     kitty
 
     # terminal apps
-    file ffmpeg htop bandwhich git lolcat vifm-full tree archivemount pwgen jq nix-index tmux reptyr astyle protonvpn-cli zip zstd tmate unzip tealdeer xdelta wally-cli tmate wget manpages
+    file ffmpeg htop bandwhich git lolcat vifm-full tree archivemount pwgen jq nix-index tmux reptyr astyle protonvpn-cli zip zstd tmate unzip tealdeer xdelta wally-cli tmate wget manpages shellcheck
 
     diffoscope
 
@@ -96,8 +96,4 @@
 
   programs.wireshark.enable = true;
   programs.sysdig.enable = true;
-
-  fonts.fonts = with pkgs; [
-    cascadia-code
-  ];
 }
