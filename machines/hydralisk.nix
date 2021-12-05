@@ -12,6 +12,9 @@
       ../addins/client/desktop/gpu-passthrough.nix
     ];
 
+  # stop running out of RAM with diffoscope
+  zramSwap.enable = true;
+
   networking.hostName = "hydralisk";
   networking.hostId = "46b5a21f";
 
