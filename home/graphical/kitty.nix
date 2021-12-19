@@ -18,4 +18,9 @@
     '';
   };
 
+  programs.fish = {
+    functions = {
+      kitty-light = "kitty --config ${./tango_light.conf}";
+    };
+  };
 }
