@@ -135,6 +135,7 @@
             wireguard.endpointip = semi-secrets.lib.endpointip;
             wifi-networks.home-network-ssid = semi-secrets.lib.home-network-ssid;
             wifi-networks.mobile-network-ssid = semi-secrets.lib.mobile-network-ssid;
+            wifi-networks.parent-network-ssid = semi-secrets.lib.parent-network-ssid;
             system.configurationRevision = mkIf (self ? rev) self.rev;
           })
 

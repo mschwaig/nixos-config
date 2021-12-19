@@ -16,6 +16,10 @@ with lib;
       type = types.str;
       description = "SSID of my phone tethering wifi network.";
     };
+    parent-network-ssid = mkOption {
+      type = types.str;
+      description = "SSID of my parent's home network.";
+    };
   };
   config = {
     networking.wireless = {
@@ -55,6 +59,14 @@ with lib;
         '';
       };
 
+      networks.${config.wifi-networks.parent-network-ssid} = {
+        auth = ''
+          proto=WPA2
+          key_mgmt=WPA-PSK
+          pairwise=CCMP
+          group=CCMP
+        '';
+      };
       #extraConfig = "ext_password_backend=file:/home/mschwaig/.cat_installer/passwords.conf";
     };
 
