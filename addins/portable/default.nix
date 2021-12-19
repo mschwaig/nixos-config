@@ -38,6 +38,7 @@ with lib;
           altsubject_match="DNS:eduroam.jku.at"
           phase2="auth=MSCHAPV2"
           anonymous_identity="anonymous-cat_v2@jku.at"
+          password="@EDUROAM_PASSWORD@"
         '';
       };
 
@@ -47,6 +48,7 @@ with lib;
           key_mgmt=WPA-PSK
           pairwise=CCMP
           group=CCMP
+          psk="@HOME_NETWORK_PSK@"
         '';
       };
 
@@ -56,6 +58,7 @@ with lib;
           key_mgmt=WPA-PSK
           pairwise=CCMP
           group=CCMP
+          psk="@MOBILE_NETWORK_PSK@"
         '';
       };
 
@@ -65,9 +68,10 @@ with lib;
           key_mgmt=WPA-PSK
           pairwise=CCMP
           group=CCMP
+          psk="@PARENT_NETWORK_PSK@"
         '';
       };
-      #extraConfig = "ext_password_backend=file:/home/mschwaig/.cat_installer/passwords.conf";
+      environmentFile = "/home/mschwaig/.wifi-passwords.csv";
     };
 
     services.upower = {
