@@ -147,17 +147,32 @@
             # I cannot turn this on one again)
         ];
       };
-      jku-s2-0xx-beamer = {
+      jku-s2-046-beamer = {
         outputs = [
           {
-            criteria = "HDMI-A-2";
+            criteria = "Panasonic Industry Company PT-VX420 0x00002E39'";
             status = "enable";
             mode = "1920x1080";
             position = "2560,0";
           }
           {
-            # TODO: set subpixl hinting?
-            # exec sway output eDP-1 subpixel vrgb
+            criteria = "Unknown 0x058B 0x00000000";
+            status = "enable";
+            mode = "2560x1440";
+            position = "0,0";
+            scale = 2.0;
+          }
+        ];
+      };
+      jku-s2-053-beamer = {
+        outputs = [
+          {
+            criteria = "Panasonic Industry Company PT-VX400E 0x00001339'";
+            status = "enable";
+            mode = "1920x1080";
+            position = "2560,0";
+          }
+          {
             criteria = "Unknown 0x058B 0x00000000";
             status = "enable";
             mode = "2560x1440";
