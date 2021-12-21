@@ -131,6 +131,22 @@
             # I cannot turn this on one again)
         ];
       };
+      jku-workplace-incomplete = {
+        outputs = [
+          {
+            criteria = "Acer Technologies B276HUL T59EE0018501";
+            status = "enable";
+            mode = "2560x1440";
+            position = "2560,0";
+          }
+          {
+            criteria = "Unknown 0x058B 0x00000000";
+            status = "disable";
+          } # TODO: enalbe onboard screen again
+            # (disabled because after locking the screen
+            # I cannot turn this on one again)
+        ];
+      };
       jku-s2-0xx-beamer = {
         outputs = [
           {
