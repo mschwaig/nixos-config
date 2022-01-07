@@ -13,7 +13,7 @@
   services.fwupd.enable = true;
 
   # TODO: switch back to latest when there is ZFS support for it
-  boot.kernelPackages = pkgs.linuxPackages_5_14;
+  boot.kernelPackages = pkgs.linuxPackages_latest;
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
