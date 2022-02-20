@@ -2,6 +2,8 @@
 
   imports = [ ./fish.nix ];
 
+  home.packages = [ pkgs.p7zip ];
+
   programs = {
     direnv = {
       enable = true;
