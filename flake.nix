@@ -1,7 +1,7 @@
 {
   inputs = {
     deploy-rs.url = github:serokell/deploy-rs;
-    nixpkgs.url = github:NixOS/nixpkgs/master;
+    nixpkgs.url = github:NixOS/nixpkgs/nixos-unstable;
     nixos-hardware.url = github:NixOS/nixos-hardware/master;
     home-manager = {
       url = github:nix-community/home-manager;

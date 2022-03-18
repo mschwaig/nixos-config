@@ -94,11 +94,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1645140957,
-        "narHash": "sha256-WTJzLSCDLBI537o2L/3kRyqEV5YRT7+1QSGryeKReHE=",
+        "lastModified": 1646559628,
+        "narHash": "sha256-WDoqxH/IPTV8CkI15wwzvXYgXq9UPr8xd8WKziuaynw=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "4f4165a8b9108818ab0193bbd1a252106870b2a2",
+        "rev": "afe96e7433c513bf82375d41473c57d1f66b4e68",
         "type": "github"
       },
       "original": {
@@ -129,11 +129,11 @@
     },
     "nixos-hardware": {
       "locked": {
-        "lastModified": 1644870092,
-        "narHash": "sha256-RLPD92lqXW98LDIbbwYqwAbt3R4iD1V1PiylfgBq5cU=",
+        "lastModified": 1646751686,
+        "narHash": "sha256-hnHZ2qaXVIm05+1EqWNg/yaaeTTNR8TPd7jaOM/DNZA=",
         "owner": "NixOS",
         "repo": "nixos-hardware",
-        "rev": "10eab1c4cd8e715c0b41d32c28af2b89fc67bed0",
+        "rev": "c730530902842de8968fe234b6e0833fa669d466",
         "type": "github"
       },
       "original": {
@@ -177,16 +177,16 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1645306527,
-        "narHash": "sha256-8+42RtLFncCdsXQm1UBIAZdTUF1Mk9N1Bd3qPAzgdi4=",
+        "lastModified": 1646497237,
+        "narHash": "sha256-Ccpot1h/rV8MgcngDp5OrdmLTMaUTbStZTR5/sI7zW0=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "9741903d62e0794211be4b10fc6ee1c94bb1873a",
+        "rev": "062a0c5437b68f950b081bbfc8a699d57a4ee026",
         "type": "github"
       },
       "original": {
         "owner": "NixOS",
-        "ref": "master",
+        "ref": "nixos-unstable",
         "repo": "nixpkgs",
         "type": "github"
       }
@@ -230,11 +230,11 @@
         "nixpkgsUnstable": "nixpkgsUnstable"
       },
       "locked": {
-        "lastModified": 1645084136,
-        "narHash": "sha256-8/jOKdBZvenOQoI/6QwYLX1kIiAGlTTyiAH7GlRmHak=",
+        "lastModified": 1646510004,
+        "narHash": "sha256-tcfeTqzYTVnHkoN7B2WhmRLmoXLt5KAP4WXHUxbAUEk=",
         "owner": "danielfullmer",
         "repo": "robotnix",
-        "rev": "517b6cf5d54b4e32202d7062d50e5af28cf75576",
+        "rev": "4b246430109ebd7bafcc4c87e99ad8547f6e85d4",
         "type": "github"
       },
       "original": {

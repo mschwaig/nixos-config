@@ -1,7 +1,7 @@
 { config, pkgs, ... }:
 
 {
-  environment.systemPackages = with pkgs; [sshfsFuse unison];
+  environment.systemPackages = with pkgs; [sshfs-fuse unison];
 
   # note that this still requires connecting manually once as root for the remote key to show up in root's known hosts file
   # See: https://blog.luukhendriks.eu/2019/01/25/sshfs-too-many-levels-of-symbolic-links.html

@@ -14,6 +14,11 @@
       # ../addins/client/timeular.nix
     ];
 
+  # make ins network happy
+  systemd.network.networks."40-enp0s31f6".dhcpV4Config = {
+    ClientIdentifier="mac";
+  };
+
   # disable throttled enabled by default via
   # <nixos-hardware/lenovo/thinkpad/t480s>
   services.throttled.enable = false;

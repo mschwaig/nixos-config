@@ -41,7 +41,7 @@
     })
 
     # fuzzy search
-    ag
+    silver-searcher
 
     # monitoring
     lm_sensors acpi
