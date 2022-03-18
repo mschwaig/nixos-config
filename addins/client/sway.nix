@@ -17,7 +17,12 @@
       gtkUsePortal = true;
     };
   };
-  services.pipewire.enable = true;
+
+  sound.enable = true;
+  services.pipewire = {
+    enable = true;
+    pulse.enable = true;
+  };
   users.users.mschwaig.extraGroups = [ "video" ];
 }
 

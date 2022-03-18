@@ -95,11 +95,6 @@
     '';
   };
 
-  # enable sound
-  sound.enable = true;
-  hardware.pulseaudio.enable = true;
-  hardware.pulseaudio.support32Bit = true;
-
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.mschwaig = {
     extraGroups = [ "wireshark" "plugdev" "adbusers" ];
