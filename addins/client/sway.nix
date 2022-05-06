@@ -22,6 +22,7 @@
   services.pipewire = {
     enable = true;
     pulse.enable = true;
+    jack.enable = true;
   };
   users.users.mschwaig.extraGroups = [ "video" ];
 }

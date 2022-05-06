@@ -5,6 +5,27 @@
     ./kitty.nix
   ];
 
+  services.swayidle = {
+    enable = true;
+
+    timeouts = [{
+      timeout = 60;
+      command = "${pkgs.swaylock}/bin/swaylock -f -c 000000";
+    } {
+      timeout = 90;
+      command = ''${pkgs.sway}/bin/swaymsg "output * dpms off"'';
+      resumeCommand = ''${pkgs.sway}/bin/swaymsg "output * dpms on"'';
+    }];
+
+    events = [{
+      event = "before-sleep";
+      command = "${pkgs.swaylock}/bin/swaylock -f -c 000000";
+    } {
+      event = "lock";
+      command = "${pkgs.swaylock}/bin/swaylock -f -c 000000";
+    }];
+  };
+
   wayland.windowManager.sway = {
     enable = true;
     config = {

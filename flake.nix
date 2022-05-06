@@ -13,6 +13,7 @@
       type = "git";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    lti.url = "/home/mschwaig/flakes/pylti-moodle";
     semi-secrets = {
       # contains a salt and secrets that are fine inside /nix/store
       # but that I would rather not share on the public internet
@@ -25,7 +26,7 @@
     };
   };
 
-  outputs = { self, deploy-rs, nixpkgs, nixos-hardware, home-manager, robotnix, nixos-attest, semi-secrets }:
+  outputs = { self, deploy-rs, nixpkgs, nixos-hardware, home-manager, robotnix, nixos-attest, semi-secrets, lti }:
 
   with nixpkgs.lib;
   let

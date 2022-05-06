@@ -35,7 +35,7 @@
   networking.useNetworkd = true;
   systemd.services.systemd-networkd-wait-online.enable = false;
 
-  boot.supportedFilesystems = [ "ntfs" ]; # "fuse-7z-ng" ];
+  boot.supportedFilesystems = [ "ntfs" "fuse-7z-ng" ];
 
   environment.systemPackages = with pkgs; [
     # gui apps
@@ -57,7 +57,7 @@
     guvcview
 
     # development tools
-    zig valgrind gdb gnumake gcc gdbgui cntr dhall
+    zig valgrind gdb gnumake gcc cntr dhall # gdbgui
 
     # terminl emulator (move to sway file?)
     kitty
@@ -75,7 +75,7 @@
     # monitoring
     pulsemixer wireshark
 
-    # fuse-7z-ng
+    fuse-7z-ng
 
     # for pdfinfo command
     poppler_utils
