@@ -57,7 +57,7 @@
     guvcview
 
     # development tools
-    zig valgrind gdb gnumake gcc cntr dhall # gdbgui
+    zig valgrind gdb gnumake gcc cntr dhall hare # gdbgui
 
     # terminl emulator (move to sway file?)
     kitty
