@@ -31,6 +31,7 @@
     config = {
       modifier = "Mod4";
       terminal = "${pkgs.kitty}/bin/kitty";
+      menu = "${pkgs.fuzzel}/bin/fuzzel --font=\"Cascadia Code Semi Light\"";
       input = {
         "type:keyboard" = {
           xkb_layout = "us-intl-german-umlaut";
@@ -87,8 +88,7 @@
 
   home.packages = with pkgs; [
     kitty
-    #dmenu # Dmenu is the default in the config but i recommend wofi since its wayland native
-    dmenu
+    fuzzel
     swaylock
     swayidle
     xwayland

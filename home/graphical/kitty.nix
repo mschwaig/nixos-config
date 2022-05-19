@@ -18,9 +18,12 @@
     '';
   };
 
-  programs.fish = {
-    functions = {
-      kitty-light = "kitty --config ${./tango_light.conf}";
-    };
-  };
+  home.packages = [
+    (pkgs.writeShellApplication {
+      name = "kitty-light";
+      text = ''
+        ${pkgs.kitty}/bin/kitty --config ${./tango_light.conf}
+      '';
+    })
+  ];
 }
