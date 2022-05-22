@@ -7,18 +7,24 @@ with lib;
       ./wireguard.nix
     ];
 
-  options.wifi-networks = {
-    home-network-ssid = mkOption {
-      type = types.str;
-      description = "SSID of my home wifi network.";
+  options = {
+    wifi-networks = {
+      home-network-ssid = mkOption {
+        type = types.str;
+        description = "SSID of my home wifi network.";
+      };
+      mobile-network-ssid = mkOption {
+        type = types.str;
+        description = "SSID of my phone tethering wifi network.";
+      };
+      parent-network-ssid = mkOption {
+        type = types.str;
+        description = "SSID of my parent's home network.";
+      };
     };
-    mobile-network-ssid = mkOption {
+    ak-number = mkOption {
       type = types.str;
-      description = "SSID of my phone tethering wifi network.";
-    };
-    parent-network-ssid = mkOption {
-      type = types.str;
-      description = "SSID of my parent's home network.";
+      description = "JKU University Employee Number";
     };
   };
   config = {
@@ -34,7 +40,7 @@ with lib;
           group=CCMP TKIP
           eap=PEAP
           ca_cert="${./eduroam_ca.pem}"
-          identity="***REMOVED AK NUMBER***@jku.at"
+          identity="${ak-number}@ins.jku"
           altsubject_match="DNS:eduroam.jku.at"
           phase2="auth=MSCHAPV2"
           anonymous_identity="anonymous-cat_v2@jku.at"
