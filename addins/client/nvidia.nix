@@ -21,14 +21,15 @@ in
 
     nixpkgs.overlays = [ nvidia-wlroots-overlay ];
     environment.systemPackages = with pkgs; [
-      mesa-demos
       vulkan-tools
       glmark2
     ];
 
-    hardware.nvidia.modesetting.enable = true;
-    hardware.nvidia.package = nvidiaPackage;
-    hardware.nvidia.powerManagement.enable = false;
+    hardware.nvidia = {
+      modesetting.enable = true;
+      package = nvidiaPackage;
+      powerManagement.enable = false;
+    };
 
     services.xserver = {
       videoDrivers = [ "nvidia" ];
