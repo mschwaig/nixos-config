@@ -40,7 +40,7 @@ with lib;
           group=CCMP TKIP
           eap=PEAP
           ca_cert="${./eduroam_ca.pem}"
-          identity="${ak-number}@ins.jku"
+          identity="${config.ak-number}@jku.at"
           altsubject_match="DNS:eduroam.jku.at"
           phase2="auth=MSCHAPV2"
           anonymous_identity="anonymous-cat_v2@jku.at"
