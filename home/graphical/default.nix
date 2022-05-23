@@ -67,6 +67,12 @@
           };
         };
       }];
+
+      window.commands = [{
+        # sadly this is not working yet
+        criteria = { title = "idle_stopper"; };
+        command = "inhibit_idle open";
+      }];
     };
     wrapperFeatures.gtk = true;
 
@@ -87,6 +93,16 @@
   };
 
   home.packages = with pkgs; [
+    (pkgs.writeShellApplication {
+      name = "idle_stopper";
+      # set window title and wait
+      # so we can find the window
+      text = ''
+        echo -en "\033]0;idle_stopper\a"
+        echo "stopping screens from going idle ..."
+        sleep infinity
+      '';
+    })
     kitty
     fuzzel
     swaylock
