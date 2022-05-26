@@ -8,7 +8,6 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration/lair.nix
       ../addins/server
-      ../addins/server/weechat.nix
       ../addins/server/binary-cache.nix
     ];
 
