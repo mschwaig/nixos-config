@@ -69,9 +69,11 @@
       }];
 
       window.commands = [{
-        # sadly this is not working yet
-        criteria = { title = "idle_stopper"; };
-        command = "inhibit_idle open";
+        criteria = { instance = "skype"; };
+        command = "inhibit_idle visible";
+      }{
+        criteria = { app_id = "vinagre"; };
+        command = "inhibit_idle visible";
       }];
     };
     wrapperFeatures.gtk = true;
@@ -95,11 +97,18 @@
   home.packages = with pkgs; [
     (pkgs.writeShellApplication {
       name = "idle_stopper";
-      # set window title and wait
-      # so we can find the window
+      # set inhibit idle on launch and
+      # diable it again when exiting in any way
+      # besides SIGKILL (-9)
       text = ''
-        echo -en "\033]0;idle_stopper\a"
         echo "stopping screens from going idle ..."
+        reenable_idle() {
+          ${pkgs.sway}/bin/swaymsg inhibit_idle none
+        }
+
+        ${pkgs.sway}/bin/swaymsg inhibit_idle open
+        trap reenable_idle EXIT
+
         sleep infinity
       '';
     })
