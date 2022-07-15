@@ -31,6 +31,9 @@
   virtualisation.virtualbox.host.enable = true;
   users.extraGroups.vboxusers.members = [ "mschwaig" ];
 
+  virtualisation.docker.enable = true;
+  users.extraGroups.docker.members = [ "mschwaig" ];
+
   # move this to common.nix?
   networking.useNetworkd = true;
   systemd.services.systemd-networkd-wait-online.enable = false;
@@ -57,13 +60,13 @@
     guvcview
 
     # development tools
-    zig valgrind gdb gnumake gcc cntr dhall hare # gdbgui
+    zig valgrind gdb gnumake gcc cntr dhall hare sublime-merge # gdbgui
 
     # terminl emulator (move to sway file?)
     kitty
 
     # terminal apps
-    file ffmpeg htop bandwhich git lolcat vifm-full tree archivemount pwgen jq nix-index tmux reptyr astyle protonvpn-cli zip zstd tmate unzip tealdeer xdelta wally-cli tmate wget man-pages shellcheck
+    file ffmpeg htop bandwhich git lolcat vifm-full tree archivemount pwgen jq nix-index tmux reptyr astyle protonvpn-cli_2 zip zstd tmate unzip tealdeer xdelta wally-cli tmate wget man-pages shellcheck
 
     diffoscope
 

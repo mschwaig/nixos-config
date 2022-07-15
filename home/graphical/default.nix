@@ -47,11 +47,8 @@
         };
       };
       output = {
-        DP-3 = {
-          bg = "~/.config/sway/background_2screen-1-0.jpg fill";
-        };
-        DP-4 = {
-          bg = "~/.config/sway/background_2screen-1-0.jpg fill";
+        "*" = {
+          bg = "~/.config/sway/nix-brown-4k.png fill";
         };
       };
       bars = [{

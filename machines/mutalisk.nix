@@ -14,6 +14,8 @@
       # ../addins/client/timeular.nix
     ];
 
+  virtualisation.waydroid.enable = true;
+
   # make ins network happy
   systemd.network.networks."40-enp0s31f6".dhcpV4Config = {
     ClientIdentifier="mac";
