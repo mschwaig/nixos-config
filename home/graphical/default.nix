@@ -69,6 +69,9 @@
         criteria = { instance = "skype"; };
         command = "inhibit_idle visible";
       }{
+        criteria = { instance = "vlc"; };
+        command = "inhibit_idle fullscreen";
+      }{
         criteria = { app_id = "vinagre"; };
         command = "inhibit_idle visible";
       }];
