@@ -21,7 +21,7 @@
     extraOptions = lib.optionalString (config.nix.package == pkgs.nixFlakes) ''
       keep-derivations = true
       keep-outputs = true
-      experimental-features = nix-command flakes ca-derivations ca-derivations
+      experimental-features = nix-command flakes ca-derivations impure-derivations
     '';
   };
 
