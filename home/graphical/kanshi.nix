@@ -181,6 +181,27 @@
           }
         ];
       };
+      sk = {
+        outputs = [
+          {
+            criteria = "Dell Inc. DELL U2415 7MT0191H0L0L";
+            status = "enable";
+            mode = "1920x1080";
+            position = "2560,0";
+          }
+          {
+            criteria = "Dell Inc. DELL U2415 7MT0191P1LKL";
+            status = "enable";
+            mode = "1920x1080";
+            position = "2560,0";
+          }
+          {
+            criteria = "Unknown 0x058B 0x00000000";
+            status = "disable";
+          }
+        ];
+      };
+
     };
   };
 
