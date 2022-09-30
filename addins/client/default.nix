@@ -45,6 +45,8 @@
     firefox-wayland thunderbird vlc gimp transmission-gtk libreoffice-fresh chromium inkscape audacity reaper
 
     nix-diff
+    nix-tree
+
     cue
 
     # communictaion
@@ -58,6 +60,9 @@
 
     # webcam
     guvcview
+
+    # disk usage
+    gdu
 
     # development tools
     zig valgrind gdb gnumake gcc cntr dhall hare sublime-merge # gdbgui
