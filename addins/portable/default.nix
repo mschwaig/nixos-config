@@ -13,6 +13,10 @@ with lib;
         type = types.str;
         description = "SSID of my home wifi network.";
       };
+      tmphome-network-ssid = mkOption {
+        type = types.str;
+        description = "SSID of my temporary home wifi network.";
+      };
       mobile-network-ssid = mkOption {
         type = types.str;
         description = "SSID of my phone tethering wifi network.";
@@ -75,6 +79,15 @@ with lib;
           pairwise=CCMP
           group=CCMP
           psk="@PARENT_NETWORK_PSK@"
+        '';
+      };
+      networks.${config.wifi-networks.tmphome-network-ssid} = {
+        auth = ''
+          proto=WPA2
+          key_mgmt=WPA-PSK
+          pairwise=CCMP
+          group=CCMP
+          psk="@TMPHOME_NETWORK_PSK@"
         '';
       };
       environmentFile = "/home/mschwaig/.wifi-passwords.csv";

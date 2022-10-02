@@ -136,6 +136,7 @@
             wifi-networks.home-network-ssid = semi-secrets.lib.home-network-ssid;
             wifi-networks.mobile-network-ssid = semi-secrets.lib.mobile-network-ssid;
             wifi-networks.parent-network-ssid = semi-secrets.lib.parent-network-ssid;
+            wifi-networks.tmphome-network-ssid = semi-secrets.lib.tmphome-network-ssid;
             ak-number = semi-secrets.lib.ak-number;
             system.configurationRevision = mkIf (self ? rev) self.rev;
           })
