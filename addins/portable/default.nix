@@ -1,5 +1,8 @@
 { config, pkgs, lib, ... }:
 with lib;
+let
+  mapAttrs = pkgs.lib.attrsets.mapAttrs;
+in
 {
   imports =
     [
@@ -8,23 +11,9 @@ with lib;
     ];
 
   options = {
-    wifi-networks = {
-      home-network-ssid = mkOption {
-        type = types.str;
-        description = "SSID of my home wifi network.";
-      };
-      tmphome-network-ssid = mkOption {
-        type = types.str;
-        description = "SSID of my temporary home wifi network.";
-      };
-      mobile-network-ssid = mkOption {
-        type = types.str;
-        description = "SSID of my phone tethering wifi network.";
-      };
-      parent-network-ssid = mkOption {
-        type = types.str;
-        description = "SSID of my parent's home network.";
-      };
+    wifi-ssids = mkOption {
+      type = types.attrsOf types.str;
+      description = "SSIDs for all saved wifi networks.";
     };
     ak-number = mkOption {
       type = types.str;
@@ -36,60 +25,32 @@ with lib;
       enable = true;
       userControlled.enable = true;
       allowAuxiliaryImperativeNetworks = true;
-      networks.eduroam = {
+      networks = mapAttrs' (name: value: nameValuePair value {
         auth = ''
-          ssid="eduroam"
-          key_mgmt=WPA-EAP
+          proto=WPA2
+          key_mgmt=WPA-PSK
           pairwise=CCMP
-          group=CCMP TKIP
-          eap=PEAP
-          ca_cert="${./eduroam_ca.pem}"
-          identity="${config.ak-number}@jku.at"
-          altsubject_match="DNS:eduroam.jku.at"
-          phase2="auth=MSCHAPV2"
-          anonymous_identity="anonymous-cat_v2@jku.at"
-          password="@EDUROAM_PASSWORD@"
+          group=CCMP
+          psk="@${lib.strings.toUpper name}_NETWORK_PSK@"
         '';
+      }) (config.wifi-ssids) // {
+        eduroam = {
+          auth = ''
+            ssid="eduroam"
+            key_mgmt=WPA-EAP
+            pairwise=CCMP
+            group=CCMP TKIP
+            eap=PEAP
+            ca_cert="${./eduroam_ca.pem}"
+            identity="${config.ak-number}@jku.at"
+            altsubject_match="DNS:eduroam.jku.at"
+            phase2="auth=MSCHAPV2"
+            anonymous_identity="anonymous-cat_v2@jku.at"
+            password="@EDUROAM_PASSWORD@"
+          '';
+        };
       };
 
-      networks.${config.wifi-networks.home-network-ssid} = {
-        auth = ''
-          proto=WPA2
-          key_mgmt=WPA-PSK
-          pairwise=CCMP
-          group=CCMP
-          psk="@HOME_NETWORK_PSK@"
-        '';
-      };
-
-      networks.${config.wifi-networks.mobile-network-ssid} = {
-        auth = ''
-          proto=WPA2
-          key_mgmt=WPA-PSK
-          pairwise=CCMP
-          group=CCMP
-          psk="@MOBILE_NETWORK_PSK@"
-        '';
-      };
-
-      networks.${config.wifi-networks.parent-network-ssid} = {
-        auth = ''
-          proto=WPA2
-          key_mgmt=WPA-PSK
-          pairwise=CCMP
-          group=CCMP
-          psk="@PARENT_NETWORK_PSK@"
-        '';
-      };
-      networks.${config.wifi-networks.tmphome-network-ssid} = {
-        auth = ''
-          proto=WPA2
-          key_mgmt=WPA-PSK
-          pairwise=CCMP
-          group=CCMP
-          psk="@TMPHOME_NETWORK_PSK@"
-        '';
-      };
       environmentFile = "/home/mschwaig/.wifi-passwords.csv";
     };
 
