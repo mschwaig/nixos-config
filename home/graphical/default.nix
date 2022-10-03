@@ -51,19 +51,7 @@
           bg = "~/.config/sway/nix-brown-4k.png fill";
         };
       };
-      bars = [{
-        position = "top";
-        #statusCommand = "${pkgs.i3pystatus}/bin/i3pystatus -c /home/mschwaig/.config/i3pystatus/config.py";
-        colors = {
-          statusline = "#ffffff";
-          background = "#323232";
-          inactiveWorkspace = {
-            background = "#32323200";
-            border = "#32323200";
-            text = "#5c5c5c";
-          };
-        };
-      }];
+      bars = [];
 
       window.commands = [{
         criteria = { instance = "skype"; };
@@ -125,5 +113,17 @@
     wf-recorder
     brightnessctl
     (python38.withPackages(ps: with ps; [ i3pystatus keyring ]))
+    # font for waybar
+    font-awesome
   ];
+
+  programs.waybar = {
+    enable = true;
+    systemd = {
+      enable = true;
+      target = "sway-session.target";
+    };
+  };
+
+  fonts.fontconfig.enable = true;
 }
