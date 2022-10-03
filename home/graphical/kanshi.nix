@@ -95,13 +95,13 @@
             criteria = "Acer Technologies B276HUL T59EE0018501";
             status = "enable";
             mode = "2560x1440";
-            position = "2560,0";
+            position = "0,0";
           }
           {
-            criteria = "DP-4";
+            criteria = "Unknown HP E27q G4 CNK2240JF8";
             status = "enable";
             mode = "2560x1440";
-            position = "0,0";
+            position = "2560,0";
           }
           {
             criteria = "Unknown 0x058B 0x00000000";
