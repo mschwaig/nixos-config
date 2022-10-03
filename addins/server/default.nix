@@ -8,9 +8,10 @@
     ];
 
     nix = {
-      binaryCaches = [ "http://lair.lan/" ];
-      binaryCachePublicKeys = [ "lair.lan:6RWQD3CFGg9OY4bhqPzBumZ+o70lIEVH3R9bxTj+FXw=" ];
-      # See: https://discourse.nixos.org/t/using-experimental-nix-features-in-nixos-and-when-they-will-land-in-stable/7401/4 which gives the reason for the optional thing
+      settings = {
+        substituters = [ "http://lair.lan/" ];
+        trusted-public-keys = [ "lair.lan:6RWQD3CFGg9OY4bhqPzBumZ+o70lIEVH3R9bxTj+FXw=" ];
+      };
       extraOptions = ''
         experimental-features = nix-command flakes ca-derivations
       '';
