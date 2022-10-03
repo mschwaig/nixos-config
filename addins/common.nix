@@ -3,10 +3,6 @@
 {
   nixpkgs.config.allowUnfree = true;
 
-  nix = {
-    package = pkgs.nixFlakes;
-  };
-
   # allow things like intel wifi firmware
   hardware.enableRedistributableFirmware = true;
   # enable fwupd for manual firmware updates
