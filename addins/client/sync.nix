@@ -7,7 +7,7 @@
   # See: https://blog.luukhendriks.eu/2019/01/25/sshfs-too-many-levels-of-symbolic-links.html
   systemd.mounts = [
     {
-      what = "mschwaig@lair.lan:/mnt/data";
+      what = "mschwaig@lair.mschwaig.github.beta.tailscale.net:/mnt/data";
       where = "/mnt/data";
       type = "fuse.sshfs";
       # see https://askubuntu.com/a/1274431/569366 for the rationale behind the reconnect/timeout options
