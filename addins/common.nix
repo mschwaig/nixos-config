@@ -16,6 +16,8 @@
   boot.loader.systemd-boot.configurationLimit = 10;
   boot.loader.efi.canTouchEfiVariables = true;
 
+  services.tailscale.enable = true;
+
   #networking.useNetworkd = true;
   #systemd.services.systemd-networkd-wait-online.enable = false;
 
