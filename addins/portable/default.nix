@@ -21,6 +21,12 @@ in
     };
   };
   config = {
+    nix = {
+      settings = {
+        substituters = [ "http://lair.mschwaig.github.beta.tailscale.net/" "http://cache.nix.ins.jku.at" ];
+        trusted-public-keys = [ "lair.mschwaig.github.beta.tailscale.net:6RWQD3CFGg9OY4bhqPzBumZ+o70lIEVH3R9bxTj+FXw=" "cache.nix.ins.jku.at:CPefhQ5WiLuI6Bc9T8sErWf0n5Jwu5Pl+i3B2tFg+/U=" ];
+      };
+    };
     networking.wireless = {
       enable = true;
       userControlled.enable = true;
