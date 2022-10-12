@@ -115,6 +115,8 @@
     (python38.withPackages(ps: with ps; [ i3pystatus keyring ]))
     # font for waybar
     font-awesome
+
+    sublime4
   ];
 
   programs.waybar = {
