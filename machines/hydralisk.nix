@@ -28,7 +28,7 @@
   environment.systemPackages = with pkgs; [
     pciutils reaper
 
-    virtmanager looking-glass-client
+    virt-manager looking-glass-client
   ];
 
   users.users.mschwaig = {
