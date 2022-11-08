@@ -38,6 +38,11 @@
       };
     })
 
+    helix
+
+    # Android MTP
+    jmtpfs
+
     # fuzzy search
     silver-searcher
 

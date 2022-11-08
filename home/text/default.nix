@@ -2,7 +2,7 @@
 
   imports = [ ./fish.nix ];
 
-  home.packages = [ pkgs.p7zip ];
+  home.packages = with pkgs; [ p7zip helix ];
 
   programs = {
     direnv = {
