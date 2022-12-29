@@ -23,7 +23,7 @@
 
   # dhcp set per interface because global flag is deprecated
   networking.useDHCP = false;
-  networking.nameservers = [ "fde4:c86b:cbd3:97::1" "192.168.97.1"];
+  networking.nameservers = [ "fde4:c86b:cbd3:97::1" "8.8.8.8" ];
 
   time.timeZone = "Europe/Vienna";
 

@@ -257,11 +257,11 @@
     },
     "semi-secrets": {
       "locked": {
-        "lastModified": 1664729879,
-        "narHash": "sha256-q8LThAWckR+3jjzPc4oFisoXqcJyXDwOaFuRgBLetyE=",
+        "lastModified": 1672003723,
+        "narHash": "sha256-Iy4VI+/INdvxEdr8zSCpS6TfuSA4Fu7kPC6npiiWCiU=",
         "ref": "main",
-        "rev": "9f48e022b7f11a843d62036fc7834d7cb333a321",
-        "revCount": 8,
+        "rev": "ab3a8cafbad9a7e66846b8ac5cc084d9c9ac4cd0",
+        "revCount": 11,
         "type": "git",
         "url": "ssh://git@github.com/mschwaig/semi-secrets.git"
       },

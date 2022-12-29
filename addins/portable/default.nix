@@ -7,7 +7,6 @@ in
   imports =
     [
       ./printers.nix
-      ./wireguard.nix
     ];
 
   options = {

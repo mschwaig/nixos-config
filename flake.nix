@@ -132,7 +132,6 @@
           nixos-hardware.nixosModules.lenovo-thinkpad-t480s
 
           ({ ... }: {
-            wireguard.endpointip = semi-secrets.lib.endpointip;
             wifi-ssids = semi-secrets.lib.wifi-ssids;
             ak-number = semi-secrets.lib.ak-number;
             system.configurationRevision = mkIf (self ? rev) self.rev;
