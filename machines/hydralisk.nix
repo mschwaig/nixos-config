@@ -9,7 +9,7 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration/hydralisk.nix
       ../addins/client
-      ../addins/client/nvidia.nix
+      #../addins/client/nvidia.nix
       #../addins/client/desktop/gpu-passthrough.nix
     ];
 
