@@ -19,7 +19,7 @@
   services.nginx = {
     enable = true;
     virtualHosts = {
-      "lair.lan" = {
+      "lair" = {
         serverAliases = [ "binarycache" ];
         locations."/".extraConfig = ''
           proxy_pass http://localhost:${toString config.services.nix-serve.port};

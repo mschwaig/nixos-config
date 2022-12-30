@@ -38,14 +38,14 @@
 
     nodes = {
       lair = {
-        hostname = "lair.lan";
+        hostname = "lair";
         profiles.system = {
           user = "root";
           path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.lair;
         };
       };
       hatchery = {
-        hostname = "hatchery.lan";
+        hostname = "hatchery";
         profiles.system = {
           user = "root";
           path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.hatchery;
