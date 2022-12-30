@@ -112,7 +112,7 @@
     wl-clipboard
     wf-recorder
     brightnessctl
-    (python38.withPackages(ps: with ps; [ i3pystatus keyring ]))
+    (python3.withPackages(ps: with ps; [ i3pystatus keyring ]))
     # font for waybar
     font-awesome
 

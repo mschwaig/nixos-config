@@ -37,7 +37,9 @@
 
   # move this to common.nix?
   networking.useNetworkd = true;
-  systemd.services.systemd-networkd-wait-online.enable = false;
+  # useNetwork seems to want it enabled in newer version
+  # so this line is commented out for now
+  # systemd.services.systemd-networkd-wait-online.enable = false;
 
   boot.supportedFilesystems = [ "ntfs" "fuse-7z-ng" ];
 
@@ -79,7 +81,7 @@
     # text processing
     pandoc recode
 
-    (python38.withPackages(ps: with ps; [ qrcode ]))
+    (python3.withPackages(ps: with ps; [ qrcode ]))
 
     # monitoring
     pulsemixer wireshark
