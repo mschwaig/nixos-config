@@ -92,7 +92,7 @@
     poppler_utils
 
     # for screen-mirroring with sway
-    gnome.vinagre wayvnc
+    wl-mirror
   ];
 
   programs.adb.enable = true;
