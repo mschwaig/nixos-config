@@ -39,7 +39,7 @@
   networking.useNetworkd = true;
   # useNetwork seems to want it enabled in newer version
   # so this line is commented out for now
-  # systemd.services.systemd-networkd-wait-online.enable = false;
+  systemd.network.wait-online.anyInterface = true;
 
   boot.supportedFilesystems = [ "ntfs" "fuse-7z-ng" ];
 
