@@ -15,6 +15,7 @@
     ];
 
   virtualisation.waydroid.enable = true;
+  systemd.services.waydroid-container.wantedBy = pkgs.lib.mkForce [];
 
   # make ins network happy
   systemd.network.networks."40-enp0s31f6".dhcpV4Config = {
