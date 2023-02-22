@@ -10,6 +10,7 @@
       ./scarlett-audio.nix
       ./thunderbolt.nix
       ./bluetooth.nix
+      ./vacuum.nix
       ../encrypted-zfs-root
       ../common.nix
     ];
