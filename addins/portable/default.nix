@@ -20,6 +20,9 @@ in
     };
   };
   config = {
+    environment.systemPackages = with pkgs; [
+      signal-desktop
+    ];
     nix = {
       settings = {
         substituters = [ "http://lair.mschwaig.github.beta.tailscale.net/" "http://cache.nix.ins.jku.at" ];
