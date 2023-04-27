@@ -2,6 +2,7 @@
 
 let
   user = config.users.users.mschwaig;
+  if-name = "jku-ins-vpn0";
 in
 {
 
@@ -10,6 +11,7 @@ in
   services.openvpn.servers = {
     jku-ins-vpn  = {
       autoStart = false;
+
       config = ''
         # normally we would get the ins.jku.at domain pushed
         pull-filter ignore "dhcp-option DOMAIN"
@@ -27,8 +29,17 @@ in
         config /root/.openvpn/OpenVPN_193_171_8_84_schwaighofer.ovpn
         # re-state auth-user-pass with credentials file so systemd does not have to prompt for them
         auth-user-pass /root/.openvpn/credentials.txt
+        # assign appropriate interface name
+        dev ${if-name}
+        dev-type tun
         '';
     };
+  };
+
+  # Disable DNSOverTLS since it's not supported by this network
+  systemd.network.networks.${if-name} = {
+    matchConfig.Name = if-name;
+    networkConfig.DNSOverTLS = false;
   };
 
   # network share

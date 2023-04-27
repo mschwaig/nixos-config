@@ -42,6 +42,13 @@
   # so this line is commented out for now
   systemd.network.wait-online.anyInterface = true;
 
+  services.resolved = {
+    enable = true;
+    extraConfig = ''
+      DNSOverTLS=yes
+    '';
+  };
+
   boot.supportedFilesystems = [ "ntfs" "fuse-7z-ng" ];
 
   environment.systemPackages = with pkgs; [
