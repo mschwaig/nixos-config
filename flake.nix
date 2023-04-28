@@ -29,7 +29,20 @@
 
   with nixpkgs.lib;
   let
-    pkgs = import nixpkgs { system = "x86_64-linux"; };
+    update-systemd-resolved-overlay = (_: super: {
+      update-systemd-resolved = super.update-systemd-resolved.overrideAttrs (old: {
+      patches = (old.patches or []) ++ [(
+        super.fetchpatch {
+          url = "https://github.com/jonathanio/update-systemd-resolved/commit/04ad1d1732ecb4353d6ce997b3e13b0ae710edd3.patch";
+
+          sha256 = "sha256-NTXKAEtLnqN98sjTYtCETCVNYQ2JKVQbpIEDwYj6aes=";
+        })];
+      });
+    });
+    pkgs = import nixpkgs {
+      system = "x86_64-linux";
+      overlays = [update-systemd-resolved-overlay];
+    };
     mapAttrsToList = pkgs.lib.attrsets.mapAttrsToList;
   in
  {
