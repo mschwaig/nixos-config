@@ -19,6 +19,8 @@ in
         dhcp-option DOMAIN ins.jku.at
         # we have to add this legacy domain for the file share to work
         dhcp-option DOMAIN ads2-fim.fim.uni-linz.ac.at
+        # disable DNSOverTLS since the INS DNS does not support it
+        dhcp-option DNS-OVER-TLS no
         # hooks from pkgs.update-systemd-resolved to forwad pushed DNS config to systemd-resolved
         script-security 2
         up ${pkgs.update-systemd-resolved}/libexec/openvpn/update-systemd-resolved
@@ -34,12 +36,6 @@ in
         dev-type tun
         '';
     };
-  };
-
-  # Disable DNSOverTLS since it's not supported by this network
-  systemd.network.networks.${if-name} = {
-    matchConfig.Name = if-name;
-    networkConfig.DNSOverTLS = false;
   };
 
   # network share
