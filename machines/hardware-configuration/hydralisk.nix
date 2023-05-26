@@ -33,6 +33,11 @@
       fsType = "zfs";
     };
 
+  fileSystems."/home/mschwaig/.local/share/Steam" =
+    { device = "rpool/enc/steam";
+      fsType = "zfs";
+    };
+
   fileSystems."/boot" =
     { device = "/dev/disk/by-uuid/C602-9FEC";
       fsType = "vfat";
