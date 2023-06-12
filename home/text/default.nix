@@ -5,6 +5,7 @@
   home.packages = with pkgs; [ p7zip helix ];
 
   programs = {
+    nix-index.enable = true;
     direnv = {
       enable = true;
       nix-direnv.enable = true;
