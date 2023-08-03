@@ -2,7 +2,7 @@
 
   imports = [ ./fish.nix ];
 
-  home.packages = with pkgs; [ p7zip helix ];
+  home.packages = with pkgs; [ p7zip helix alejandra hurl ];
 
   programs = {
     nix-index.enable = true;
