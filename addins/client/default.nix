@@ -44,9 +44,9 @@
 
   services.resolved = {
     enable = true;
-    extraConfig = ''
-      DNSOverTLS=yes
-    '';
+    #extraConfig = ''
+    #  DNSOverTLS=yes
+    #'';
   };
 
   boot.supportedFilesystems = [ "ntfs" "fuse-7z-ng" ];

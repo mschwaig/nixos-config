@@ -116,7 +116,8 @@
     # font for waybar
     font-awesome
 
-    sublime4
+    # remove due to openssl 1.1 deprecation
+    #sublime4
   ];
 
   programs.waybar = {

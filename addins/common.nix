@@ -56,7 +56,7 @@
 
   services.openssh = {
     enable = true;
-    settings.passwordAuthentication = false;
+    settings.PasswordAuthentication = false;
   };
 
   users.users.mschwaig = {
