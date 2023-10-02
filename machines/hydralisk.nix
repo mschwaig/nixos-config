@@ -31,6 +31,8 @@
     virt-manager looking-glass-client
   ];
 
+  services.spotifyd.enable = true;
+
   users.users.mschwaig = {
     extraGroups = [ "libvirtd" ];
     openssh.authorizedKeys.keys = [
