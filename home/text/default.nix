@@ -10,6 +10,14 @@
       enable = true;
       nix-direnv.enable = true;
     };
+    helix = {
+      enable = true;
+      defaultEditor = true;
+       settings = {
+        theme = "base16_default";
+        editor.soft-wrap.enable  = true;
+      };
+    };
 
     git = {
       enable = true;

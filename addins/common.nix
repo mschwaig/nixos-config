@@ -25,34 +25,41 @@
 
   time.timeZone = "Europe/Vienna";
 
-  environment.systemPackages = with pkgs; [
-    (neovim.override {
-      vimAlias = true;
-      configure = {
-        packages.myPlugins = with pkgs.vimPlugins; {
-          start = [ vim-lastplace vim-nix ale ctrlp vim-better-whitespace fzf-vim powerline ];
-          opt = [];
+  environment = {
+    systemPackages = with pkgs; [
+      (neovim.override {
+        vimAlias = true;
+        configure = {
+          packages.myPlugins = with pkgs.vimPlugins; {
+            start = [ vim-lastplace vim-nix ale ctrlp vim-better-whitespace fzf-vim powerline ];
+            opt = [];
+          };
         };
-      };
-    })
+      })
 
-    helix
+      helix
 
-    # Android MTP
-    jmtpfs
+      # Android MTP
+      jmtpfs
 
-    # fuzzy search
-    silver-searcher
+      # fuzzy search
+      silver-searcher
 
-    # monitoring
-    lm_sensors acpi
+      # monitoring
+      lm_sensors acpi
 
-    # display system properties
-    neofetch
+      # display system properties
+      neofetch
 
-    # remote managment
-    ethtool
-  ];
+      # remote managment
+      ethtool
+    ];
+    variables =
+    let editor = "hx"; in {
+      EDITOR = editor;
+      VISUAL = editor;
+    };
+  };
 
   services.openssh = {
     enable = true;
@@ -67,5 +74,4 @@
   };
 
   programs.fish.enable = true;
-  programs.vim.defaultEditor = true;
 }
