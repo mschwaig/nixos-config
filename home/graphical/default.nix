@@ -78,8 +78,6 @@
   home.sessionVariables = {
     MOZ_ENABLE_WAYLAND = "1";
     XDG_CURRENT_DESKTOP = "sway";
-    # only for nvidia
-    # WLR_NO_HARDWARE_CURSORS = "1";
   };
 
   home.packages = with pkgs; [
