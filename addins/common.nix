@@ -27,16 +27,6 @@
 
   environment = {
     systemPackages = with pkgs; [
-      (neovim.override {
-        vimAlias = true;
-        configure = {
-          packages.myPlugins = with pkgs.vimPlugins; {
-            start = [ vim-lastplace vim-nix ale ctrlp vim-better-whitespace fzf-vim powerline ];
-            opt = [];
-          };
-        };
-      })
-
       helix
 
       # Android MTP
