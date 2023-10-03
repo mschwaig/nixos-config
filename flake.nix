@@ -7,7 +7,6 @@
       url = github:nix-community/home-manager;
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    robotnix.url = github:danielfullmer/robotnix;
     nixos-attest = {
       url = "https://git.ins.jku.at/proj/digidow/nixos-attest.git";
       type = "git";
@@ -25,7 +24,7 @@
     };
   };
 
-  outputs = { self, deploy-rs, nixpkgs, nixos-hardware, home-manager, robotnix, nixos-attest, semi-secrets }@inputs:
+  outputs = { self, deploy-rs, nixpkgs, nixos-hardware, home-manager, nixos-attest, semi-secrets }@inputs:
 
   let
     system = "x86_64-linux";
@@ -131,8 +130,5 @@
           }
         ];
       };
-
-      robotnixConfigurations."spore" =
-        robotnix.lib.robotnixSystem ( { config, pkgs, ... }: import ./machines/spore.nix );
   };
 }
