@@ -1,6 +1,10 @@
 { config, pkgs, ... }:
 
 {
+  imports = [
+    ./attest.nix
+  ];
+
   # allow things like intel wifi firmware
   hardware.enableRedistributableFirmware = true;
   # enable fwupd for manual firmware updates

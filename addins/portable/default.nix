@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }:
+{ config, inputs, pkgs, lib, ... }:
 with lib;
 let
   mapAttrs = pkgs.lib.attrsets.mapAttrs;
@@ -9,16 +9,6 @@ in
       ./printers.nix
     ];
 
-  options = {
-    wifi-ssids = mkOption {
-      type = types.attrsOf types.str;
-      description = "SSIDs for all saved wifi networks.";
-    };
-    ak-number = mkOption {
-      type = types.str;
-      description = "JKU University Employee Number";
-    };
-  };
   config = {
     environment.systemPackages = with pkgs; [
       signal-desktop
@@ -41,7 +31,7 @@ in
           group=CCMP
           psk="@${lib.strings.toUpper name}_NETWORK_PSK@"
         '';
-      }) (config.wifi-ssids) // {
+      }) ( inputs.semi-secrets.lib.wifi-ssids ) // {
         eduroam = {
           auth = ''
             ssid="eduroam"
@@ -50,7 +40,7 @@ in
             group=CCMP TKIP
             eap=PEAP
             ca_cert="${./eduroam_ca.pem}"
-            identity="${config.ak-number}@jku.at"
+            identity="${inputs.semi-secrets.lib.ak-number}@jku.at"
             altsubject_match="DNS:eduroam.jku.at"
             phase2="auth=MSCHAPV2"
             anonymous_identity="anonymous-cat_v2@jku.at"

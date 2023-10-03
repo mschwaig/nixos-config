@@ -25,9 +25,10 @@
     };
   };
 
-  outputs = { self, deploy-rs, nixpkgs, nixos-hardware, home-manager, robotnix, nixos-attest, semi-secrets }:
+  outputs = { self, deploy-rs, nixpkgs, nixos-hardware, home-manager, robotnix, nixos-attest, semi-secrets }@inputs:
 
   let
+    system = "x86_64-linux";
     update-systemd-resolved-overlay = (_: super: {
       update-systemd-resolved = super.update-systemd-resolved.overrideAttrs (old: {
       patches = (old.patches or []) ++ [(
@@ -39,15 +40,16 @@
       });
     });
     pkgs = import nixpkgs {
-      system = "x86_64-linux";
+      inherit system;
       overlays = [ update-systemd-resolved-overlay ];
       config.allowUnfree = true;
     };
     mapAttrsToList = pkgs.lib.attrsets.mapAttrsToList;
     nixosSystem = {...}@args: (nixpkgs.lib.nixosSystem  (args // {
-      inherit pkgs;
+      inherit pkgs system;
+      # pass flake inputs to individual module files
+      specialArgs = { inherit inputs; };
     }));
-    mkIf = pkgs.lib.mkIf;
   in
  {
   deploy = {
@@ -82,52 +84,26 @@
 
     # home server
     nixosConfigurations.lair = nixosSystem {
-      system = "x86_64-linux";
       modules =
         [
           ./machines/lair.nix
-
-          nixos-attest.nixosModules.attest
-
-          # let 'nixos-version --json' know about the flake's git revision
-          # not sure how to move this to a module because of ref to self
-          # nixpkgs.lib -> lib
-          # self -> ?
-
-          ({ ... }: {
-            system.configurationRevision = mkIf (self ? rev) self.rev;
-          })
         ];
     };
 
     # backup server
     nixosConfigurations.hatchery = nixosSystem {
-      system = "x86_64-linux";
       modules =
         [
           ./machines/hatchery.nix
-
-          nixos-attest.nixosModules.attest
-
-          ({ ... }: {
-            system.configurationRevision = mkIf (self ? rev) self.rev;
-          })
         ];
 
     };
 
     # desktop pc
     nixosConfigurations.hydralisk = nixosSystem {
-      system = "x86_64-linux";
       modules =
         [
           ./machines/hydralisk.nix
-
-          nixos-attest.nixosModules.attest
-
-          ({ lib, ... }: {
-            system.configurationRevision = mkIf (self ? rev) self.rev;
-          })
 
           home-manager.nixosModules.home-manager
           {
@@ -140,19 +116,12 @@
 
     # thinkpad laptop
     nixosConfigurations.mutalisk = nixosSystem {
-      system = "x86_64-linux";
       modules =
         [
           ./machines/mutalisk.nix
 
-          nixos-attest.nixosModules.attest
           nixos-hardware.nixosModules.lenovo-thinkpad-t480s
 
-          ({ ... }: {
-            wifi-ssids = semi-secrets.lib.wifi-ssids;
-            ak-number = semi-secrets.lib.ak-number;
-            system.configurationRevision = mkIf (self ? rev) self.rev;
-          })
 
           home-manager.nixosModules.home-manager
           {
