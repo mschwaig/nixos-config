@@ -11,7 +11,6 @@
       ../addins/client
       ../addins/portable
       ../addins/jku-ins-network.nix
-      # ../addins/client/timeular.nix
     ];
 
   virtualisation.waydroid.enable = true;
