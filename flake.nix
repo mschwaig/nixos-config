@@ -1,8 +1,9 @@
 {
   inputs = {
-    deploy-rs.url = github:serokell/deploy-rs;
-    nixpkgs.url = github:NixOS/nixpkgs/nixos-unstable;
-    nixos-hardware.url = github:NixOS/nixos-hardware/master;
+    deploy-rs = {
+      url = github:serokell/deploy-rs;
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     home-manager = {
       url = github:nix-community/home-manager;
       inputs.nixpkgs.follows = "nixpkgs";
@@ -12,6 +13,8 @@
       type = "git";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nixos-hardware.url = github:NixOS/nixos-hardware/master;
+    nixpkgs.url = github:NixOS/nixpkgs/nixos-unstable;
     semi-secrets = {
       # contains a salt and secrets that are fine inside /nix/store
       # but that I would rather not share on the public internet
