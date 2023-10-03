@@ -47,10 +47,8 @@
       # remote managment
       ethtool
     ];
-    variables =
-    let editor = "hx"; in {
-      EDITOR = editor;
-      VISUAL = editor;
+    variables = {
+      EDITOR = "hx";
     };
   };
 
