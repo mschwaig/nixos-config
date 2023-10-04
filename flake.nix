@@ -4,6 +4,7 @@
       url = github:serokell/deploy-rs;
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    helix.url = github:helix-editor/helix;
     home-manager = {
       url = github:nix-community/home-manager;
       inputs.nixpkgs.follows = "nixpkgs";
@@ -27,7 +28,7 @@
     };
   };
 
-  outputs = { self, deploy-rs, nixpkgs, nixos-hardware, home-manager, nixos-attest, semi-secrets }@inputs:
+  outputs = { self, deploy-rs, nixpkgs, nixos-hardware, home-manager, nixos-attest, semi-secrets, helix }@inputs:
 
   let
     system = "x86_64-linux";
@@ -109,9 +110,14 @@
 
           home-manager.nixosModules.home-manager
           {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.users.mschwaig = (import ./home).graphical;
+            home-manager = {
+              useGlobalPkgs = true;
+              useUserPackages = true;
+              users.mschwaig = (import ./home).graphical;
+              extraSpecialArgs = {
+                inherit inputs system;
+              };
+            };
           }
         ];
     };
@@ -127,9 +133,14 @@
 
           home-manager.nixosModules.home-manager
           {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.users.mschwaig = (import ./home).graphical;
+            home-manager = {
+              useGlobalPkgs = true;
+              useUserPackages = true;
+              users.mschwaig = (import ./home).graphical;
+              extraSpecialArgs = {
+                inherit inputs system;
+              };
+            };
           }
         ];
       };
