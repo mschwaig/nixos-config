@@ -1,8 +1,8 @@
-{ pkgs, ... }: {
+{ inputs, pkgs, system, ... }: {
 
   imports = [ ./fish.nix ];
 
-  home.packages = with pkgs; [ p7zip helix alejandra hurl ];
+  home.packages = with pkgs; [ p7zip alejandra hurl ];
 
   programs = {
     nix-index.enable = true;
@@ -12,10 +12,22 @@
     };
     helix = {
       enable = true;
+      package = inputs.helix.packages.${system}.default;
       defaultEditor = true;
-       settings = {
+
+      settings = {
         theme = "base16_default";
         editor.soft-wrap.enable  = true;
+      };
+      languages = {
+        language-server.nixd = {
+          command = "${pkgs.nixd}/bin/nixd";
+        };
+        language = [{
+          name = "nix";
+          auto-format = false;
+          language-servers = [ "nixd" "nil" ];
+        }];
       };
     };
 
