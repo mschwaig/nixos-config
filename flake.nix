@@ -2,9 +2,21 @@
   inputs = {
     deploy-rs = {
       url = github:serokell/deploy-rs;
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs = {
+        flake-compat.follows = "flake-compat";
+        nixpkgs.follows = "nixpkgs";
+        utils.follows = "flake-utils";
+      };
     };
-    helix.url = github:helix-editor/helix;
+    flake-compat.url = github:edolstra/flake-compat;
+    flake-utils.url = github:numtide/flake-utils;
+    helix = {
+      url = github:helix-editor/helix;
+      inputs = {
+        flake-utils.follows = "flake-utils";
+        nixpkgs.follows = "nixpkgs";
+      };
+    };
     home-manager = {
       url = github:nix-community/home-manager;
       inputs.nixpkgs.follows = "nixpkgs";
@@ -28,7 +40,7 @@
     };
   };
 
-  outputs = { self, deploy-rs, nixpkgs, nixos-hardware, home-manager, nixos-attest, semi-secrets, helix }@inputs:
+  outputs = { self, deploy-rs, nixpkgs, nixos-hardware, home-manager, nixos-attest, semi-secrets, helix, ... }@inputs:
 
   let
     system = "x86_64-linux";
