@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }:
+{ config, inputs, lib, pkgs, system, ... }:
 
 {
   imports =
@@ -13,6 +13,9 @@
       ./vacuum.nix
       ../encrypted-zfs-root
       ../common.nix
+
+      inputs.home-manager.nixosModules.home-manager
+      ../../home
     ];
 
   nix = {

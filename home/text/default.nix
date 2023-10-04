@@ -1,4 +1,4 @@
-{ inputs, pkgs, system, ... }: {
+{ inputs, pkgs, ... }: {
 
   imports = [ ./fish.nix ];
 
@@ -12,7 +12,7 @@
     };
     helix = {
       enable = true;
-      package = inputs.helix.packages.${system}.default;
+      package = inputs.helix.packages.${pkgs.system}.default;
       defaultEditor = true;
 
       settings = {

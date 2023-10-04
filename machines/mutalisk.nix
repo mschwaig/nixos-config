@@ -2,15 +2,16 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ config, inputs, pkgs, ... }:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration/mutalisk.nix
+  imports = [
+      inputs.nixos-hardware.nixosModules.lenovo-thinkpad-t480s
       ../addins/client
       ../addins/portable
       ../addins/jku-ins-network.nix
+      # Include the results of the hardware scan.
+      ./hardware-configuration/mutalisk.nix
     ];
 
   virtualisation.waydroid.enable = true;

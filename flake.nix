@@ -40,7 +40,7 @@
     };
   };
 
-  outputs = { self, deploy-rs, nixpkgs, nixos-hardware, home-manager, nixos-attest, semi-secrets, helix, ... }@inputs:
+  outputs = { self, deploy-rs, nixpkgs, ... }@inputs:
 
   let
     system = "x86_64-linux";
@@ -63,7 +63,7 @@
     nixosSystem = {...}@args: (nixpkgs.lib.nixosSystem  (args // {
       inherit pkgs system;
       # pass flake inputs to individual module files
-      specialArgs = { inherit inputs system; };
+      specialArgs = { inherit inputs; };
     }));
   in
  {
@@ -99,62 +99,30 @@
 
     # home server
     nixosConfigurations.lair = nixosSystem {
-      modules =
-        [
+      modules = [
           ./machines/lair.nix
         ];
     };
 
     # backup server
     nixosConfigurations.hatchery = nixosSystem {
-      modules =
-        [
+      modules = [
           ./machines/hatchery.nix
-        ];
-
+      ];
     };
 
     # desktop pc
     nixosConfigurations.hydralisk = nixosSystem {
-      modules =
-        [
-          ./machines/hydralisk.nix
-
-          home-manager.nixosModules.home-manager
-          {
-            home-manager = {
-              useGlobalPkgs = true;
-              useUserPackages = true;
-              users.mschwaig = (import ./home).graphical;
-              extraSpecialArgs = {
-                inherit inputs system;
-              };
-            };
-          }
-        ];
+      modules = [
+        ./machines/hydralisk.nix
+      ];
     };
 
     # thinkpad laptop
     nixosConfigurations.mutalisk = nixosSystem {
-      modules =
-        [
-          ./machines/mutalisk.nix
-
-          nixos-hardware.nixosModules.lenovo-thinkpad-t480s
-
-
-          home-manager.nixosModules.home-manager
-          {
-            home-manager = {
-              useGlobalPkgs = true;
-              useUserPackages = true;
-              users.mschwaig = (import ./home).graphical;
-              extraSpecialArgs = {
-                inherit inputs system;
-              };
-            };
-          }
-        ];
-      };
+      modules = [
+        ./machines/mutalisk.nix
+      ];
+    };
   };
 }
