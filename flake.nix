@@ -63,7 +63,7 @@
     nixosSystem = {...}@args: (nixpkgs.lib.nixosSystem  (args // {
       inherit pkgs system;
       # pass flake inputs to individual module files
-      specialArgs = { inherit inputs; };
+      specialArgs = { inherit inputs system; };
     }));
   in
  {

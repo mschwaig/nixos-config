@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, inputs, pkgs, system, ... }:
 
 {
   imports = [
@@ -30,7 +30,7 @@
 
   environment = {
     systemPackages = with pkgs; [
-      helix
+      inputs.helix.packages.${system}.default
 
       # Android MTP
       jmtpfs
