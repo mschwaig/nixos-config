@@ -2,7 +2,12 @@
 
   imports = [ ./fish.nix ];
 
-  home.packages = with pkgs; [ p7zip alejandra hurl ];
+  home.packages = with pkgs; [
+    p7zip
+    alejandra
+    hurl
+    (aspellWithDicts (ds: with ds; [ en en-computers en-science ]))
+  ];
 
   programs = {
     nix-index.enable = true;
@@ -18,6 +23,7 @@
       settings = {
         theme = "base16_default";
         editor.soft-wrap.enable  = true;
+        editor.auto-pairs  = false;
       };
       languages = {
         language-server.nixd = {
