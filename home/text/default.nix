@@ -19,6 +19,7 @@
       enable = true;
       package = inputs.helix.packages.${pkgs.system}.default;
       defaultEditor = true;
+      extraPackages = [ pkgs.marksman ];
 
       settings = {
         theme = "base16_default";
