@@ -23,8 +23,11 @@
 
       settings = {
         theme = "base16_default";
-        editor.soft-wrap.enable  = true;
-        editor.auto-pairs  = false;
+        editor = {
+          auto-pairs  = false;
+          file-picker.follow-symlinks = false; # for nix result folders
+          soft-wrap.enable  = true;
+        };
       };
       languages = {
         language-server.nixd = {
