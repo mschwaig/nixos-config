@@ -24,6 +24,7 @@
       settings = {
         theme = "base16_default";
         editor = {
+          bufferline = "always";
           auto-pairs  = false;
           file-picker.follow-symlinks = false; # for nix result folders
           soft-wrap.enable  = true;
