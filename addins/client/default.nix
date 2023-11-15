@@ -20,7 +20,7 @@
 
   nix = {
     settings = {
-      substituters = [ "http://lair.mschwaig.github.beta.tailscale.net/" ];
+      substituters = [ "https://cache.nixos.org" ];
       trusted-public-keys = [ "lair.mschwaig.github.beta.tailscale.net:6RWQD3CFGg9OY4bhqPzBumZ+o70lIEVH3R9bxTj+FXw=" ];
     };
     extraOptions = ''
