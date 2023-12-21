@@ -6,6 +6,7 @@
     p7zip
     alejandra
     hurl
+    git-filter-repo
     haskellPackages.patat # try this fun presentation tool
     (aspellWithDicts (ds: with ds; [ en en-computers en-science ]))
   ];
