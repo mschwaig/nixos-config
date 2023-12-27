@@ -3,9 +3,7 @@
 {
   imports =
     [
-      ./greetd.nix
       ./steam.nix
-      ./sway.nix
       ./sync.nix
       ./scarlett-audio.nix
       ./thunderbolt.nix
@@ -29,6 +27,9 @@
       experimental-features = nix-command flakes ca-derivations impure-derivations
     '';
   };
+
+  services.xserver.desktopManager.pantheon.enable = true;
+  services.xserver.enable = true;
 
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
 
