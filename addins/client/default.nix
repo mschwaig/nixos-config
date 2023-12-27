@@ -103,8 +103,9 @@
     # for pdfinfo command
     poppler_utils
 
-    # for screen-mirroring with sway
-    wl-mirror
+    element-desktop
+
+    vscode
   ];
 
   programs.adb.enable = true;
