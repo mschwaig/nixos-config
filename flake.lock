@@ -186,8 +186,7 @@
         "home-manager": "home-manager",
         "nixos-attest": "nixos-attest",
         "nixos-hardware": "nixos-hardware",
-        "nixpkgs": "nixpkgs",
-        "semi-secrets": "semi-secrets"
+        "nixpkgs": "nixpkgs"
       }
     },
     "rust-overlay": {
@@ -213,22 +212,6 @@
         "owner": "oxalica",
         "repo": "rust-overlay",
         "type": "github"
-      }
-    },
-    "semi-secrets": {
-      "locked": {
-        "lastModified": 1683482098,
-        "narHash": "sha256-9NIOmgDLCVEgVbOFd7vEsPz0mmfS0HU3OzoK4LIwo4Y=",
-        "ref": "main",
-        "rev": "338d8a4518472961d5c54cd0124e5588a0c02f6c",
-        "revCount": 13,
-        "type": "git",
-        "url": "ssh://git@github.com/mschwaig/semi-secrets.git"
-      },
-      "original": {
-        "ref": "main",
-        "type": "git",
-        "url": "ssh://git@github.com/mschwaig/semi-secrets.git"
       }
     },
     "systems": {

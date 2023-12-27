@@ -28,16 +28,6 @@
     };
     nixos-hardware.url = github:NixOS/nixos-hardware/master;
     nixpkgs.url = github:NixOS/nixpkgs/nixos-unstable;
-    semi-secrets = {
-      # contains a salt and secrets that are fine inside /nix/store
-      # but that I would rather not share on the public internet
-      # {
-      #   salt = "[256 bits of private randomness]";
-      #   endpointip = "";
-      #   ...
-      # }
-      url = "git+ssh://git@github.com/mschwaig/semi-secrets.git?ref=main";
-    };
   };
 
   outputs = { self, deploy-rs, nixpkgs, ... }@inputs:
