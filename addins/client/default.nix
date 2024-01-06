@@ -94,11 +94,6 @@
 
     (python3.withPackages(ps: with ps; [ qrcode ]))
 
-    # monitoring
-    pulsemixer wireshark
-
-    #fuse-7z-ng
-
     # for pdfinfo command
     poppler_utils
 
