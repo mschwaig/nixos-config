@@ -28,8 +28,23 @@
     '';
   };
 
-  services.xserver.desktopManager.pantheon.enable = true;
-  services.xserver.enable = true;
+  services = {
+    xserver = {
+      enable = true;
+      desktopManager.pantheon.enable = true;
+    };
+    pipewire = {
+      enable = true;
+      audio.enable = true;
+      alsa = {
+        enable = true;
+        support32Bit = true;
+      };
+      jack.enable = true;
+    };
+  };
+  security.rtkit.enable = true;
+  hardware.pulseaudio.enable = false;
 
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
 
