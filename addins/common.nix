@@ -38,9 +38,6 @@
       # Android MTP
       jmtpfs
 
-      # fuzzy search
-      silver-searcher
-
       # monitoring
       lm_sensors acpi
 

@@ -57,7 +57,7 @@
 
   environment.systemPackages = with pkgs; [
     # gui apps
-    firefox-wayland thunderbird vlc gimp transmission-gtk libreoffice-fresh chromium inkscape audacity reaper
+    thunderbird vlc gimp transmission-gtk libreoffice-fresh chromium inkscape audacity reaper
 
     nix-diff
     nix-tree
