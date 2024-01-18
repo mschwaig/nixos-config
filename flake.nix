@@ -85,7 +85,10 @@
      mapAttrsToList(n: v:
        { name = n; path = v.config.system.build.toplevel;})
        self.nixosConfigurations
+      # TODO: add home-manager config
    );
+
+   homeConfigurations."deck" = pkgs.callPackage ./home/linux.nix { inherit inputs; };
 
     # home server
     nixosConfigurations.lair = nixosSystem {

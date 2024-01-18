@@ -13,7 +13,7 @@
       ../common.nix
 
       inputs.home-manager.nixosModules.home-manager
-      ../../home
+      ../../home/nixos.nix
     ];
 
   nix = {
