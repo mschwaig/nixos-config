@@ -17,6 +17,9 @@
       '';
   };
 
+  # retry connecting to the network
+  # See: https://github.com/NixOS/nixpkgs/issues/41012
+  boot.initrd.network.udhcpc.extraArgs = [ "--timeout 5 --tryagain 60 --background" ];
 
   # disable sudo passwords to work around deploy-rs bug
   # See: https://github.com/serokell/deploy-rs/issues/78
