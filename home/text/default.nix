@@ -12,6 +12,7 @@
     silver-searcher
     ollama
     oterm
+    nmap
   ];
 
   programs = {
