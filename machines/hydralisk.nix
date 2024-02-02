@@ -23,8 +23,6 @@
   networking.interfaces.enp45s0.useDHCP = true;
   networking.interfaces.wlan0.useDHCP = true;
 
-  networking.wireless.iwd.enable = true;
-
   environment.systemPackages = with pkgs; [
     pciutils reaper
 

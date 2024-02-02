@@ -9,6 +9,9 @@
     git-filter-repo
     haskellPackages.patat # try this fun presentation tool
     (aspellWithDicts (ds: with ds; [ en en-computers en-science ]))
+    silver-searcher
+    ollama
+    oterm
   ];
 
   programs = {

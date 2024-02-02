@@ -13,7 +13,7 @@
       ../common.nix
 
       inputs.home-manager.nixosModules.home-manager
-      ../../home
+      ../../home/nixos.nix
     ];
 
   nix = {
@@ -28,8 +28,23 @@
     '';
   };
 
-  services.xserver.desktopManager.pantheon.enable = true;
-  services.xserver.enable = true;
+  services = {
+    xserver = {
+      enable = true;
+      desktopManager.pantheon.enable = true;
+    };
+    pipewire = {
+      enable = true;
+      audio.enable = true;
+      alsa = {
+        enable = true;
+        support32Bit = true;
+      };
+      jack.enable = true;
+    };
+  };
+  security.rtkit.enable = true;
+  hardware.pulseaudio.enable = false;
 
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
 
@@ -57,7 +72,7 @@
 
   environment.systemPackages = with pkgs; [
     # gui apps
-    firefox-wayland thunderbird vlc gimp transmission-gtk libreoffice-fresh chromium inkscape audacity reaper
+    thunderbird vlc gimp transmission-gtk libreoffice-fresh chromium inkscape audacity reaper
 
     nix-diff
     nix-tree
@@ -93,11 +108,6 @@
     pandoc recode
 
     (python3.withPackages(ps: with ps; [ qrcode ]))
-
-    # monitoring
-    pulsemixer wireshark
-
-    #fuse-7z-ng
 
     # for pdfinfo command
     poppler_utils

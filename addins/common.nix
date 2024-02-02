@@ -13,8 +13,11 @@
   boot.kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
 
   # Use the systemd-boot EFI boot loader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.systemd-boot.configurationLimit = 10;
+  boot.loader.systemd-boot = {
+    enable = true;
+    configurationLimit = 10;
+    memtest86.enable = true;
+  };
   boot.loader.efi.canTouchEfiVariables = true;
 
   services.tailscale.enable = true;
@@ -34,9 +37,6 @@
 
       # Android MTP
       jmtpfs
-
-      # fuzzy search
-      silver-searcher
 
       # monitoring
       lm_sensors acpi
