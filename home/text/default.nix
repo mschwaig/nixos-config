@@ -12,6 +12,7 @@
     silver-searcher
     ollama
     oterm
+    nix-output-monitor
   ];
 
   programs = {
