@@ -13,6 +13,7 @@
     ollama
     oterm
     nmap
+    nix-output-monitor
   ];
 
   programs = {

@@ -6,7 +6,7 @@
 
 {
   imports = [
-      inputs.nixos-hardware.nixosModules.lenovo-thinkpad-t480s
+      inputs.nixos-hardware.nixosModules.lenovo-thinkpad-p50
       ../addins/client
       ../addins/portable
       ../addins/jku-ins-network.nix
