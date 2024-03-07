@@ -20,6 +20,8 @@ in
       };
     };
 
+    networking.networkmanager.enable = true;
+
     services.upower = {
       enable = true;
       percentageLow = 25;
