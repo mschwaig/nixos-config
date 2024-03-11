@@ -37,6 +37,9 @@
   };
   security.rtkit.enable = true;
 
+  hardware.pulseaudio.enable = true;
+  hardware.pulseaudio.support32Bit = true;
+
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
 
   # for sysprog VMs
