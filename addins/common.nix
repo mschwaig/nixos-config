@@ -2,7 +2,7 @@
 
 {
   imports = [
-    ./attest.nix
+  #  ./attest.nix
   ];
 
   # allow things like intel wifi firmware
