@@ -11,9 +11,6 @@
       ../addins/client
     ];
 
-  # stop running out of RAM with diffoscope
-  zramSwap.enable = true;
-
   boot.initrd.kernelModules = [ "amdgpu" ];
 
   networking.hostName = "hydralisk";
