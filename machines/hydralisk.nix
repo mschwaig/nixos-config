@@ -19,8 +19,8 @@
   networking.hostName = "hydralisk";
   networking.hostId = "46b5a21f";
 
-  networking.interfaces.enp39s0.useDHCP = true;
-  networking.interfaces.enp45s0.useDHCP = true;
+  networking.interfaces.enp40s0.useDHCP = true;
+  networking.interfaces.enp46s0.useDHCP = true;
   networking.interfaces.wlan0.useDHCP = true;
 
   environment.systemPackages = with pkgs; [
