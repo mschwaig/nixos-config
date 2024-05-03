@@ -23,10 +23,16 @@
   networking.interfaces.enp46s0.useDHCP = true;
   networking.interfaces.wlan0.useDHCP = true;
 
-  environment.systemPackages = with pkgs; [
+  environment.systemPackages = (with pkgs; [
     pciutils reaper
 
     virt-manager looking-glass-client
+  ]) ++ (with pkgs.rocmPackages; [
+    rocminfo rocm-smi
+  ]);
+
+  hardware.opengl.extraPackages = [
+    pkgs.rocmPackages.clr.icd
   ];
 
   services.spotifyd.enable = true;
