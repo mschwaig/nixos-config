@@ -27,7 +27,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixos-hardware.url = github:NixOS/nixos-hardware/master;
-    nixpkgs.url = github:NixOS/nixpkgs/nixos-unstable-small;
+    nixpkgs.url = github:NixOS/nixpkgs/nixos-unstable;
   };
 
   outputs = { self, deploy-rs, nixpkgs, ... }@inputs:
