@@ -35,7 +35,14 @@
     pkgs.rocmPackages.clr.icd
   ];
 
-  services.spotifyd.enable = true;
+  services = {
+    spotifyd.enable = true;
+    ollama = {
+      enable = true;
+      package = (pkgs.ollama.override { acceleration = "rocm"; });
+      acceleration = "rocm";
+    };
+  };
 
   users.users.mschwaig = {
     extraGroups = [ "libvirtd" ];

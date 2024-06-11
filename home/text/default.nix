@@ -14,6 +14,7 @@
     oterm
     nmap
     nix-output-monitor
+    nixpkgs-review
   ];
 
   programs = {
