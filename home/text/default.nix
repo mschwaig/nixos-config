@@ -10,7 +10,8 @@
     haskellPackages.patat # try this fun presentation tool
     (aspellWithDicts (ds: with ds; [ en en-computers en-science ]))
     silver-searcher
-    (ollama.override { acceleration = "rocm"; })
+    ollama
+    #(ollama.override { acceleration = "rocm"; })
     oterm
     nmap
     nix-output-monitor
