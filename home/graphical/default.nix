@@ -8,4 +8,11 @@
     firefox
   ];
 
+  programs.vscode = {
+    enable = true;
+    extensions = with pkgs; [
+      vscode-extensions.valentjn.vscode-ltex
+    ];
+  };
+
 }

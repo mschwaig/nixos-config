@@ -108,8 +108,6 @@
     poppler_utils
 
     element-desktop
-
-    vscode
   ];
 
   programs.adb.enable = true;
