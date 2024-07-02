@@ -56,6 +56,7 @@
       userName = "Martin Schwaighofer";
       userEmail = "mschwaig@users.noreply.github.com";
       extraConfig = {
+        log.date = "human";
         pull = { ff = "only"; };
         credential = { helper = "cache"; };
         init = { defaultBranch = "main"; };
