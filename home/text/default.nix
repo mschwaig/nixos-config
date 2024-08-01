@@ -1,4 +1,4 @@
-{ inputs, pkgs, ... }: {
+{ inputs, pkgs, lib, ... }: {
 
   imports = [ ./fish.nix ];
 
@@ -69,6 +69,13 @@
           };
         };
       };
+    };
+  };
+
+  home.file = {
+    ".config/rust-analyzer/rust-analyzer.toml".text = lib.generators.toINI {} {
+      procMacro.enable = false;
+      cargo.buildScripts.enable = false;
     };
   };
 }
