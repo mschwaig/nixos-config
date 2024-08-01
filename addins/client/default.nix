@@ -43,13 +43,6 @@
 
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
 
-  # for sysprog VMs
-  virtualisation.virtualbox.host.enable = true;
-  users.extraGroups.vboxusers.members = [ "mschwaig" ];
-
-  virtualisation.docker.enable = true;
-  users.extraGroups.docker.members = [ "mschwaig" ];
-
   # move this to common.nix?
   networking.useNetworkd = true;
   # useNetwork seems to want it enabled in newer version
