@@ -108,7 +108,14 @@
     poppler_utils
 
     element-desktop
+
+    waypipe
   ];
+
+  environment.sessionVariables = {
+    # use wayland backend for QT apps to make waypipe work
+    QT_QPA_PLATFORM="wayland";
+  };
 
   programs.adb.enable = true;
 
