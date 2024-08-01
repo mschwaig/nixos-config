@@ -49,12 +49,18 @@
       overlays = [ update-systemd-resolved-overlay ];
       config.allowUnfree = true;
     };
+    pkgsWithRocm = import nixpkgs {
+      inherit system;
+      overlays = [ update-systemd-resolved-overlay ];
+      config.allowUnfree = true;
+      config.rocmSupport = true;
+    };
     mapAttrsToList = pkgs.lib.attrsets.mapAttrsToList;
-    nixosSystem = {...}@args: (nixpkgs.lib.nixosSystem  (args // {
+    nixosSystem = {...}@args: (nixpkgs.lib.nixosSystem ({
       inherit pkgs system;
       # pass flake inputs to individual module files
       specialArgs = { inherit inputs; };
-    }));
+    } // args));
   in
  {
   deploy = {
@@ -106,6 +112,7 @@
 
     # desktop pc
     nixosConfigurations.hydralisk = nixosSystem {
+      pkgs = pkgsWithRocm;
       modules = [
         ./machines/hydralisk.nix
       ];

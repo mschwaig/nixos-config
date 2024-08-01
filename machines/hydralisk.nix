@@ -38,6 +38,7 @@
       enable = true;
       package = (pkgs.ollama.override { acceleration = "rocm"; });
       acceleration = "rocm";
+      rocmOverrideGfx = "11.0.2";
     };
   };
 
