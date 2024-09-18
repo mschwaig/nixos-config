@@ -9,8 +9,8 @@
 
     nix = {
       settings = {
-        substituters = [ "http://lair.mschwaig.github.beta.tailscale.net/" ];
-        trusted-public-keys = [ "lair.mschwaig.github.beta.tailscale.net:6RWQD3CFGg9OY4bhqPzBumZ+o70lIEVH3R9bxTj+FXw=" ];
+        substituters = [ "http://lair.van-duck.ts.net.net/" ];
+        trusted-public-keys = [ "lair.van-duck.ts.net.net:6RWQD3CFGg9OY4bhqPzBumZ+o70lIEVH3R9bxTj+FXw=" ];
       };
       extraOptions = ''
         experimental-features = nix-command flakes ca-derivations
