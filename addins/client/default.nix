@@ -43,7 +43,10 @@
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
 
   # move this to common.nix?
-  networking.useNetworkd = true;
+  networking = {
+    useNetworkd = true;
+    firewall.trustedInterfaces = [ "tailscale0" ];
+  };
   # useNetwork seems to want it enabled in newer version
   # so this line is commented out for now
   systemd.network.wait-online.anyInterface = true;
