@@ -41,11 +41,13 @@
       package = (pkgs.ollama.override { acceleration = "rocm"; });
       acceleration = "rocm";
       rocmOverrideGfx = "11.0.2";
+      host = "hydralisk.van-duck.ts.net";
     };
     nextjs-ollama-llm-ui = {
       enable = true;
       port = 8080;
       hostname = "hydralisk.van-duck.ts.net";
+      ollamaUrl = "http://hydralisk.van-duck.ts.net:11434";
     };
   };
 
