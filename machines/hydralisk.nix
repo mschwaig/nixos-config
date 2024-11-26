@@ -32,6 +32,8 @@
     pkgs.rocmPackages.clr.icd
   ];
 
+
+  systemd.services.ollama.environment.OLLAMA_ORIGINS = "http://hydralisk.van-duck.ts.net:8080";
   services = {
     spotifyd.enable = true;
     ollama = {
@@ -39,6 +41,11 @@
       package = (pkgs.ollama.override { acceleration = "rocm"; });
       acceleration = "rocm";
       rocmOverrideGfx = "11.0.2";
+    };
+    nextjs-ollama-llm-ui = {
+      enable = true;
+      port = 8080;
+      hostname = "hydralisk.van-duck.ts.net";
     };
   };
 
