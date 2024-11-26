@@ -5,14 +5,14 @@
   home.packages = with pkgs; [
     p7zip
     alejandra
-    #hurl broken for now
+    hurl
     git-filter-repo
     haskellPackages.patat # try this fun presentation tool
     (aspellWithDicts (ds: with ds; [ en en-computers en-science ]))
     silver-searcher
     (ollama.override { acceleration = "rocm"; })
     (llama-cpp.override { vulkanSupport = true; })
-    #oterm disable for now due to treesitter https://github.com/NixOS/nixpkgs/issues/331260
+    oterm
     nmap
     nix-output-monitor
     nixpkgs-review
