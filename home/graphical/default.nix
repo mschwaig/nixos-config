@@ -6,6 +6,7 @@
 
   home.packages = with pkgs; [
     firefox
+    element-desktop
   ];
 
   programs.vscode = {
