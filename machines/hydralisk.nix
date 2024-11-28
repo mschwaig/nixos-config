@@ -33,9 +33,20 @@
   ];
 
 
-  systemd.services.ollama.environment.OLLAMA_ORIGINS = "http://hydralisk.van-duck.ts.net:8080";
+  systemd.services.ollama.environment.OLLAMA_ORIGINS = "https://hydralisk.van-duck.ts.net";
   services = {
     spotifyd.enable = true;
+    caddy = {
+      enable = true;
+      virtualHosts."hydralisk.van-duck.ts.net:11435".extraConfig = ''
+        reverse_proxy hydralisk.van-duck.ts.net:11434
+      '';
+      virtualHosts."hydralisk.van-duck.ts.net".extraConfig = ''
+        reverse_proxy hydralisk.van-duck.ts.net:8080
+      '';
+    };
+    tailscale.permitCertUid = "caddy";
+
     ollama = {
       enable = true;
       package = (pkgs.ollama.override { acceleration = "rocm"; });
@@ -47,7 +58,7 @@
       enable = true;
       port = 8080;
       hostname = "hydralisk.van-duck.ts.net";
-      ollamaUrl = "http://hydralisk.van-duck.ts.net:11434";
+      ollamaUrl = "https://hydralisk.van-duck.ts.net:11435";
     };
   };
 
