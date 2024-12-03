@@ -21,11 +21,16 @@
       substituters = [ "https://cache.nixos.org" ];
       trusted-public-keys = [ "lair.van-duck.ts.net.net:6RWQD3CFGg9OY4bhqPzBumZ+o70lIEVH3R9bxTj+FXw=" ];
     };
-    # free 10+20 GB if we dip under 10 GB of free space
-    # on the /nix/store partition
+    gc = {
+      automatic = true;
+      persistent = true;
+      dates = "14:00";
+      randomizedDelaySec = "4h";
+      # free 10+20 GB if we dip under 10 GB of free space
+      # on the /nix/store partition
+      options = "--min-free = ${ toString (10 * 1024 * 1024 * 1024) } --max-free = ${ toString (30 * 1024 * 1024 * 1024) }";
+    };
     extraOptions = ''
-      min-free = ${ toString (10 * 1024 * 1024 * 1024) }
-      max-free = ${ toString (30 * 1024 * 1024 * 1024) }
       keep-derivations = true
       keep-outputs = true
       experimental-features = nix-command flakes ca-derivations impure-derivations
