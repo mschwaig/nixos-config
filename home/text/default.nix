@@ -16,6 +16,7 @@
     nmap
     nix-output-monitor
     nixpkgs-review
+    inputs.roc.packages.x86_64-linux.cli
   ];
 
   programs = {

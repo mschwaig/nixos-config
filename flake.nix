@@ -28,6 +28,7 @@
     };
     nixos-hardware.url = github:NixOS/nixos-hardware/master;
     nixpkgs.url = github:NixOS/nixpkgs/nixos-unstable;
+    roc.url = "github:roc-lang/roc";
   };
 
   outputs = { self, deploy-rs, nixpkgs, ... }@inputs:
