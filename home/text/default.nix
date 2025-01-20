@@ -16,6 +16,7 @@
     nmap
     nix-output-monitor
     nixpkgs-review
+    nil
     inputs.roc.packages.x86_64-linux.cli
   ];
 
@@ -41,13 +42,10 @@
         };
       };
       languages = {
-        language-server.nixd = {
-          command = "${pkgs.nixd}/bin/nixd";
-        };
         language = [{
           name = "nix";
           auto-format = false;
-          language-servers = [ "nixd" "nil" ];
+          language-servers = [ "nil" ];
         }];
       };
     };
