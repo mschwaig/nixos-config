@@ -33,7 +33,7 @@
   ];
 
 
-  systemd.services.ollama.environment.OLLAMA_ORIGINS = "https://hydralisk.van-duck.ts.net";
+  systemd.services.ollama.environment.OLLAMA_ORIGINS = "https://hydralisk.van-duck.ts.net,http://localhost:*";
   services = {
     spotifyd.enable = true;
     caddy = {
@@ -52,7 +52,7 @@
       package = (pkgs.ollama.override { acceleration = "rocm"; });
       acceleration = "rocm";
       rocmOverrideGfx = "11.0.2";
-      host = "hydralisk.van-duck.ts.net";
+      #host = "hydralisk.van-duck.ts.net";
     };
     nextjs-ollama-llm-ui = {
       enable = true;
