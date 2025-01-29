@@ -216,16 +216,16 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1737062831,
-        "narHash": "sha256-Tbk1MZbtV2s5aG+iM99U8FqwxU/YNArMcWAv6clcsBc=",
-        "owner": "NixOS",
+        "lastModified": 1738100969,
+        "narHash": "sha256-RtFwafulI9EIUhp4H0caIZF+6FFbuzhVS2hkVoWHwz0=",
+        "owner": "mschwaig",
         "repo": "nixpkgs",
-        "rev": "5df43628fdf08d642be8ba5b3625a6c70731c19c",
+        "rev": "04f36c5b904e0b071f9232b50a364b90a0897037",
         "type": "github"
       },
       "original": {
-        "owner": "NixOS",
-        "ref": "nixos-unstable",
+        "owner": "mschwaig",
+        "ref": "comically-bad-rocm-workaround",
         "repo": "nixpkgs",
         "type": "github"
       }
