@@ -27,7 +27,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixos-hardware.url = github:NixOS/nixos-hardware/master;
-    nixpkgs.url = github:mschwaig/nixpkgs/comically-bad-rocm-workaround;
+    nixpkgs.url = github:nixos/nixpkgs/master;
     roc.url = "github:roc-lang/roc";
   };
 
