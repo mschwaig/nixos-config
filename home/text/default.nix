@@ -53,7 +53,7 @@
     git = {
       enable = true;
       userName = "Martin Schwaighofer";
-      userEmail = "mschwaig@users.noreply.github.com";
+      userEmail = "3856390+mschwaig@users.noreply.github.com";
       extraConfig = {
         log.date = "human";
         pull = { ff = "only"; };
