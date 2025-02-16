@@ -27,7 +27,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixos-hardware.url = github:NixOS/nixos-hardware/master;
-    nixpkgs.url = github:nixos/nixpkgs/master;
+    nixpkgs.url = github:nixos/nixpkgs/ca11a0839c5565431d99763ade045069642b4e22;
     roc.url = "github:roc-lang/roc";
   };
 

@@ -11,7 +11,6 @@
     (aspellWithDicts (ds: with ds; [ en en-computers en-science ]))
     silver-searcher
     (ollama.override { acceleration = "rocm"; })
-    (llama-cpp.override { vulkanSupport = true; })
     oterm
     nmap
     nix-output-monitor
