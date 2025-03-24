@@ -82,7 +82,7 @@
     sxiv zathura
 
     # video editing
-    kdenlive mlt
+    kdePackages.kdenlive mlt
 
     # webcam
     guvcview
