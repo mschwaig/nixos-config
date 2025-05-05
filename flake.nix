@@ -3,12 +3,10 @@
     deploy-rs = {
       url = github:serokell/deploy-rs;
       inputs = {
-        flake-compat.follows = "flake-compat";
         nixpkgs.follows = "nixpkgs";
         utils.follows = "flake-utils";
       };
     };
-    flake-compat.url = github:edolstra/flake-compat;
     flake-utils.url = github:numtide/flake-utils;
     helix = {
       url = github:helix-editor/helix;
@@ -27,7 +25,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixos-hardware.url = github:NixOS/nixos-hardware/master;
-    nixpkgs.url = github:nixos/nixpkgs/2f803b76b4351313beb072c3be68806e63d04fde;
+    nixpkgs.url = github:nixos/nixpkgs/nixos-unstable;
     roc.url = "github:roc-lang/roc";
   };
 
