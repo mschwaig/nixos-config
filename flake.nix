@@ -7,6 +7,10 @@
         utils.follows = "flake-utils";
       };
     };
+    disko = {
+      url = "github:nix-community/disko";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     flake-utils.url = github:numtide/flake-utils;
     helix = {
       url = github:helix-editor/helix;

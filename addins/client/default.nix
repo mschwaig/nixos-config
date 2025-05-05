@@ -9,7 +9,6 @@
       ./thunderbolt.nix
       ./bluetooth.nix
       ./vacuum.nix
-      ../encrypted-zfs-root
       ../common.nix
 
       inputs.home-manager.nixosModules.home-manager

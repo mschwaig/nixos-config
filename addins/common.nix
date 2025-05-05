@@ -10,8 +10,6 @@
   # enable fwupd for manual firmware updates
   services.fwupd.enable = true;
 
-  boot.kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
-
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot = {
     enable = true;

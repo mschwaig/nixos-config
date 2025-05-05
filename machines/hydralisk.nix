@@ -9,6 +9,7 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration/hydralisk.nix
       ../addins/client
+      ../addins/encrypted-zfs-root
     ];
 
   boot.initrd.kernelModules = [ "amdgpu" ];

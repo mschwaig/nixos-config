@@ -6,13 +6,17 @@
 
 {
   imports = [
-      inputs.nixos-hardware.nixosModules.lenovo-thinkpad-p50
+      inputs.nixos-hardware.nixosModules.framework-amd-ai-300-series
+      inputs.disko.nixosModules.disko
       ../addins/client
       ../addins/portable
       ../addins/jku-ins-network.nix
       # Include the results of the hardware scan.
       ./hardware-configuration/mutalisk.nix
+      ./disks/mutalisk.nix
     ];
+
+  boot.kernelPackages = pkgs.linuxPackages_latest;
 
   # make ins network happy
   systemd.network.networks."40-enp0s31f6".dhcpV4Config = {

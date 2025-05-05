@@ -13,33 +13,6 @@
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
 
-  fileSystems."/" =
-    { device = "rpool/enc/root";
-      fsType = "zfs";
-    };
-
-  fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/ECF5-6FA7";
-      fsType = "vfat";
-    };
-
-  fileSystems."/tmp" =
-    { device = "rpool/enc/tmp";
-      fsType = "zfs";
-    };
-
-  fileSystems."/home" =
-    { device = "rpool/enc/home";
-      fsType = "zfs";
-    };
-
-  fileSystems."/nix" =
-    { device = "rpool/enc/nix";
-      fsType = "zfs";
-    };
-
-  swapDevices = [ ];
-
   nix.settings.max-jobs = lib.mkDefault 8;
   powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
   # High-DPI console
