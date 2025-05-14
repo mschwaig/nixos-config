@@ -74,14 +74,11 @@
 
     cue
 
-    # communictaion
-    discord skypeforlinux
-
     # tiling-friendly apps
     sxiv zathura
 
     # video editing
-    kdePackages.kdenlive mlt
+    kdePackages.kdenlive
 
     # webcam
     guvcview
@@ -95,7 +92,7 @@
     kitty
 
     # terminal apps
-    file ffmpeg htop bandwhich git lolcat vifm-full tree archivemount pwgen jq tmux reptyr astyle protonvpn-cli_2 zip zstd tmate unzip tealdeer xdelta wally-cli tmate wget man-pages shellcheck
+    file ffmpeg htop bandwhich git lolcat tree archivemount pwgen jq tmux reptyr astyle protonvpn-cli_2 zip zstd tmate unzip tealdeer xdelta wally-cli tmate wget man-pages shellcheck
 
     diffoscope
 

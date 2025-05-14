@@ -16,6 +16,7 @@
     nix-output-monitor
     nixpkgs-review
     nil
+    nurl
     inputs.roc.packages.x86_64-linux.cli
   ];
 
