@@ -15,7 +15,6 @@
     helix = {
       url = github:helix-editor/helix;
       inputs = {
-        flake-utils.follows = "flake-utils";
         nixpkgs.follows = "nixpkgs";
       };
     };
