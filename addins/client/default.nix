@@ -37,9 +37,11 @@
   };
 
   services = {
-    xserver = {
+    xserver.enable = false;
+    desktopManager.plasma6.enable = true;
+    displayManager.sddm = {
       enable = true;
-      desktopManager.plasma6.enable = true;
+      wayland.enable = true;
     };
     pipewire.enable = true;
   };
