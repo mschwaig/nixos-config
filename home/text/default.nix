@@ -31,7 +31,13 @@
       enable = true;
       package = inputs.helix.packages.${pkgs.system}.default;
       defaultEditor = true;
-      extraPackages = [ pkgs.marksman ];
+      extraPackages = with pkgs; [
+        marksman
+        rust-analyzer
+        rustfmt
+        cargo
+        clippy
+      ];
 
       settings = {
         theme = "base16_default";
@@ -40,14 +46,23 @@
           auto-pairs  = false;
           file-picker.follow-symlinks = false; # for nix result folders
           soft-wrap.enable  = true;
+          lsp.display-messages = true;
         };
       };
       languages = {
-        language = [{
-          name = "nix";
-          auto-format = false;
-          language-servers = [ "nil" ];
-        }];
+        language = [
+          {
+            name = "nix";
+            auto-format = false;
+            language-servers = [ "nil" ];
+          }
+          {
+            name = "rust";
+            auto-format = true;
+            formatter = { command = "rustfmt"; args = ["--edition" "2024"]; };
+            language-servers = [ "rust-analyzer" ];
+          }
+        ];
       };
     };
 
