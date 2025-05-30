@@ -18,14 +18,17 @@
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
+  services.ollama = {
+    enable = true;
+    package = (pkgs.ollama.override { acceleration = "rocm"; });
+    acceleration = "rocm";
+    rocmOverrideGfx = "11.0.2";
+  };
+
   # make ins network happy
   systemd.network.networks."40-enp0s31f6".dhcpV4Config = {
     ClientIdentifier="mac";
   };
-
-  # disable throttled enabled by default via
-  # <nixos-hardware/lenovo/thinkpad/t480s>
-  services.throttled.enable = false;
 
   networking.hostName = "mutalisk";
   networking.hostId = "ed7fb7da";
