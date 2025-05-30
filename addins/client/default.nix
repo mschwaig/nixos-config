@@ -48,7 +48,7 @@
   security.rtkit.enable = true;
 
   zramSwap.enable = true;
-  hardware.pulseaudio.enable = false;
+  services.pulseaudio.enable = false;
 
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
 
@@ -69,7 +69,7 @@
 
   environment.systemPackages = with pkgs; [
     # gui apps
-    thunderbird vlc gimp transmission-gtk libreoffice-fresh chromium inkscape audacity reaper
+    thunderbird vlc gimp transmission_4-gtk libreoffice-fresh chromium inkscape audacity reaper
 
     nix-diff
     nix-tree
