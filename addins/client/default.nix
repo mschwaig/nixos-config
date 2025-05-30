@@ -76,6 +76,8 @@
 
     cue
 
+    amdgpu_top
+
     # tiling-friendly apps
     sxiv zathura
 
