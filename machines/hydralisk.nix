@@ -33,17 +33,24 @@
     pkgs.rocmPackages.clr.icd
   ];
 
+  systemd.services.ollama.environment.OLLAMA_ORIGINS = "https://hydralisk.van-duck.ts.net,http://localhost:*,https://localhost:*";
 
-  systemd.services.ollama.environment.OLLAMA_ORIGINS = "https://hydralisk.van-duck.ts.net,http://localhost:*";
   services = {
     spotifyd.enable = true;
     caddy = {
       enable = true;
-      virtualHosts."hydralisk.van-duck.ts.net:11435".extraConfig = ''
-        reverse_proxy hydralisk.van-duck.ts.net:11434
-      '';
+
       virtualHosts."hydralisk.van-duck.ts.net".extraConfig = ''
-        reverse_proxy hydralisk.van-duck.ts.net:8080
+        # Forward to the NextJS web UI, preserving the original host header
+        reverse_proxy http://127.0.0.1:8080 {
+          header_up Host {host}
+        }
+      '';
+
+      # the webui does not use this proxy,
+      # instead it proxies requests to ollama through itself
+      virtualHosts."hydralisk.van-duck.ts.net:11435".extraConfig = ''
+        reverse_proxy 127.0.0.1:11434
       '';
     };
     tailscale.permitCertUid = "caddy";
@@ -53,13 +60,11 @@
       package = (pkgs.ollama.override { acceleration = "rocm"; });
       acceleration = "rocm";
       rocmOverrideGfx = "11.0.2";
-      #host = "hydralisk.van-duck.ts.net";
     };
     nextjs-ollama-llm-ui = {
       enable = true;
       port = 8080;
-      hostname = "hydralisk.van-duck.ts.net";
-      ollamaUrl = "https://hydralisk.van-duck.ts.net:11435";
+      ollamaUrl = "http://127.0.0.1:11434";
     };
   };
 
