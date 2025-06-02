@@ -33,7 +33,7 @@
     pkgs.rocmPackages.clr.icd
   ];
 
-  systemd.services.ollama.environment.OLLAMA_ORIGINS = "https://hydralisk.van-duck.ts.net,http://localhost:*,https://localhost:*";
+#  systemd.services.ollama.environment.OLLAMA_ORIGINS = "*";
 
   services = {
     spotifyd.enable = true;
@@ -50,6 +50,24 @@
       # the webui does not use this proxy,
       # instead it proxies requests to ollama through itself
       virtualHosts."hydralisk.van-duck.ts.net:11435".extraConfig = ''
+        # Block requests with Origin/Referer headers (from browsers)
+        @browser {
+          # we could potentially also allow only https://hydralisk.van-duck.ts.net through here
+          header Origin *
+        }
+        @browser_referer {
+          header Referer *
+        }
+        # block websocket connections
+        @websocket {
+          header Upgrade websocket
+        }
+        
+        # Respond with 403 Forbidden to browser requests and websockets
+        respond @browser 403
+        respond @browser_referer 403
+        respond @websocket 403
+
         reverse_proxy 127.0.0.1:11434
       '';
     };
@@ -60,6 +78,7 @@
       package = (pkgs.ollama.override { acceleration = "rocm"; });
       acceleration = "rocm";
       rocmOverrideGfx = "11.0.2";
+      host = "0.0.0.0";
     };
     nextjs-ollama-llm-ui = {
       enable = true;
