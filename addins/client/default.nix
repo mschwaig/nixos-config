@@ -58,12 +58,7 @@
     firewall.trustedInterfaces = [ "tailscale0" ];
   };
 
-  services.resolved = {
-    enable = true;
-    #extraConfig = ''
-    #  DNSOverTLS=yes
-    #'';
-  };
+  services.resolved.enable = true;
 
   boot.supportedFilesystems = [ "ntfs" "fuse-7z-ng" ];
 
