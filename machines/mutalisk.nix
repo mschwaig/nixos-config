@@ -18,6 +18,12 @@
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
+  # Fix touchpad not resuming from sleep
+  powerManagement.resumeCommands = pkgs.lib.mkAfter ''
+    ${pkgs.kmod}/bin/modprobe -r i2c_hid_acpi
+    ${pkgs.kmod}/bin/modprobe i2c_hid_acpi
+  '';
+
   services.ollama = {
     enable = true;
     package = (pkgs.ollama.override { acceleration = "rocm"; });
