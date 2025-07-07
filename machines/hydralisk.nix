@@ -79,6 +79,9 @@
       acceleration = "rocm";
       rocmOverrideGfx = "11.0.2";
       host = "0.0.0.0";
+      environmentVariables = {
+        OLLAMA_NUM_CTX="32768";
+      };
     };
     nextjs-ollama-llm-ui = {
       enable = true;
