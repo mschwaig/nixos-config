@@ -37,6 +37,10 @@
         rustfmt
         cargo
         clippy
+        python3Packages.python-lsp-server
+        python3Packages.black
+        python3Packages.isort
+        python3Packages.pylint
       ];
 
       settings = {
@@ -47,6 +51,10 @@
           file-picker.follow-symlinks = false; # for nix result folders
           soft-wrap.enable  = true;
           lsp.display-messages = true;
+          lsp.display-inlay-hints = true;
+          auto-completion = true;
+          idle-timeout = 0;
+          completion-trigger-len = 1;
         };
       };
       languages = {
@@ -61,6 +69,12 @@
             auto-format = true;
             formatter = { command = "rustfmt"; args = ["--edition" "2024"]; };
             language-servers = [ "rust-analyzer" ];
+          }
+          {
+            name = "python";
+            auto-format = false;
+            formatter = { command = "black"; args = ["--quiet" "-"]; };
+            language-servers = [ "pylsp" ];
           }
         ];
       };
