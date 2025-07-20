@@ -71,6 +71,8 @@
 
     cue
 
+    zellij
+
     amdgpu_top
 
     # tiling-friendly apps

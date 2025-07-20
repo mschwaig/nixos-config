@@ -19,6 +19,7 @@
     nurl
     inputs.roc.packages.x86_64-linux.cli
     claude-code
+    gh
   ];
 
   programs = {
