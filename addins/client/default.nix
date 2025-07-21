@@ -58,6 +58,8 @@
     firewall.trustedInterfaces = [ "tailscale0" ];
   };
 
+  systemd.services.systemd-networkd-wait-online.enable = lib.mkForce false;
+
   services.resolved.enable = true;
 
   boot.supportedFilesystems = [ "ntfs" "fuse-7z-ng" ];

@@ -18,13 +18,12 @@
   };
   boot.loader.efi.canTouchEfiVariables = true;
 
-    services.tailscale = {
-      enable = true;
-      useRoutingFeatures = "client";
-      extraUpFlags = [ "--accept-dns" ];
-    };
+  services.tailscale = {
+    enable = true;
+    useRoutingFeatures = "client";
+    extraUpFlags = [ "--accept-dns" ];
+  };
   #networking.useNetworkd = true;
-  #systemd.services.systemd-networkd-wait-online.enable = false;
 
   # dhcp set per interface because global flag is deprecated
   networking.useDHCP = false;
