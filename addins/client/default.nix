@@ -38,11 +38,8 @@
 
   services = {
     xserver.enable = false;
-    desktopManager.plasma6.enable = true;
-    displayManager.sddm = {
-      enable = true;
-      wayland.enable = true;
-    };
+    displayManager.cosmic-greeter.enable = true;
+    desktopManager.cosmic.enable = true;
     pipewire.enable = true;
   };
   security.rtkit.enable = true;
