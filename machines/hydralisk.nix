@@ -2,8 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
-
+{ config, pkgs, latest-pkgs,  ... }:
 {
   imports =
     [ # Include the results of the hardware scan.
@@ -75,7 +74,7 @@
 
     ollama = {
       enable = true;
-      package = (pkgs.ollama.override { acceleration = "rocm"; });
+      package = (latest-pkgs.ollama.override { acceleration = "rocm"; });
       acceleration = "rocm";
       rocmOverrideGfx = "11.0.2";
       host = "0.0.0.0";

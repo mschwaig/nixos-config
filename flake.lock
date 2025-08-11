@@ -153,6 +153,22 @@
         "type": "github"
       }
     },
+    "latest-nixpkgs": {
+      "locked": {
+        "lastModified": 1754742098,
+        "narHash": "sha256-+ES71HQqh4jnW+9k6V1LriYxeEwewQ8s8HPwTkDgNVA=",
+        "owner": "mschwaig",
+        "repo": "nixpkgs",
+        "rev": "fa8be013a98d56fabf20551afaa967b801c0f1d9",
+        "type": "github"
+      },
+      "original": {
+        "owner": "mschwaig",
+        "ref": "ollama-11.4",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "nixos-attest": {
       "inputs": {
         "nixpkgs": [
@@ -249,6 +265,7 @@
         "flake-utils": "flake-utils",
         "helix": "helix",
         "home-manager": "home-manager",
+        "latest-nixpkgs": "latest-nixpkgs",
         "nixos-attest": "nixos-attest",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs",

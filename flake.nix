@@ -29,6 +29,7 @@
     };
     nixos-hardware.url = github:NixOS/nixos-hardware/master;
     nixpkgs.url = github:nixos/nixpkgs/nixos-unstable;
+    latest-nixpkgs.url = github:mschwaig/nixpkgs/ollama-11.4;
     roc.url = "github:roc-lang/roc";
   };
 
@@ -51,6 +52,11 @@
       overlays = [ update-systemd-resolved-overlay ];
       config.allowUnfree = true;
     };
+    latest-pkgs = import inputs.latest-nixpkgs {
+      inherit system;
+      overlays = [ update-systemd-resolved-overlay ];
+      config.allowUnfree = true;
+    };
     pkgsWithRocm = import nixpkgs {
       inherit system;
       overlays = [ update-systemd-resolved-overlay ];
@@ -61,7 +67,7 @@
     nixosSystem = {...}@args: (nixpkgs.lib.nixosSystem ({
       inherit pkgs system;
       # pass flake inputs to individual module files
-      specialArgs = { inherit inputs; };
+      specialArgs = { inherit inputs latest-pkgs; };
     } // args));
   in
  {
