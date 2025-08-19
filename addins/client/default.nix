@@ -92,7 +92,7 @@
     kitty
 
     # terminal apps
-    file ffmpeg htop bandwhich git lolcat tree archivemount pwgen jq tmux reptyr astyle protonvpn-cli_2 zip zstd tmate unzip tealdeer xdelta wally-cli tmate wget man-pages shellcheck
+    file ffmpeg htop bandwhich git lolcat tree archivemount pwgen jq tmux reptyr astyle protonvpn-cli_2 zip zstd tmate unzip tealdeer xdelta wally-cli tmate wget man-pages shellcheck wl-clipboard
 
     diffoscope
 
