@@ -18,6 +18,8 @@
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
+  virtualisation.podman.enable = true;
+
   # Fix touchpad not resuming from sleep
   powerManagement.resumeCommands = pkgs.lib.mkAfter ''
     ${pkgs.kmod}/bin/modprobe -r i2c_hid_acpi
