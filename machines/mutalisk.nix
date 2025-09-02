@@ -19,6 +19,13 @@
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
   virtualisation.podman.enable = true;
+  programs.ssh.knownHosts = {
+    nixbuild = {
+      hostNames = [ "eu.nixbuild.net" ];
+      publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPIQCZc54poJ8vqawd8TraNryQeJnvH1eLpIDgbiqymM";
+    };
+  };
+
 
   # Fix touchpad not resuming from sleep
   powerManagement.resumeCommands = pkgs.lib.mkAfter ''
