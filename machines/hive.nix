@@ -5,7 +5,7 @@
 { config, inputs, pkgs, ... }:
 {
   imports =
-    [ # Include the results of the hardware scan.
+    [
       inputs.nixos-hardware.nixosModules.framework-desktop-amd-ai-max-300-series
       inputs.disko.nixosModules.disko
       ./hardware-configuration/hive.nix
@@ -14,7 +14,7 @@
     ];
 
   networking.hostName = "hive";
-  networking.hostId = "4a9b2c7d"; # Generated unique hostId
+  networking.hostId = "e3a48e7a";
 
   networking.interfaces.enp191s0.useDHCP = true;
 
