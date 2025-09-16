@@ -33,9 +33,20 @@
   networking.firewall.allowedTCPPorts = [ 11434 ];
 
   # Add extra experimental features from client configs
-  nix.extraOptions = ''
-    experimental-features = nix-command flakes ca-derivations impure-derivations
-  '';
+  nix = {
+    settings = {
+      substituters = [ "https://cache.nixos.org" ];
+      trusted-public-keys = [ "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY=" ];
+    };
+    extraOptions = ''
+      experimental-features = nix-command flakes ca-derivations impure-derivations
+    '';
+  };
+
+  # System packages
+  environment.systemPackages = with pkgs; [
+    amdgpu_top
+  ];
 
   # Home-manager configuration
   home-manager = {
