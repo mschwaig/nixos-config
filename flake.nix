@@ -103,6 +103,13 @@
           path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.hatchery;
         };
       };
+      hive = {
+        hostname = "hive";
+        profiles.system = {
+          user = "root";
+          path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.hive;
+        };
+      };
     };
   };
 
@@ -145,6 +152,13 @@
       pkgs = pkgsWithRocm;
       modules = [
         ./machines/mutalisk.nix
+      ];
+    };
+
+    # framework desktop server
+    nixosConfigurations.hive = nixosSystem {
+      modules = [
+        ./machines/hive.nix
       ];
     };
   };
