@@ -11,6 +11,7 @@
       ./hardware-configuration/hive.nix
       ./disks/hive.nix
       ../addins/server
+      inputs.home-manager.nixosModules.home-manager
     ];
 
   networking.hostName = "hive";
@@ -30,6 +31,24 @@
 
   # Open firewall for ollama
   networking.firewall.allowedTCPPorts = [ 11434 ];
+
+  # Add extra experimental features from client configs
+  nix.extraOptions = ''
+    experimental-features = nix-command flakes ca-derivations impure-derivations
+  '';
+
+  # Home-manager configuration
+  home-manager = {
+    useGlobalPkgs = true;
+    useUserPackages = true;
+    users.mschwaig = { pkgs, ... }: {
+      imports = [ ../home/text ];
+      home.stateVersion = "22.11";
+    };
+    extraSpecialArgs = {
+      inherit inputs;
+    };
+  };
 
   users.users.mschwaig = {
     openssh.authorizedKeys.keys = [
