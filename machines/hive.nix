@@ -43,6 +43,19 @@
     '';
   };
 
+  # Enable AMDVLK driver for better compute performance
+  hardware.opengl = {
+    enable = true;
+    driSupport = true;
+    driSupport32Bit = true;
+    extraPackages = with pkgs; [
+      amdvlk
+    ];
+    extraPackages32 = with pkgs; [
+      driversi686Linux.amdvlk
+    ];
+  };
+
   # System packages
   environment.systemPackages = with pkgs; [
     amdgpu_top
@@ -70,6 +83,10 @@
     enable = true;
     port = 11435; # Different from ollama port
     openFirewall = true;
+    environment = {
+      # Use AMDVLK driver instead of RADV for better compute performance
+      VK_ICD_FILENAMES = "/run/opengl-driver/share/vulkan/icd.d/amd_icd64.json";
+    };
     settings = 
       let
         llama-server = lib.getExe' pkgs.llama-cpp-vulkan "llama-server";
