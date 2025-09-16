@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running 'nixos-help').
 
-{ config, inputs, pkgs, ... }:
+{ config, inputs, pkgs, lib, ... }:
 {
   imports =
     [
@@ -46,7 +46,45 @@
   # System packages
   environment.systemPackages = with pkgs; [
     amdgpu_top
+    llama-cpp-vulkan
+    llama-swap
   ];
+
+  # Fetch the GLM-4.5-Air model parts from Hugging Face
+  environment.etc."llama-models/GLM-4.5-Air-Q4_K_M-00001-of-00002.gguf" = {
+    source = pkgs.fetchurl {
+      url = "https://huggingface.co/unsloth/GLM-4.5-Air-GGUF/resolve/main/Q4_K_M/GLM-4.5-Air-Q4_K_M-00001-of-00002.gguf";
+      hash = "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA="; # Replace with actual hash after first attempt
+    };
+  };
+
+  environment.etc."llama-models/GLM-4.5-Air-Q4_K_M-00002-of-00002.gguf" = {
+    source = pkgs.fetchurl {
+      url = "https://huggingface.co/unsloth/GLM-4.5-Air-GGUF/resolve/main/Q4_K_M/GLM-4.5-Air-Q4_K_M-00002-of-00002.gguf";
+      hash = "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA="; # Replace with actual hash after first attempt
+    };
+  };
+
+  # Llama-swap service configuration
+  services.llama-swap = {
+    enable = true;
+    port = 11435; # Different from ollama port
+    openFirewall = true;
+    settings = 
+      let
+        llama-server = lib.getExe' pkgs.llama-cpp-vulkan "llama-server";
+      in
+      {
+        healthCheckTimeout = 60;
+        models = {
+          "glm-4.5-air-q4km" = {
+            # llama.cpp automatically detects and loads multi-part GGUF files
+            cmd = "${llama-server} --port \${PORT} -m /etc/llama-models/GLM-4.5-Air-Q4_K_M-00001-of-00002.gguf -ngl 99 --no-webui";
+            aliases = [ "glm-4.5-air" ];
+          };
+        };
+      };
+  };
 
   # Home-manager configuration
   home-manager = {
