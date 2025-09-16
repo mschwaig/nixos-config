@@ -18,6 +18,19 @@
 
   networking.interfaces.enp191s0.useDHCP = true;
 
+  # Ollama AI model server
+  services.ollama = {
+    enable = true;
+    package = (pkgs.ollama.override { acceleration = "rocm"; });
+    acceleration = "rocm";
+    rocmOverrideGfx = "11.0.2";
+    host = "0.0.0.0"; # Listen on all interfaces
+    port = 11434;
+  };
+
+  # Open firewall for ollama
+  networking.firewall.allowedTCPPorts = [ 11434 ];
+
   users.users.mschwaig = {
     openssh.authorizedKeys.keys = [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKnthNhO1+KJ27ctGf+zUtYNgUORUegCm+4CX/X1W9+S" # mutalisk
