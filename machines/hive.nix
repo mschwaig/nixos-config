@@ -61,7 +61,7 @@
   environment.etc."llama-models/GLM-4.5-Air-Q4_K_M-00002-of-00002.gguf" = {
     source = pkgs.fetchurl {
       url = "https://huggingface.co/unsloth/GLM-4.5-Air-GGUF/resolve/main/Q4_K_M/GLM-4.5-Air-Q4_K_M-00002-of-00002.gguf";
-      hash = "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA="; # Replace with actual hash after first attempt
+      hash = "sha256-WBJE206BmJQ8C4CcgXMNaOJOCgqN5p5NoQH/pIIFXCc=";
     };
   };
 
