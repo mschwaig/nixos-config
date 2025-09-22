@@ -88,15 +88,13 @@
     };
   };
 
+
+  systemd.services.llama-swap.environment.VK_ICD_FILENAMES = "/run/opengl-driver/share/vulkan/icd.d/amd_icd64.json";
   # Llama-swap service configuration
   services.llama-swap = {
     enable = true;
     port = 11435; # Different from ollama port
     openFirewall = true;
-    environment = {
-      # Use AMDVLK driver instead of RADV for better compute performance
-      VK_ICD_FILENAMES = "/run/opengl-driver/share/vulkan/icd.d/amd_icd64.json";
-    };
     settings = 
       let
         llama-server = lib.getExe' pkgs.llama-cpp-vulkan "llama-server";
