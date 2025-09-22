@@ -17,7 +17,17 @@
   networking.hostName = "hive";
   networking.hostId = "e3a48e7a";
 
-  networking.interfaces.enp191s0.useDHCP = true;
+  networking.interfaces.enp191s0 = {
+    useDHCP = false;
+    ipv4.addresses = [{
+      address = "192.168.248.48";
+      prefixLength = 24;
+    }];
+  };
+  networking.defaultGateway = "192.168.248.1";
+  networking.nameservers = [ "192.168.248.1" ];
+  networking.domain = "ins.jku.at";
+  networking.search = [ "ins.jku.at" ];
   networking.firewall.trustedInterfaces = [ "tailscale0" ];
 
   # Ollama AI model server
