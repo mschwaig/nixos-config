@@ -36,8 +36,8 @@
   # Add extra experimental features from client configs
   nix = {
     settings = {
-      substituters = [ "https://cache.nixos.org" ];
-      trusted-public-keys = [ "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY=" ];
+      substituters = lib.mkForce [ "https://cache.nixos.org" ];
+      trusted-public-keys = lib.mkForce [ "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY=" ];
     };
     extraOptions = ''
       experimental-features = nix-command flakes ca-derivations impure-derivations
