@@ -18,6 +18,7 @@
   networking.hostId = "e3a48e7a";
 
   networking.interfaces.enp191s0.useDHCP = true;
+  networking.firewall.trustedInterfaces = [ "tailscale0" ];
 
   # Ollama AI model server
   services.ollama = {
