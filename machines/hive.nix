@@ -57,7 +57,6 @@
   # Enable AMDVLK driver for better compute performance
   hardware.opengl = {
     enable = true;
-    driSupport = true;
     driSupport32Bit = true;
     extraPackages = with pkgs; [
       amdvlk
