@@ -104,7 +104,7 @@
         models = {
           "glm-4.5-air-q4km" = {
             # llama.cpp automatically detects and loads multi-part GGUF files
-            cmd = "${llama-server} --port \${PORT} -m /etc/llama-models/GLM-4.5-Air-Q4_K_M-00001-of-00002.gguf -ngl 99 --no-webui";
+            cmd = "${llama-server} --port \${PORT} -m /etc/llama-models/GLM-4.5-Air-Q4_K_M-00001-of-00002.gguf -ngl 20 --no-webui";
             aliases = [ "glm-4.5-air" ];
           };
         };
