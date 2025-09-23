@@ -22,11 +22,6 @@
       url = github:nix-community/home-manager;
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nixos-attest = {
-      url = "https://git.ins.jku.at/proj/digidow/nixos-attest.git";
-      type = "git";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     nixos-hardware.url = github:NixOS/nixos-hardware/master;
     nixpkgs.url = github:nixos/nixpkgs/nixos-unstable;
     latest-nixpkgs.url = github:mschwaig/nixpkgs/ollama-11.4;
