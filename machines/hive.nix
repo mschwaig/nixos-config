@@ -21,18 +21,6 @@
   networking.interfaces.enp191s0.useDHCP = true;
   networking.firewall.trustedInterfaces = [ "tailscale0" ];
 
-  # Ollama AI model server
-  services.ollama = {
-    enable = true;
-    package = (pkgs.ollama.override { acceleration = "rocm"; });
-    acceleration = "rocm";
-    rocmOverrideGfx = "11.0.2";
-    host = "0.0.0.0"; # Listen on all interfaces
-    port = 11434;
-  };
-
-  # Open firewall for ollama
-  networking.firewall.allowedTCPPorts = [ 11434 ];
 
   # Add extra experimental features from client configs
   nix = {
