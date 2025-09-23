@@ -12,11 +12,11 @@
 
   "gemma-3-27b-it-qat-Q4_0.gguf" = pkgs.fetchurl {
     url = "https://huggingface.co/ggml-org/gemma-3-27b-it-qat-GGUF/resolve/main/gemma-3-27b-it-qat-Q4_0.gguf";
-    hash = pkgs.lib.fakeHash;
+    hash = "sha256-VI2BbDGJ282v9mPqAk+2djHlYZRf/OsGYJPT1SJ3MBA=";
   };
 
   "mmproj-model-f16-27B.gguf" = pkgs.fetchurl {
     url = "https://huggingface.co/ggml-org/gemma-3-27b-it-qat-GGUF/resolve/main/mmproj-model-f16-27B.gguf";
-    hash = pkgs.lib.fakeHash;
+    hash = "sha256-+tQ3uBtvYH0sJ0q8d/W2QaptGQ3a/mmPnEF5gdiFNqo=";
   };
 }
