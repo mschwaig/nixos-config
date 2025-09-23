@@ -1,6 +1,6 @@
 { config, inputs, pkgs, lib, ... }:
 let
-  llama-cpp = pkgs.llama-cpp-vulkan;
+  llama-cpp = pkgs.llama-cpp-rocm;
   llama-server = lib.getExe' llama-cpp "llama-server";
 in
 {
@@ -12,8 +12,8 @@ in
       lib.nameValuePair "llama-models/${name}" { source = value; }
     ) models;
 
-  # Llama-swap service configuration
-  systemd.services.llama-swap.environment.VK_ICD_FILENAMES = "/run/opengl-driver/share/vulkan/icd.d/amd_icd64.json";
+  # not sure if this works for switching to the other vulkan driver
+  # systemd.services.llama-swap.environment.VK_ICD_FILENAMES = "/run/opengl-driver/share/vulkan/icd.d/amd_icd64.json";
   
   services.llama-swap = {
     enable = true;
