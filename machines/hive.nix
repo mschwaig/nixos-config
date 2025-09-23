@@ -11,6 +11,7 @@
       ./hardware-configuration/hive.nix
       ./disks/hive.nix
       ../addins/server
+      ../addins/llm
       inputs.home-manager.nixosModules.home-manager
     ];
 
@@ -69,47 +70,7 @@
   # System packages
   environment.systemPackages = with pkgs; [
     amdgpu_top
-    llama-cpp-vulkan
-    llama-swap
   ];
-
-  # Fetch the GLM-4.5-Air model parts from Hugging Face
-  environment.etc."llama-models/GLM-4.5-Air-Q4_K_M-00001-of-00002.gguf" = {
-    source = pkgs.fetchurl {
-      url = "https://huggingface.co/unsloth/GLM-4.5-Air-GGUF/resolve/main/Q4_K_M/GLM-4.5-Air-Q4_K_M-00001-of-00002.gguf";
-      hash = "sha256-vE8oKY+wX/mLdpJfbBQ+cRp/stXOtO1LfB9luMhLm5s=";
-    };
-  };
-
-  environment.etc."llama-models/GLM-4.5-Air-Q4_K_M-00002-of-00002.gguf" = {
-    source = pkgs.fetchurl {
-      url = "https://huggingface.co/unsloth/GLM-4.5-Air-GGUF/resolve/main/Q4_K_M/GLM-4.5-Air-Q4_K_M-00002-of-00002.gguf";
-      hash = "sha256-WBJE206BmJQ8C4CcgXMNaOJOCgqN5p5NoQH/pIIFXCc=";
-    };
-  };
-
-
-  systemd.services.llama-swap.environment.VK_ICD_FILENAMES = "/run/opengl-driver/share/vulkan/icd.d/amd_icd64.json";
-  # Llama-swap service configuration
-  services.llama-swap = {
-    enable = true;
-    port = 11435; # Different from ollama port
-    openFirewall = true;
-    settings = 
-      let
-        llama-server = lib.getExe' pkgs.llama-cpp-vulkan "llama-server";
-      in
-      {
-        healthCheckTimeout = 60;
-        models = {
-          "glm-4.5-air-q4km" = {
-            # llama.cpp automatically detects and loads multi-part GGUF files
-            cmd = "${llama-server} --port \${PORT} -m /etc/llama-models/GLM-4.5-Air-Q4_K_M-00001-of-00002.gguf -ngl 20 --no-webui";
-            aliases = [ "glm-4.5-air" ];
-          };
-        };
-      };
-  };
 
   # Home-manager configuration
   home-manager = {
