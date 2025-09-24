@@ -18,11 +18,6 @@
   };
   boot.loader.efi.canTouchEfiVariables = true;
 
-  services.tailscale = {
-    enable = true;
-    useRoutingFeatures = "client";
-    extraUpFlags = [ "--accept-dns" ];
-  };
   #networking.useNetworkd = true;
 
   # dhcp set per interface because global flag is deprecated

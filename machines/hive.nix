@@ -29,7 +29,6 @@
   networking.nameservers = [ "192.168.248.1" ];
   networking.domain = "ins.jku.at";
   networking.search = [ "ins.jku.at" ];
-  networking.firewall.trustedInterfaces = [ "tailscale0" ];
 
 
   # Add extra experimental features from client configs
