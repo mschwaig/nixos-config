@@ -27,7 +27,7 @@ in
           cmd = "${llama-server} --port \${PORT} -m ${modelPath "gemma-3-27b-it-qat-Q4_0.gguf"} --mmproj ${modelPath "mmproj-model-f16-27B.gguf"} -ngl 999 --no-webui";
         };
         "qwen3-30b-a3b" = {
-          cmd = "${llama-server} --port \${PORT} -m ${modelPath "qwen3-30b-a3b-instruct-2507-q8_0.gguf"} -ngl 999 --no-webui";
+          cmd = "${llama-server} --port \${PORT} --jinja -m ${modelPath "qwen3-30b-a3b-instruct-2507-q8_0.gguf"} -ngl 999 --no-webui";
         };
         "gemma-3-12b" = {
           cmd = "${llama-server} --port \${PORT} -m ${modelPath "gemma-3-12b-it-qat-Q4_0.gguf"} --mmproj ${modelPath "mmproj-model-f16-12B.gguf"} -ngl 999 --no-webui";
@@ -39,7 +39,7 @@ in
           cmd = "${llama-server} --port \${PORT} -m ${modelPath "gpt-oss-120b-mxfp4-00001-of-00003.gguf"} --jinja --reasoning-format auto -ngl 999 --no-webui";
         };
         "qwen3-coder-30b-a3b" = {
-          cmd = "${llama-server} --port \${PORT} -m ${modelPath "qwen3-coder-30b-a3b-instruct-q8_0.gguf"} -ngl 999 --no-webui";
+          cmd = "${llama-server} --port \${PORT} --jinja -m ${modelPath "qwen3-coder-30b-a3b-instruct-q8_0.gguf"} -ngl 999 --no-webui";
         };
       };
     };
