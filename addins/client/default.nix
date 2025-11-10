@@ -101,7 +101,7 @@
     kitty
 
     # terminal apps
-    file ffmpeg htop bandwhich git lolcat tree archivemount pwgen jq tmux reptyr astyle protonvpn-cli_2 zip zstd tmate unzip tealdeer xdelta wally-cli tmate wget man-pages shellcheck wl-clipboard
+    file ffmpeg htop bandwhich git lolcat tree archivemount pwgen jq tmux reptyr astyle zip zstd tmate unzip tealdeer xdelta wally-cli tmate wget man-pages shellcheck wl-clipboard
 
     diffoscope
 
@@ -111,7 +111,7 @@
     (python3.withPackages(ps: with ps; [ qrcode ]))
 
     # for pdfinfo command
-    poppler_utils
+    poppler-utils
 
     element-desktop
 
