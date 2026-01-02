@@ -11,7 +11,7 @@
     (aspellWithDicts (ds: with ds; [ en en-computers en-science ]))
     silver-searcher
     (ollama.override { acceleration = "rocm"; })
-    oterm
+    #oterm
     nmap
     nix-output-monitor
     nixpkgs-review

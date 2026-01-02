@@ -35,9 +35,7 @@
 
   services.ollama = {
     enable = true;
-    package = (pkgs.ollama.override { acceleration = "rocm"; });
-    acceleration = "rocm";
-    rocmOverrideGfx = "11.0.2";
+    package = (pkgs.ollama-vulkan);
   };
 
   # make ins network happy
