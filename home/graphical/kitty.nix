@@ -11,6 +11,7 @@
       disable_ligatures = "always";
       font_features = "none";
       touch_scroll_multiplier = "10.0";
+      scrollback_lines = 20000;
       scrollback_pager_history_size = 8;
     };
     extraConfig = ''
