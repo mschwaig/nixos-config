@@ -123,8 +123,6 @@
     QT_QPA_PLATFORM="wayland";
   };
 
-  programs.adb.enable = true;
-
   services.udev = {
     extraRules = ''
       # STM32 rules for the Moonlander and Planck EZ
@@ -136,7 +134,7 @@
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.mschwaig = {
-    extraGroups = [ "wireshark" "plugdev" "adbusers" ];
+    extraGroups = [ "wireshark" "plugdev" ];
   };
 
   programs.wireshark.enable = true;

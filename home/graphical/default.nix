@@ -8,7 +8,6 @@
   home.packages = with pkgs; [
     firefox
     element-desktop
-    jetbrains.idea
   ];
 
   programs.vscode = {
