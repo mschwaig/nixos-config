@@ -49,4 +49,35 @@
     url = "https://huggingface.co/ggml-org/Qwen3-Coder-30B-A3B-Instruct-Q8_0-GGUF/resolve/main/qwen3-coder-30b-a3b-instruct-q8_0.gguf";
     hash = "sha256-8imT4pMYtbnsICb2tlgCpcqZs4q0hEqrg67YomzgD/Y=";
   };
+
+  # Qwen3.5 models
+  "Qwen3.5-9B-UD-Q4_K_XL.gguf" = pkgs.fetchurl {
+    url = "https://huggingface.co/unsloth/Qwen3.5-9B-GGUF/resolve/main/Qwen3.5-9B-UD-Q4_K_XL.gguf";
+    hash = "sha256-b10wZmwtiuFqMG5hbZU0Hc88xGgQ34TX5vWn0eTBspM=";
+  };
+
+  "Qwen3.5-27B-UD-Q4_K_XL.gguf" = pkgs.fetchurl {
+    url = "https://huggingface.co/unsloth/Qwen3.5-27B-GGUF/resolve/main/Qwen3.5-27B-UD-Q4_K_XL.gguf";
+    hash = "sha256-E8tiKDRImK+lDZY8Aq4NmRriUJTuqIN9uNDkUukcWIg=";
+  };
+
+  "Qwen3.5-35B-A3B-UD-Q4_K_XL.gguf" = pkgs.fetchurl {
+    url = "https://huggingface.co/unsloth/Qwen3.5-35B-A3B-GGUF/resolve/main/Qwen3.5-35B-A3B-UD-Q4_K_XL.gguf";
+    hash = "sha256-GwrGN9+gkru6J5OXfblIWkDE+LQt9f40LwB21htmroM=";
+  };
+
+  "Qwen3.5-122B-A10B-UD-Q4_K_XL-00001-of-00003.gguf" = pkgs.fetchurl {
+    url = "https://huggingface.co/unsloth/Qwen3.5-122B-A10B-GGUF/resolve/main/UD-Q4_K_XL/Qwen3.5-122B-A10B-UD-Q4_K_XL-00001-of-00003.gguf";
+    hash = "sha256-Rnyb2S6lGFOc91v1pfv7016aC0DXZsyqZ78SDhIEHfM=";
+  };
+
+  "Qwen3.5-122B-A10B-UD-Q4_K_XL-00002-of-00003.gguf" = pkgs.fetchurl {
+    url = "https://huggingface.co/unsloth/Qwen3.5-122B-A10B-GGUF/resolve/main/UD-Q4_K_XL/Qwen3.5-122B-A10B-UD-Q4_K_XL-00002-of-00003.gguf";
+    hash = "sha256-7NvULUOw35+g75pYTgnpWkOWbvA6Eiq6C4epnUTZrZg=";
+  };
+
+  "Qwen3.5-122B-A10B-UD-Q4_K_XL-00003-of-00003.gguf" = pkgs.fetchurl {
+    url = "https://huggingface.co/unsloth/Qwen3.5-122B-A10B-GGUF/resolve/main/UD-Q4_K_XL/Qwen3.5-122B-A10B-UD-Q4_K_XL-00003-of-00003.gguf";
+    hash = "sha256-EzAODwWeb6IaoPq94qVU+d7qNmwOVPJoBFdpshSyjJc=";
+  };
 }
