@@ -20,9 +20,6 @@ in
     settings = {
       healthCheckTimeout = 60;
       models = {
-        "glm-4.5-air" = {
-          cmd = "${llama-server} --port \${PORT} -m ${modelPath "GLM-4.5-Air-Q4_K_M-00001-of-00002.gguf"} -ngl 999 --no-webui";
-        };
         "gemma-3-27b" = {
           cmd = "${llama-server} --port \${PORT} -m ${modelPath "gemma-3-27b-it-qat-Q4_0.gguf"} --mmproj ${modelPath "mmproj-model-f16-27B.gguf"} -ngl 999 --no-webui";
         };
