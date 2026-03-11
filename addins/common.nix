@@ -41,7 +41,7 @@
       lm_sensors acpi
 
       # display system properties
-      neofetch
+      fastfetch
 
       # remote managment
       ethtool

@@ -25,6 +25,10 @@
   # See: https://github.com/serokell/deploy-rs/issues/78
   security.sudo.wheelNeedsPassword = false;
 
+  networking.useNetworkd = true;
+  systemd.services.systemd-networkd-wait-online.enable = lib.mkForce false;
+  services.resolved.enable = true;
+
   environment.systemPackages = with pkgs; [
     htop screen unison smartmontools tmux git
   ];

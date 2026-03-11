@@ -15,6 +15,7 @@ in
   
   services.llama-swap = {
     enable = true;
+    listenAddress = "0.0.0.0";
     port = 11434;
     openFirewall = true;
     settings = {
