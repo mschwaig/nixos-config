@@ -44,6 +44,7 @@
   # System packages
   environment.systemPackages = with pkgs; [
     amdgpu_top
+    kitty.terminfo
   ];
 
   # Home-manager configuration
