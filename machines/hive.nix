@@ -21,6 +21,14 @@
   networking.interfaces.enp191s0.useDHCP = true;
   networking.firewall.trustedInterfaces = [ "tailscale0" ];
 
+  # Dynamic GPU VRAM allocation (108 GB max for AI Max+ 395)
+  # Formula: ([size in GB] * 1024 * 1024) / 4.096
+  # See: https://www.jeffgeerling.com/blog/2025/increasing-vram-allocation-on-amd-ai-apus-under-linux/
+  boot.kernelParams = [
+    "amdttm.pages_limit=27648000"
+    "amdttm.page_pool_size=27648000"
+  ];
+
 
   # Add extra experimental features from client configs
   nix = {
