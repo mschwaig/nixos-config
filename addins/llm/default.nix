@@ -47,6 +47,15 @@ in
           cmd = "${llama-server} --port \${PORT} -m ${modelPath "gpt-oss-120b-mxfp4-00001-of-00003.gguf"} --jinja --reasoning-format auto -ngl 999 -c 32768 --no-webui";
         };
 
+        "qwen3.5-0.8b" = {
+          cmd = "${llama-server} --port \${PORT} --jinja -m ${modelPath "Qwen3.5-0.8B-UD-Q4_K_XL.gguf"} ${qwen35-base} ${qwen35-thinking}";
+        };
+        "qwen3.5-2b" = {
+          cmd = "${llama-server} --port \${PORT} --jinja -m ${modelPath "Qwen3.5-2B-UD-Q4_K_XL.gguf"} ${qwen35-base} ${qwen35-thinking}";
+        };
+        "qwen3.5-4b" = {
+          cmd = "${llama-server} --port \${PORT} --jinja -m ${modelPath "Qwen3.5-4B-UD-Q4_K_XL.gguf"} ${qwen35-base} ${qwen35-thinking}";
+        };
         "qwen3.5-9b" = {
           cmd = "${llama-server} --port \${PORT} --jinja -m ${modelPath "Qwen3.5-9B-UD-Q4_K_XL.gguf"} ${qwen35-base} ${qwen35-thinking}";
         };
@@ -60,6 +69,15 @@ in
           cmd = "${llama-server} --port \${PORT} --jinja -m ${modelPath "Qwen3.5-122B-A10B-UD-Q4_K_XL-00001-of-00003.gguf"} ${qwen35-base} ${qwen35-thinking}";
         };
         
+        "qwen3.5-0.8b-fast" = {
+          cmd = "${llama-server} --port \${PORT} --jinja -m ${modelPath "Qwen3.5-0.8B-UD-Q4_K_XL.gguf"} ${qwen35-base} ${qwen35-fast}";
+        };
+        "qwen3.5-2b-fast" = {
+          cmd = "${llama-server} --port \${PORT} --jinja -m ${modelPath "Qwen3.5-2B-UD-Q4_K_XL.gguf"} ${qwen35-base} ${qwen35-fast}";
+        };
+        "qwen3.5-4b-fast" = {
+          cmd = "${llama-server} --port \${PORT} --jinja -m ${modelPath "Qwen3.5-4B-UD-Q4_K_XL.gguf"} ${qwen35-base} ${qwen35-fast}";
+        };
         "qwen3.5-9b-fast" = {
           cmd = "${llama-server} --port \${PORT} --jinja -m ${modelPath "Qwen3.5-9B-UD-Q4_K_XL.gguf"} ${qwen35-base} ${qwen35-fast}";
         };

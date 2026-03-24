@@ -50,6 +50,22 @@
     hash = "sha256-8imT4pMYtbnsICb2tlgCpcqZs4q0hEqrg67YomzgD/Y=";
   };
 
+  # Qwen3.5 Small models
+  "Qwen3.5-0.8B-UD-Q4_K_XL.gguf" = pkgs.fetchurl {
+    url = "https://huggingface.co/unsloth/Qwen3.5-0.8B-GGUF/resolve/main/Qwen3.5-0.8B-UD-Q4_K_XL.gguf";
+    hash = "sha256-MXfr1nr+RDg3TaGeaQvBuYdW9+D+qSQOG+QEM2FWp7U=";
+  };
+
+  "Qwen3.5-2B-UD-Q4_K_XL.gguf" = pkgs.fetchurl {
+    url = "https://huggingface.co/unsloth/Qwen3.5-2B-GGUF/resolve/main/Qwen3.5-2B-UD-Q4_K_XL.gguf";
+    hash = "sha256-CvlhZephW+o5oEEY1j8LbTWQiuqFDuSlGqYVHYUbizU=";
+  };
+
+  "Qwen3.5-4B-UD-Q4_K_XL.gguf" = pkgs.fetchurl {
+    url = "https://huggingface.co/unsloth/Qwen3.5-4B-GGUF/resolve/main/Qwen3.5-4B-UD-Q4_K_XL.gguf";
+    hash = "sha256-slLFYQpCyoLSD+KhKBPp0Gnu2JKSkH4mx4PusLyWG8c=";
+  };
+
   # Qwen3.5 models
   "Qwen3.5-9B-UD-Q4_K_XL.gguf" = pkgs.fetchurl {
     url = "https://huggingface.co/unsloth/Qwen3.5-9B-GGUF/resolve/main/Qwen3.5-9B-UD-Q4_K_XL.gguf";
