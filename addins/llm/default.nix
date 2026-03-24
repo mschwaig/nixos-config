@@ -41,32 +41,34 @@ in
         };
 
         # Qwen3.5 models - thinking mode (reasoning enabled)
+        # Sampling: coding preset (temp 0.6). For general tasks use --temp 1.0
         "qwen3.5-9b" = {
           # 9B has thinking disabled by default, explicitly enable it
-          cmd = "${llama-server} --port \${PORT} --jinja -m ${modelPath "Qwen3.5-9B-UD-Q4_K_XL.gguf"} -ngl 999 -c 65536 --chat-template-kwargs '{\"enable_thinking\":true}' --no-webui";
+          cmd = "${llama-server} --port \${PORT} --jinja -m ${modelPath "Qwen3.5-9B-UD-Q4_K_XL.gguf"} -ngl 999 -c 65536 --temp 0.6 --top-p 0.95 --top-k 20 --min-p 0.0 --chat-template-kwargs '{\"enable_thinking\":true}' --no-webui";
         };
         "qwen3.5-27b" = {
-          cmd = "${llama-server} --port \${PORT} --jinja -m ${modelPath "Qwen3.5-27B-UD-Q4_K_XL.gguf"} -ngl 999 -c 65536 --no-webui";
+          cmd = "${llama-server} --port \${PORT} --jinja -m ${modelPath "Qwen3.5-27B-UD-Q4_K_XL.gguf"} -ngl 999 -c 65536 --temp 0.6 --top-p 0.95 --top-k 20 --min-p 0.0 --no-webui";
         };
         "qwen3.5-35b-a3b" = {
-          cmd = "${llama-server} --port \${PORT} --jinja -m ${modelPath "Qwen3.5-35B-A3B-UD-Q4_K_XL.gguf"} -ngl 999 -c 65536 --no-webui";
+          cmd = "${llama-server} --port \${PORT} --jinja -m ${modelPath "Qwen3.5-35B-A3B-UD-Q4_K_XL.gguf"} -ngl 999 -c 65536 --temp 0.6 --top-p 0.95 --top-k 20 --min-p 0.0 --no-webui";
         };
         "qwen3.5-122b-a10b" = {
-          cmd = "${llama-server} --port \${PORT} --jinja -m ${modelPath "Qwen3.5-122B-A10B-UD-Q4_K_XL-00001-of-00003.gguf"} -ngl 999 -c 65536 --no-webui";
+          cmd = "${llama-server} --port \${PORT} --jinja -m ${modelPath "Qwen3.5-122B-A10B-UD-Q4_K_XL-00001-of-00003.gguf"} -ngl 999 -c 65536 --temp 0.6 --top-p 0.95 --top-k 20 --min-p 0.0 -fa 1 -mmp 0 --no-webui";
         };
 
         # Qwen3.5 models - non-thinking mode (faster, no reasoning overhead)
+        # Sampling: general preset (temp 0.7, top-p 0.8). For reasoning tasks use --temp 1.0 --top-p 0.95
         "qwen3.5-9b-fast" = {
-          cmd = "${llama-server} --port \${PORT} --jinja -m ${modelPath "Qwen3.5-9B-UD-Q4_K_XL.gguf"} -ngl 999 -c 65536 --chat-template-kwargs '{\"enable_thinking\":false}' --no-webui";
+          cmd = "${llama-server} --port \${PORT} --jinja -m ${modelPath "Qwen3.5-9B-UD-Q4_K_XL.gguf"} -ngl 999 -c 65536 --temp 0.7 --top-p 0.8 --top-k 20 --min-p 0.0 --chat-template-kwargs '{\"enable_thinking\":false}' --no-webui";
         };
         "qwen3.5-27b-fast" = {
-          cmd = "${llama-server} --port \${PORT} --jinja -m ${modelPath "Qwen3.5-27B-UD-Q4_K_XL.gguf"} -ngl 999 -c 65536 --chat-template-kwargs '{\"enable_thinking\":false}' --no-webui";
+          cmd = "${llama-server} --port \${PORT} --jinja -m ${modelPath "Qwen3.5-27B-UD-Q4_K_XL.gguf"} -ngl 999 -c 65536 --temp 0.7 --top-p 0.8 --top-k 20 --min-p 0.0 --chat-template-kwargs '{\"enable_thinking\":false}' --no-webui";
         };
         "qwen3.5-35b-a3b-fast" = {
-          cmd = "${llama-server} --port \${PORT} --jinja -m ${modelPath "Qwen3.5-35B-A3B-UD-Q4_K_XL.gguf"} -ngl 999 -c 65536 --chat-template-kwargs '{\"enable_thinking\":false}' --no-webui";
+          cmd = "${llama-server} --port \${PORT} --jinja -m ${modelPath "Qwen3.5-35B-A3B-UD-Q4_K_XL.gguf"} -ngl 999 -c 65536 --temp 0.7 --top-p 0.8 --top-k 20 --min-p 0.0 --chat-template-kwargs '{\"enable_thinking\":false}' --no-webui";
         };
         "qwen3.5-122b-a10b-fast" = {
-          cmd = "${llama-server} --port \${PORT} --jinja -m ${modelPath "Qwen3.5-122B-A10B-UD-Q4_K_XL-00001-of-00003.gguf"} -ngl 999 -c 65536 --chat-template-kwargs '{\"enable_thinking\":false}' --no-webui";
+          cmd = "${llama-server} --port \${PORT} --jinja -m ${modelPath "Qwen3.5-122B-A10B-UD-Q4_K_XL-00001-of-00003.gguf"} -ngl 999 -c 65536 --temp 0.7 --top-p 0.8 --top-k 20 --min-p 0.0 --chat-template-kwargs '{\"enable_thinking\":false}' --no-webui";
         };
       };
     };
