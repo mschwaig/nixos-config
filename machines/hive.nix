@@ -25,8 +25,8 @@
   # Formula: ([size in GB] * 1024 * 1024) / 4.096
   # See: https://www.jeffgeerling.com/blog/2025/increasing-vram-allocation-on-amd-ai-apus-under-linux/
   boot.kernelParams = [
-    "amdttm.pages_limit=27648000"
-    "amdttm.page_pool_size=27648000"
+    "ttm.pages_limit=27648000"
+    "ttm.page_pool_size=27648000"
   ];
 
 
