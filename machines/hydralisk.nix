@@ -74,8 +74,7 @@
 
     ollama = {
       enable = true;
-      package = (latest-pkgs.ollama.override { acceleration = "rocm"; });
-      acceleration = "rocm";
+      package = pkgs.ollama-rocm;
       rocmOverrideGfx = "11.0.2";
       host = "0.0.0.0";
       environmentVariables = {
@@ -100,7 +99,6 @@
     libvirtd = {
       enable = true;
       qemu = {
-        ovmf.enable = true;
         runAsRoot = false;
       };
       onBoot = "ignore";
