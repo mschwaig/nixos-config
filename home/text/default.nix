@@ -92,9 +92,6 @@
         credential = { helper = "cache"; };
         init = { defaultBranch = "main"; };
         url = {
-          "ssh://git@git.ins.jku.at/" = {
-            insteadof = "https://git.ins.jku.at/";
-          };
           "ssh://git@github.com/mschwaig" = {
             insteadof = "https://github.com/mschwaig";
           };
