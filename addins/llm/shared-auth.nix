@@ -45,7 +45,7 @@ in
 
   services.caddy = {
     enable = true;
-    virtualHosts."hive.van-duck.ts.net".extraConfig = ''
+    virtualHosts.":1980".extraConfig = ''
       forward_auth 127.0.0.1:4180 {
         uri /auth
         copy_headers Authorization X-Auth-User
@@ -56,5 +56,16 @@ in
     '';
   };
 
-  services.tailscale.permitCertUid = "caddy";
+  systemd.services.tailscale-funnel = {
+    description = "Tailscale Funnel for shared LLM service";
+    after = [ "tailscaled.service" "caddy.service" ];
+    wants = [ "tailscaled.service" "caddy.service" ];
+    wantedBy = [ "multi-user.target" ];
+    serviceConfig = {
+      Type = "oneshot";
+      RemainAfterExit = true;
+      ExecStart = "${config.services.tailscale.package}/bin/tailscale funnel --bg --set-path / http://127.0.0.1:1980";
+      ExecStop = "${config.services.tailscale.package}/bin/tailscale funnel off";
+    };
+  };
 }
