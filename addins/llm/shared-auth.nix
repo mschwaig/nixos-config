@@ -61,9 +61,11 @@ in
     after = [ "tailscaled.service" "caddy.service" ];
     wants = [ "tailscaled.service" "caddy.service" ];
     wantedBy = [ "multi-user.target" ];
+    path = [ config.services.tailscale.package ];
     serviceConfig = {
       Type = "oneshot";
       RemainAfterExit = true;
+      ExecStartPre = "${pkgs.bash}/bin/bash -c 'for i in $(seq 30); do tailscale status >/dev/null 2>&1 && exit 0; sleep 2; done; exit 1'";
       ExecStart = "${config.services.tailscale.package}/bin/tailscale funnel --bg --set-path / http://127.0.0.1:1980";
       ExecStop = "${config.services.tailscale.package}/bin/tailscale funnel off";
     };
