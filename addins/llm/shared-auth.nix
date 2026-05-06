@@ -1,8 +1,8 @@
 { config, pkgs, ... }:
 let
-  manage = pkgs.writeScriptBin "llm-auth-manage" (
-    builtins.readFile ./llm-auth-manage.py
-  );
+  manage = pkgs.writeShellScriptBin "llm-auth-manage" ''
+    exec ${pkgs.python3}/bin/python3 ${./llm-auth-manage.py} "$@"
+  '';
   sidecar = pkgs.writeScript "llm-auth-sidecar" (
     builtins.readFile ./llm-auth-sidecar.py
   );
