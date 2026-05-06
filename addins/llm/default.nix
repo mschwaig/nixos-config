@@ -119,7 +119,8 @@ in
       settings = {
         healthCheckTimeout = 60;
         models = builtins.mapAttrs (_: _: {
-          proxy = "http://127.0.0.1:11434";
+          cmd = "${lib.getExe pkgs.socat} TCP-LISTEN:\${PORT},reuseaddr,fork TCP:127.0.0.1:11434";
+          proxy = "http://127.0.0.1:\${PORT}";
         }) modelConfigs;
       };
     };
@@ -128,5 +129,6 @@ in
   environment.systemPackages = [
     llama-cpp
     pkgs.llama-swap
+    pkgs.socat
   ];
 }
