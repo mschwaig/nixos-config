@@ -118,10 +118,12 @@ in
       listenAddress = "127.0.0.1";
       settings = {
         healthCheckTimeout = 60;
-        models = builtins.mapAttrs (_: _: {
-          cmd = "${lib.getExe pkgs.socat} TCP-LISTEN:\${PORT},reuseaddr,fork TCP:127.0.0.1:11434";
-          proxy = "http://127.0.0.1:\${PORT}";
-        }) modelConfigs;
+        peers = {
+          private = {
+            proxy = "http://127.0.0.1:11434";
+            models = builtins.attrNames modelConfigs;
+          };
+        };
       };
     };
   };
@@ -129,6 +131,5 @@ in
   environment.systemPackages = [
     llama-cpp
     pkgs.llama-swap
-    pkgs.socat
   ];
 }
