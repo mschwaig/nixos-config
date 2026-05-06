@@ -105,7 +105,8 @@ in
     private = {
       enable = true;
       port = 11434;
-      listenAddress = "127.0.0.1";
+      listenAddress = "0.0.0.0";
+      openFirewall = true;
       settings = {
         healthCheckTimeout = 60;
         models = modelConfigs;
