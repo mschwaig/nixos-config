@@ -1,9 +1,7 @@
-{ config, inputs, pkgs, system, ... }:
-
+{ config, inputs, lib, pkgs, system, ... }:
 {
-  imports = [
-    ./attest.nix
-  ];
+
+  system.configurationRevision = lib.mkIf (inputs.self ? rev) inputs.self.rev;
 
   # allow things like intel wifi firmware
   hardware.enableRedistributableFirmware = true;

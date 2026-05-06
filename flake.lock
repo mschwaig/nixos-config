@@ -169,26 +169,6 @@
         "type": "github"
       }
     },
-    "nixos-attest": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1719913831,
-        "narHash": "sha256-P0gjdDrtKVGZYreWkksCfYwBMaJ1NvSATVW/L7L3+XA=",
-        "ref": "refs/heads/master",
-        "rev": "d8e2173e884f55532ca110f00e62613c859525bd",
-        "revCount": 15,
-        "type": "git",
-        "url": "https://git.ins.jku.at/proj/digidow/nixos-attest.git"
-      },
-      "original": {
-        "type": "git",
-        "url": "https://git.ins.jku.at/proj/digidow/nixos-attest.git"
-      }
-    },
     "nixos-hardware": {
       "locked": {
         "lastModified": 1777896550,
@@ -266,7 +246,6 @@
         "helix": "helix",
         "home-manager": "home-manager",
         "latest-nixpkgs": "latest-nixpkgs",
-        "nixos-attest": "nixos-attest",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs",
         "roc": "roc"
