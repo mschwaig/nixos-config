@@ -60,6 +60,14 @@
                       mountpoint = "/swap";
                       swap.swapfile.size = "128G";
                     };
+                    "/root-snapshots" = {
+                      mountpoint = "/.snapshots";
+                      mountOptions = ["subvol=root-snapshots" "compress=zstd" "noatime"];
+                    };
+                    "/home-snapshots" = {
+                      mountpoint = "/home/.snapshots";
+                      mountOptions = ["subvol=home-snapshots" "compress=zstd" "noatime"];
+                    };
                   };
                 };
               };

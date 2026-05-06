@@ -11,6 +11,7 @@
       ../addins/client
       ../addins/portable
       ../addins/jku-ins-network.nix
+      ../addins/btrfs-snapshots.nix
       # Include the results of the hardware scan.
       ./hardware-configuration/mutalisk.nix
       ./disks/mutalisk.nix
