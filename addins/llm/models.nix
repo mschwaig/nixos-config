@@ -1,4 +1,4 @@
-{ pkgs }:
+{ pkgs, lib }:
 {
   "gemma-3-27b-it-qat-Q4_0.gguf" = pkgs.fetchurl {
     url = "https://huggingface.co/ggml-org/gemma-3-27b-it-qat-GGUF/resolve/main/gemma-3-27b-it-qat-Q4_0.gguf";
@@ -95,5 +95,16 @@
   "Qwen3.5-122B-A10B-UD-Q4_K_XL-00003-of-00003.gguf" = pkgs.fetchurl {
     url = "https://huggingface.co/unsloth/Qwen3.5-122B-A10B-GGUF/resolve/main/UD-Q4_K_XL/Qwen3.5-122B-A10B-UD-Q4_K_XL-00003-of-00003.gguf";
     hash = "sha256-EzAODwWeb6IaoPq94qVU+d7qNmwOVPJoBFdpshSyjJc=";
+  };
+
+  # Qwen3.6 models
+  "Qwen3.6-27B-UD-Q4_K_XL.gguf" = pkgs.fetchurl {
+    url = "https://huggingface.co/unsloth/Qwen3.6-27B-GGUF/resolve/main/Qwen3.6-27B-UD-Q4_K_XL.gguf";
+    hash = lib.fakeHash;
+  };
+
+  "Qwen3.6-35B-A3B-UD-Q4_K_XL.gguf" = pkgs.fetchurl {
+    url = "https://huggingface.co/unsloth/Qwen3.6-35B-A3B-GGUF/resolve/main/Qwen3.6-35B-A3B-UD-Q4_K_XL.gguf";
+    hash = lib.fakeHash;
   };
 }

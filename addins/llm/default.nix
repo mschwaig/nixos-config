@@ -2,7 +2,7 @@
 let
   llama-cpp = pkgs.llama-cpp-rocm;
   llama-server = lib.getExe' llama-cpp "llama-server";
-  models = import ./models.nix { inherit pkgs; };
+  models = import ./models.nix { inherit pkgs lib; };
   modelPath = name: "/etc/llama-models/${name}" + (if models ? ${name} then "" else throw "Model ${name} not found in models.nix");
   qwen35-base = "--no-mmap -c 262144 -ngl 999 --no-webui";
   # Qwen3.5 models - thinking mode (reasoning enabled)
@@ -68,6 +68,13 @@ in
         "qwen3.5-122b-a10b" = {
           cmd = "${llama-server} --port \${PORT} --jinja -m ${modelPath "Qwen3.5-122B-A10B-UD-Q4_K_XL-00001-of-00003.gguf"} ${qwen35-base} ${qwen35-thinking}";
         };
+
+        "qwen3.6-27b" = {
+          cmd = "${llama-server} --port \${PORT} --jinja -m ${modelPath "Qwen3.6-27B-UD-Q4_K_XL.gguf"} ${qwen35-base} ${qwen35-thinking}";
+        };
+        "qwen3.6-35b-a3b" = {
+          cmd = "${llama-server} --port \${PORT} --jinja -m ${modelPath "Qwen3.6-35B-A3B-UD-Q4_K_XL.gguf"} ${qwen35-base} ${qwen35-thinking}";
+        };
         
         "qwen3.5-0.8b-fast" = {
           cmd = "${llama-server} --port \${PORT} --jinja -m ${modelPath "Qwen3.5-0.8B-UD-Q4_K_XL.gguf"} ${qwen35-base} ${qwen35-fast}";
@@ -89,6 +96,13 @@ in
         };
         "qwen3.5-122b-a10b-fast" = {
           cmd = "${llama-server} --port \${PORT} --jinja -m ${modelPath "Qwen3.5-122B-A10B-UD-Q4_K_XL-00001-of-00003.gguf"} ${qwen35-base} ${qwen35-fast}";
+        };
+
+        "qwen3.6-27b-fast" = {
+          cmd = "${llama-server} --port \${PORT} --jinja -m ${modelPath "Qwen3.6-27B-UD-Q4_K_XL.gguf"} ${qwen35-base} ${qwen35-fast}";
+        };
+        "qwen3.6-35b-a3b-fast" = {
+          cmd = "${llama-server} --port \${PORT} --jinja -m ${modelPath "Qwen3.6-35B-A3B-UD-Q4_K_XL.gguf"} ${qwen35-base} ${qwen35-fast}";
         };
       };
     };
