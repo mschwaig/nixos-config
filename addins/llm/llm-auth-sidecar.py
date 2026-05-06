@@ -57,7 +57,7 @@ def authenticate(auth_header):
 
 
 class Handler(BaseHTTPRequestHandler):
-    def do_GET(self):
+    def handle_auth(self):
         auth = self.headers.get("Authorization", "")
         username = authenticate(auth)
 
@@ -72,6 +72,14 @@ class Handler(BaseHTTPRequestHandler):
         self.send_response(200)
         self.send_header("X-Auth-User", username)
         self.end_headers()
+
+    do_GET = handle_auth
+    do_POST = handle_auth
+    do_PUT = handle_auth
+    do_DELETE = handle_auth
+    do_OPTIONS = handle_auth
+    do_PATCH = handle_auth
+    do_HEAD = handle_auth
 
     def log_message(self, fmt, *args):
         print(f"auth-sidecar: {fmt % args}", file=sys.stderr)
