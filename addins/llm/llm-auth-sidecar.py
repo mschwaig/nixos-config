@@ -63,6 +63,7 @@ class Handler(BaseHTTPRequestHandler):
 
         if username is None:
             self.send_response(401)
+            self.send_header("WWW-Authenticate", "Basic realm=\"llm-api\"")
             self.send_header("Content-Type", "text/plain")
             self.end_headers()
             self.wfile.write(b"Unauthorized\n")
