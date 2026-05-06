@@ -37,29 +37,16 @@
 
   let
     system = "x86_64-linux";
-    update-systemd-resolved-overlay = (_: super: {
-      update-systemd-resolved = super.update-systemd-resolved.overrideAttrs (old: {
-      patches = (old.patches or []) ++ [(
-        super.fetchpatch {
-          url = "https://github.com/jonathanio/update-systemd-resolved/commit/04ad1d1732ecb4353d6ce997b3e13b0ae710edd3.patch";
-
-          sha256 = "sha256-h0xot8nWKvlbhRm6BVF2V5S8z19NI31GRRAWUetNU88=";
-        })];
-      });
-    });
     pkgs = import nixpkgs {
       inherit system;
-      overlays = [ update-systemd-resolved-overlay ];
       config.allowUnfree = true;
     };
     latest-pkgs = import inputs.latest-nixpkgs {
       inherit system;
-      overlays = [ update-systemd-resolved-overlay ];
       config.allowUnfree = true;
     };
     pkgsWithRocm = import nixpkgs {
       inherit system;
-      overlays = [ update-systemd-resolved-overlay ];
       config.allowUnfree = true;
       config.rocmSupport = true;
     };

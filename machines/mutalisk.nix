@@ -10,7 +10,6 @@
       inputs.disko.nixosModules.disko
       ../addins/client
       ../addins/portable
-      ../addins/jku-ins-network.nix
       ../addins/btrfs-snapshots.nix
       # Include the results of the hardware scan.
       ./hardware-configuration/mutalisk.nix
@@ -33,15 +32,9 @@
     ${pkgs.kmod}/bin/modprobe -r i2c_hid_acpi
     ${pkgs.kmod}/bin/modprobe i2c_hid_acpi
   '';
-
-  services.ollama = {
+services.ollama = {
     enable = true;
     package = (pkgs.ollama-vulkan);
-  };
-
-  # make ins network happy
-  systemd.network.networks."40-enp0s31f6".dhcpV4Config = {
-    ClientIdentifier="mac";
   };
 
   networking.hostName = "mutalisk";
