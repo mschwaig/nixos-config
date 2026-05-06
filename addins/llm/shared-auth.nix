@@ -50,8 +50,9 @@ in
         uri /auth
         copy_headers Authorization X-Auth-User
       }
-      header_up -Authorization
-      reverse_proxy 127.0.0.1:11435
+      reverse_proxy 127.0.0.1:11435 {
+        header_up -Authorization
+      }
     '';
   };
 
