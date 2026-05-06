@@ -100,11 +100,11 @@
   # Qwen3.6 models
   "Qwen3.6-27B-UD-Q4_K_XL.gguf" = pkgs.fetchurl {
     url = "https://huggingface.co/unsloth/Qwen3.6-27B-GGUF/resolve/main/Qwen3.6-27B-UD-Q4_K_XL.gguf";
-    hash = lib.fakeHash;
+    hash = "sha256-/2lB3tUls06xWUlnYsKd0Oxucdwxt01X512HGgPuwlk=";
   };
 
   "Qwen3.6-35B-A3B-UD-Q4_K_XL.gguf" = pkgs.fetchurl {
     url = "https://huggingface.co/unsloth/Qwen3.6-35B-A3B-GGUF/resolve/main/Qwen3.6-35B-A3B-UD-Q4_K_XL.gguf";
-    hash = lib.fakeHash;
+    hash = "sha256-cHpVqKQ5fs3kTeDEmdPmjBrR0kDR2mWCa0lJ0QQ/RFA=";
   };
 }
