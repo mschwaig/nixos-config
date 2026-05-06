@@ -31,7 +31,7 @@
     };
     helix = {
       enable = true;
-      package = inputs.helix.packages.${pkgs.system}.default;
+      package = inputs.helix.packages.${pkgs.stdenv.hostPlatform.system}.default;
       defaultEditor = true;
       extraPackages = with pkgs; [
         marksman
@@ -84,9 +84,12 @@
 
     git = {
       enable = true;
-      userName = "Martin Schwaighofer";
-      userEmail = "3856390+mschwaig@users.noreply.github.com";
-      extraConfig = {
+      signing.format = null;
+      settings = {
+        user = {
+          name = "Martin Schwaighofer";
+          email = "3856390+mschwaig@users.noreply.github.com";
+        };
         log.date = "human";
         pull = { ff = "only"; };
         credential = { helper = "cache"; };
