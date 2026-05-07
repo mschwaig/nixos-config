@@ -1,0 +1,29 @@
+From 440a24131584976a908905e595c60a47c00b8cfd Mon Sep 17 00:00:00 2001
+From: Martin Schwaighofer <3856390+mschwaig@users.noreply.github.com>
+Date: Thu, 25 Sep 2025 16:27:26 +0200
+Subject: [PATCH 1/4] enable templating for gpt-oss models
+
+---
+ addins/llm/default.nix | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/addins/llm/default.nix b/addins/llm/default.nix
+index 660cf82..5522052 100644
+--- a/addins/llm/default.nix
++++ b/addins/llm/default.nix
+@@ -33,10 +33,10 @@ in
+           cmd = "${llama-server} --port \${PORT} -m ${modelPath "gemma-3-12b-it-qat-Q4_0.gguf"} --mmproj ${modelPath "mmproj-model-f16-12B.gguf"} -ngl 999 --no-webui";
+         };
+         "gpt-oss-20b" = {
+-          cmd = "${llama-server} --port \${PORT} -m ${modelPath "gpt-oss-20b-mxfp4.gguf"} -ngl 999 --no-webui";
++          cmd = "${llama-server} --port \${PORT} -m ${modelPath "gpt-oss-20b-mxfp4.gguf"} --jinja --reasoning-format auto -ngl 999 --no-webui";
+         };
+         "gpt-oss-120b" = {
+-          cmd = "${llama-server} --port \${PORT} -m ${modelPath "gpt-oss-120b-mxfp4-00001-of-00003.gguf"} -ngl 999 --no-webui";
++          cmd = "${llama-server} --port \${PORT} -m ${modelPath "gpt-oss-120b-mxfp4-00001-of-00003.gguf"} --jinja --reasoning-format auto -ngl 999 --no-webui";
+         };
+         "qwen3-coder-30b-a3b" = {
+           cmd = "${llama-server} --port \${PORT} -m ${modelPath "qwen3-coder-30b-a3b-instruct-q8_0.gguf"} -ngl 999 --no-webui";
+-- 
+2.51.0
+

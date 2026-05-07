@@ -1,0 +1,29 @@
+From b46478618cad836d9d3a073d3773a51a15cd1cee Mon Sep 17 00:00:00 2001
+From: Martin Schwaighofer <3856390+mschwaig@users.noreply.github.com>
+Date: Fri, 10 Oct 2025 16:07:42 +0200
+Subject: [PATCH 3/4] increase gpt-oss context size
+
+---
+ addins/llm/default.nix | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/addins/llm/default.nix b/addins/llm/default.nix
+index 76d7c20..c1df231 100644
+--- a/addins/llm/default.nix
++++ b/addins/llm/default.nix
+@@ -33,10 +33,10 @@ in
+           cmd = "${llama-server} --port \${PORT} -m ${modelPath "gemma-3-12b-it-qat-Q4_0.gguf"} --mmproj ${modelPath "mmproj-model-f16-12B.gguf"} -ngl 999 --no-webui";
+         };
+         "gpt-oss-20b" = {
+-          cmd = "${llama-server} --port \${PORT} -m ${modelPath "gpt-oss-20b-mxfp4.gguf"} --jinja --reasoning-format auto -ngl 999 --no-webui";
++          cmd = "${llama-server} --port \${PORT} -m ${modelPath "gpt-oss-20b-mxfp4.gguf"} --jinja --reasoning-format auto -ngl 999 -c 131072 --no-webui";
+         };
+         "gpt-oss-120b" = {
+-          cmd = "${llama-server} --port \${PORT} -m ${modelPath "gpt-oss-120b-mxfp4-00001-of-00003.gguf"} --jinja --reasoning-format auto -ngl 999 --no-webui";
++          cmd = "${llama-server} --port \${PORT} -m ${modelPath "gpt-oss-120b-mxfp4-00001-of-00003.gguf"} --jinja --reasoning-format auto -ngl 999 -c 131072 --no-webui";
+         };
+         "qwen3-coder-30b-a3b" = {
+           cmd = "${llama-server} --port \${PORT} --jinja -m ${modelPath "qwen3-coder-30b-a3b-instruct-q8_0.gguf"} -ngl 999 --no-webui";
+-- 
+2.51.0
+
