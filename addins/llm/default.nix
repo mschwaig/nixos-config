@@ -2,94 +2,53 @@
 let
   llama-cpp = pkgs.llama-cpp-rocm;
   llama-server = lib.getExe' llama-cpp "llama-server";
-  models = import ./models.nix { inherit pkgs lib; };
-  modelPath = name: "/etc/llama-models/${name}" + (if models ? ${name} then "" else throw "Model ${name} not found in models.nix");
-  qwen35-base = "--no-mmap -c 262144 -ngl 999 --no-webui";
-  # Qwen3.5 models - thinking mode (reasoning enabled)
-  # Sampling: coding preset (temp 0.6). For general tasks use --temp 1.0
-  qwen35-thinking = "--temp 0.6 --top-p 0.95 --top-k 20 --min-p 0.0 --chat-template-kwargs '{\"enable_thinking\":true}'";
-  # Qwen3.5 models - non-thinking mode (faster, no reasoning overhead)
-  # Sampling: general preset (temp 0.7, top-p 0.8). For reasoning tasks use --temp 1.0 --top-p 0.95
-  qwen35-fast = "--temp 0.7 --top-p 0.8 --top-k 20 --min-p 0.0 --chat-template-kwargs '{\"enable_thinking\":false}'";
+  modelData = import ./models.nix { inherit pkgs lib; };
 
-  modelConfigs = {
-    "gemma-3-27b" = {
-      cmd = "${llama-server} --port \${PORT} -m ${modelPath "gemma-3-27b-it-qat-Q4_0.gguf"} --mmproj ${modelPath "mmproj-model-f16-27B.gguf"} -ngl 999 --no-webui";
-    };
-    "qwen3-30b-a3b" = {
-      cmd = "${llama-server} --port \${PORT} --jinja -m ${modelPath "qwen3-30b-a3b-instruct-2507-q8_0.gguf"} -ngl 999 -c 65536 --no-webui";
-    };
-    "qwen3-coder-30b-a3b" = {
-      cmd = "${llama-server} --port \${PORT} --jinja -m ${modelPath "qwen3-coder-30b-a3b-instruct-q8_0.gguf"} -ngl 999 -c 262144 --no-webui";
-    };
-    "gemma-3-12b" = {
-      cmd = "${llama-server} --port \${PORT} -m ${modelPath "gemma-3-12b-it-qat-Q4_0.gguf"} --mmproj ${modelPath "mmproj-model-f16-12B.gguf"} -ngl 999 --no-webui";
-    };
-    "gpt-oss-20b" = {
-      cmd = "${llama-server} --port \${PORT} -m ${modelPath "gpt-oss-20b-mxfp4.gguf"} --jinja --reasoning-format auto -ngl 999 -c 131072 --no-webui";
-    };
-    "gpt-oss-120b" = {
-      cmd = "${llama-server} --port \${PORT} -m ${modelPath "gpt-oss-120b-mxfp4-00001-of-00003.gguf"} --jinja --reasoning-format auto -ngl 999 -c 131072 --no-webui";
-    };
+  llamaBase = "-ngl 999 --no-webui";
 
-    "qwen3.5-0.8b" = {
-      cmd = "${llama-server} --port \${PORT} --jinja -m ${modelPath "Qwen3.5-0.8B-UD-Q4_K_XL.gguf"} ${qwen35-base} ${qwen35-thinking}";
-    };
-    "qwen3.5-2b" = {
-      cmd = "${llama-server} --port \${PORT} --jinja -m ${modelPath "Qwen3.5-2B-UD-Q4_K_XL.gguf"} ${qwen35-base} ${qwen35-thinking}";
-    };
-    "qwen3.5-4b" = {
-      cmd = "${llama-server} --port \${PORT} --jinja -m ${modelPath "Qwen3.5-4B-UD-Q4_K_XL.gguf"} ${qwen35-base} ${qwen35-thinking}";
-    };
-    "qwen3.5-9b" = {
-      cmd = "${llama-server} --port \${PORT} --jinja -m ${modelPath "Qwen3.5-9B-UD-Q4_K_XL.gguf"} ${qwen35-base} ${qwen35-thinking}";
-    };
-    "qwen3.5-27b" = {
-      cmd = "${llama-server} --port \${PORT} --jinja -m ${modelPath "Qwen3.5-27B-UD-Q4_K_XL.gguf"} ${qwen35-base} ${qwen35-thinking}";
-    };
-    "qwen3.5-35b-a3b" = {
-      cmd = "${llama-server} --port \${PORT} --jinja -m ${modelPath "Qwen3.5-35B-A3B-UD-Q4_K_XL.gguf"} ${qwen35-base} ${qwen35-thinking}";
-    };
-    "qwen3.5-122b-a10b" = {
-      cmd = "${llama-server} --port \${PORT} --jinja -m ${modelPath "Qwen3.5-122B-A10B-UD-Q4_K_XL-00001-of-00003.gguf"} ${qwen35-base} ${qwen35-thinking}";
-    };
+  collectGgufs = families:
+    builtins.listToAttrs (lib.concatMap (family:
+      lib.concatMap (size:
+        [{ name = size.gguf.name; value = size.gguf.drv; }]
+        ++ lib.optional (size ? mmproj) { name = size.mmproj.name; value = size.mmproj.drv; }
+        ++ map (s: { name = s.name; value = s.drv; }) (size.gguf.shards or [])
+      ) (builtins.attrValues family.sizes)
+    ) (builtins.attrValues families));
 
-    "qwen3.6-27b" = {
-      cmd = "${llama-server} --port \${PORT} --jinja -m ${modelPath "Qwen3.6-27B-UD-Q4_K_XL.gguf"} ${qwen35-base} ${qwen35-thinking}";
-    };
-    "qwen3.6-35b-a3b" = {
-      cmd = "${llama-server} --port \${PORT} --jinja -m ${modelPath "Qwen3.6-35B-A3B-UD-Q4_K_XL.gguf"} ${qwen35-base} ${qwen35-thinking}";
-    };
+  allGgufs = collectGgufs modelData.families;
 
-    "qwen3.5-0.8b-fast" = {
-      cmd = "${llama-server} --port \${PORT} --jinja -m ${modelPath "Qwen3.5-0.8B-UD-Q4_K_XL.gguf"} ${qwen35-base} ${qwen35-fast}";
-    };
-    "qwen3.5-2b-fast" = {
-      cmd = "${llama-server} --port \${PORT} --jinja -m ${modelPath "Qwen3.5-2B-UD-Q4_K_XL.gguf"} ${qwen35-base} ${qwen35-fast}";
-    };
-    "qwen3.5-4b-fast" = {
-      cmd = "${llama-server} --port \${PORT} --jinja -m ${modelPath "Qwen3.5-4B-UD-Q4_K_XL.gguf"} ${qwen35-base} ${qwen35-fast}";
-    };
-    "qwen3.5-9b-fast" = {
-      cmd = "${llama-server} --port \${PORT} --jinja -m ${modelPath "Qwen3.5-9B-UD-Q4_K_XL.gguf"} ${qwen35-base} ${qwen35-fast}";
-    };
-    "qwen3.5-27b-fast" = {
-      cmd = "${llama-server} --port \${PORT} --jinja -m ${modelPath "Qwen3.5-27B-UD-Q4_K_XL.gguf"} ${qwen35-base} ${qwen35-fast}";
-    };
-    "qwen3.5-35b-a3b-fast" = {
-      cmd = "${llama-server} --port \${PORT} --jinja -m ${modelPath "Qwen3.5-35B-A3B-UD-Q4_K_XL.gguf"} ${qwen35-base} ${qwen35-fast}";
-    };
-    "qwen3.5-122b-a10b-fast" = {
-      cmd = "${llama-server} --port \${PORT} --jinja -m ${modelPath "Qwen3.5-122B-A10B-UD-Q4_K_XL-00001-of-00003.gguf"} ${qwen35-base} ${qwen35-fast}";
-    };
+  modelPath = name:
+    "/etc/llama-models/${name}"
+    + (if allGgufs ? ${name} then "" else throw "Model file ${name} not found");
 
-    "qwen3.6-27b-fast" = {
-      cmd = "${llama-server} --port \${PORT} --jinja -m ${modelPath "Qwen3.6-27B-UD-Q4_K_XL.gguf"} ${qwen35-base} ${qwen35-fast}";
-    };
-    "qwen3.6-35b-a3b-fast" = {
-      cmd = "${llama-server} --port \${PORT} --jinja -m ${modelPath "Qwen3.6-35B-A3B-UD-Q4_K_XL.gguf"} ${qwen35-base} ${qwen35-fast}";
-    };
-  };
+  buildModelConfigs = families:
+    builtins.listToAttrs (lib.concatMap (entry:
+      let
+        familyName = entry.familyName;
+        family = entry.family;
+      in
+      lib.concatMap (sizeKey:
+        let
+          size = family.sizes.${sizeKey};
+          context = toString (size.context or family.context);
+          baseCmd = "${llama-server} --port \${PORT} -m ${modelPath size.gguf.name}"
+            + lib.optionalString (size ? mmproj) " --mmproj ${modelPath size.mmproj.name}"
+            + " ${family.args} -c ${context} ${llamaBase}";
+        in
+        if family ? modes then
+          lib.mapAttrsToList (suffix: mode: {
+            name = "${familyName}-${sizeKey}${suffix}";
+            value = { cmd = "${baseCmd} ${mode.args}"; };
+          }) family.modes
+        else
+          [{
+            name = "${familyName}-${sizeKey}";
+            value = { cmd = baseCmd; };
+          }]
+      ) (builtins.attrNames family.sizes)
+    ) (lib.mapAttrsToList (familyName: family: { inherit familyName family; }) families));
+
+  modelConfigs = buildModelConfigs modelData.families;
 in
 {
   imports = [
@@ -99,7 +58,7 @@ in
 
   environment.etc = lib.mapAttrs' (name: value:
     lib.nameValuePair "llama-models/${name}" { source = value; }
-  ) models;
+  ) allGgufs;
 
   services.llama-swap.instances = {
     private = {

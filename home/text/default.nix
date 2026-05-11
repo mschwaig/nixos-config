@@ -1,6 +1,6 @@
 { inputs, pkgs, ... }: {
 
-  imports = [ ./fish.nix ];
+  imports = [ ./fish.nix ../opencode.nix ];
 
   home.packages = with pkgs; [
     p7zip
