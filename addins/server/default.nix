@@ -5,16 +5,15 @@
     [
       ../encrypted-zfs-root
       ../common.nix
+      ./zfs-initrd-unlock.nix
     ];
 
-    nix = {
-      settings = {
-        substituters = [ "http://lair.van-duck.ts.net.net/" ];
-        trusted-public-keys = [ "lair.van-duck.ts.net.net:6RWQD3CFGg9OY4bhqPzBumZ+o70lIEVH3R9bxTj+FXw=" ];
-      };
-      extraOptions = ''
-        experimental-features = nix-command flakes ca-derivations
-      '';
+  nix = {
+    settings = {
+      substituters = [ "http://lair.van-duck.ts.net.net/" ];
+      trusted-public-keys = [ "lair.van-duck.ts.net.net:6RWQD3CFGg9OY4bhqPzBumZ+o70lIEVH3R9bxTj+FXw=" ];
+      experimental-features = [ "nix-command" "flakes" "ca-derivations" ];
+    };
   };
 
   # disable sudo passwords to work around deploy-rs bug
