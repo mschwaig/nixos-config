@@ -1,7 +1,7 @@
 { config, pkgs, ... }:
 
 {
-  boot.kernelPackages = pkgs.linuxPackages;
+  boot.kernelPackages = pkgs.linuxPackages_6_12;
   boot.supportedFilesystems = ["zfs"];
   boot.zfs.requestEncryptionCredentials = true;
   services.zfs.autoScrub.enable = true;
