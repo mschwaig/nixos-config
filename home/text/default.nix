@@ -31,7 +31,6 @@
     };
     helix = {
       enable = true;
-      package = inputs.helix.packages.${pkgs.stdenv.hostPlatform.system}.default;
       defaultEditor = true;
       extraPackages = with pkgs; [
         marksman
