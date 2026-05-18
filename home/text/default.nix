@@ -17,7 +17,10 @@
     };
     helix = {
       enable = true;
+<<<<<<< HEAD
       package = inputs.helix.packages.${pkgs.system}.default;
+=======
+>>>>>>> d29da52 (use nixpkgs instead of upstream for helix)
       defaultEditor = true;
       extraPackages = [ pkgs.marksman ];
 
