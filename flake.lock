@@ -80,31 +80,6 @@
         "type": "github"
       }
     },
-    "helix": {
-      "inputs": {
-        "crane": "crane",
-        "flake-utils": [
-          "flake-utils"
-        ],
-        "nixpkgs": [
-          "nixpkgs"
-        ],
-        "rust-overlay": "rust-overlay"
-      },
-      "locked": {
-        "lastModified": 1704401390,
-        "narHash": "sha256-01Tkq958K2O7H451x8JMEDSGh344iwvhkcYsGVii+8k=",
-        "owner": "helix-editor",
-        "repo": "helix",
-        "rev": "7e389b67c24dfe4466112c988b240c807e7e2414",
-        "type": "github"
-      },
-      "original": {
-        "owner": "helix-editor",
-        "repo": "helix",
-        "type": "github"
-      }
-    },
     "home-manager": {
       "inputs": {
         "nixpkgs": [
@@ -182,7 +157,6 @@
         "deploy-rs": "deploy-rs",
         "flake-compat": "flake-compat",
         "flake-utils": "flake-utils",
-        "helix": "helix",
         "home-manager": "home-manager",
         "nixos-attest": "nixos-attest",
         "nixos-hardware": "nixos-hardware",
@@ -196,22 +170,23 @@
           "flake-utils"
         ],
         "nixpkgs": [
-          "helix",
+          "roc",
           "nixpkgs"
         ]
       },
       "locked": {
-        "lastModified": 1701137803,
-        "narHash": "sha256-0LcPAdql5IhQSUXJx3Zna0dYTgdIoYO7zUrsKgiBd04=",
-        "owner": "oxalica",
-        "repo": "rust-overlay",
-        "rev": "9dd940c967502f844eacea52a61e9596268d4f70",
-        "type": "github"
+        "lastModified": 1683482098,
+        "narHash": "sha256-9NIOmgDLCVEgVbOFd7vEsPz0mmfS0HU3OzoK4LIwo4Y=",
+        "ref": "main",
+        "rev": "338d8a4518472961d5c54cd0124e5588a0c02f6c",
+        "revCount": 13,
+        "type": "git",
+        "url": "ssh://git@github.com/mschwaig/semi-secrets.git"
       },
       "original": {
-        "owner": "oxalica",
-        "repo": "rust-overlay",
-        "type": "github"
+        "ref": "main",
+        "type": "git",
+        "url": "ssh://git@github.com/mschwaig/semi-secrets.git"
       }
     },
     "systems": {
