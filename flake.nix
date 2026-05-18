@@ -10,13 +10,6 @@
     };
     flake-compat.url = github:edolstra/flake-compat;
     flake-utils.url = github:numtide/flake-utils;
-    helix = {
-      url = github:helix-editor/helix;
-      inputs = {
-        flake-utils.follows = "flake-utils";
-        nixpkgs.follows = "nixpkgs";
-      };
-    };
     home-manager = {
       url = github:nix-community/home-manager;
       inputs.nixpkgs.follows = "nixpkgs";
