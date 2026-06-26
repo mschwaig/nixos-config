@@ -26,7 +26,7 @@ POST https://hive.van-duck.ts.net/v1/chat/completions
 Authorization: Bearer {{api_key}}
 Content-Type: application/json
 {
-  "model": "qwen3.5-27b",
+  "model": "qwen3.6-27b",
   "messages": [{"role": "user", "content": "Hello!"}]
 }
 HTTP 200
