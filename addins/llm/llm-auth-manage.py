@@ -47,6 +47,54 @@ def generate_key():
     return "sk-" + secrets.token_hex(24)
 
 
+API_BASE_URL = "https://hive.van-duck.ts.net"
+WEB_UI_URL = API_BASE_URL + "/ui/"
+HURL_EXAMPLE_URL = (
+    "https://github.com/mschwaig/nixos-config/tree/main/addins/llm/example.hurl"
+)
+
+
+def print_welcome_message(username, key):
+    print()
+    print("=" * 72)
+    print(f"  LLM API access for: {username}")
+    print("=" * 72)
+    print()
+    print("API Key (save this -- it will not be shown again):")
+    print(f"  {key}")
+    print()
+    print("Base URL:")
+    print(f"  {API_BASE_URL}")
+    print()
+    print("Web UI (log in with HTTP Basic Auth -- use your account name")
+    print(f"       '{username}' as the username, and the API key as password):")
+    print(f"  {WEB_UI_URL}")
+    print()
+    print("Authentication:")
+    print("  Send the key as a bearer token for API calls:")
+    print(f"    Authorization: Bearer {key}")
+    print()
+    print("The API is OpenAI-compatible. Relevant endpoints:")
+    print(f"  GET  {API_BASE_URL}/v1/models")
+    print(f"  POST {API_BASE_URL}/v1/chat/completions")
+    print()
+    print("Quick test with curl:")
+    print(f'  curl -H "Authorization: Bearer {key}" \\')
+    print(f'       {API_BASE_URL}/v1/models')
+    print()
+    print("Example requests (Hurl) are available here:")
+    print(f"  {HURL_EXAMPLE_URL}")
+    print(f"  Run with:  hurl --secret api_key={key} example.hurl")
+    print()
+    print("WARNING: This is a shared instance. Every request AND response")
+    print("you send is visible to all other users who have been granted")
+    print("access, both via the API and in the web UI (until the service")
+    print("is restarted). Do not submit sensitive or private data.")
+    print()
+    print("If you lose this key, ask an admin to rekey your account.")
+    print("=" * 72)
+
+
 def cmd_add(username):
     data = load()
     if username in data["users"]:
@@ -55,9 +103,8 @@ def cmd_add(username):
     key = generate_key()
     data["users"][username] = hash_key(key)
     save(data)
-    print(f"User '{username}' added")
-    print(f"API Key: {key}")
-    print("Save this key -- it will not be shown again.")
+    print(f"User '{username}' added.")
+    print_welcome_message(username, key)
 
 
 def cmd_rekey(username):
@@ -68,9 +115,8 @@ def cmd_rekey(username):
     key = generate_key()
     data["users"][username] = hash_key(key)
     save(data)
-    print(f"User '{username}' rekeyed")
-    print(f"New API Key: {key}")
-    print("Save this key -- it will not be shown again.")
+    print(f"User '{username}' rekeyed.")
+    print_welcome_message(username, key)
 
 
 def cmd_remove(username):
