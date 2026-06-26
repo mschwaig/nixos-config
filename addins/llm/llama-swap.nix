@@ -224,7 +224,7 @@ in
       '';
       example = lib.literalExpression ''
         let
-          llama-cpp = pkgs.llama-cpp.override { rocmSupport = true; };
+          llama-cpp = pkgs.llama-cpp.override { vulkanSupport = true; };
           llama-server = lib.getExe' llama-cpp "llama-server";
         in
         {

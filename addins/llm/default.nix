@@ -1,6 +1,6 @@
 { config, inputs, pkgs, lib, ... }:
 let
-  llama-cpp = pkgs.llama-cpp-rocm;
+  llama-cpp = pkgs.llama-cpp.override { vulkanSupport = true; };
   llama-server = lib.getExe' llama-cpp "llama-server";
   modelData = import ./models.nix { inherit pkgs lib; };
 
