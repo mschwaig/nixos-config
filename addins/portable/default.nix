@@ -20,5 +20,9 @@ in
     };
 
     networking.networkmanager.enable = true;
+
+    # Allow managing connections (e.g. joining wifi networks) without a
+    # polkit admin prompt.
+    users.users.mschwaig.extraGroups = [ "networkmanager" ];
   };
 }
