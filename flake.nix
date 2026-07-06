@@ -131,7 +131,6 @@
 
     # framework laptop
     nixosConfigurations.mutalisk = nixosSystem {
-      pkgs = pkgsWithRocm;
       modules = [
         ./machines/mutalisk.nix
       ];
