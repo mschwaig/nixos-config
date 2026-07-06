@@ -9,14 +9,14 @@
     git-filter-repo
     haskellPackages.patat # try this fun presentation tool
     (aspellWithDicts (ds: with ds; [ en en-computers en-science ]))
-    silver-searcher
+    silver-searcher-ng
     #oterm
     nmap
     nix-output-monitor
     nixpkgs-review
     nil
     nurl
-    inputs.roc.packages.x86_64-linux.cli
+    inputs.roc.packages.x86_64-linux.roc
     claude-code
     opencode
     gh
@@ -30,7 +30,6 @@
     };
     helix = {
       enable = true;
-      package = inputs.helix.packages.${pkgs.stdenv.hostPlatform.system}.default;
       defaultEditor = true;
       extraPackages = with pkgs; [
         marksman

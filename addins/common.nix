@@ -30,7 +30,7 @@
 
   environment = {
     systemPackages = with pkgs; [
-      inputs.helix.packages.${pkgs.stdenv.hostPlatform.system}.default
+      helix
 
       # Android MTP
       jmtpfs
