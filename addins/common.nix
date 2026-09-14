@@ -32,9 +32,6 @@
     systemPackages = with pkgs; [
       helix
 
-      # Android MTP
-      jmtpfs
-
       # monitoring
       lm_sensors acpi
 
