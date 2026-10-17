@@ -72,7 +72,7 @@
 
   environment.systemPackages = with pkgs; [
     # gui apps
-    vlc gimp transmission_4-gtk libreoffice-fresh chromium inkscape audacity reaper
+    vlc gimp transmission_4-gtk libreoffice-stable chromium inkscape audacity reaper
 
     nix-diff
     nix-tree
@@ -101,7 +101,7 @@
     kitty
 
     # terminal apps
-    file ffmpeg htop bandwhich git lolcat tree archivemount pwgen jq tmux reptyr astyle zip zstd tmate unzip tealdeer xdelta wally-cli tmate wget man-pages shellcheck wl-clipboard
+    file ffmpeg htop bandwhich git lolcat tree archivemount pwgen jq tmux reptyr astyle zip zstd unzip tealdeer xdelta wally-cli wget man-pages shellcheck wl-clipboard
 
     diffoscope
 
